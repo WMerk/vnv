@@ -32,4 +32,19 @@ public class UserDao {
     public User getUserById(int id) {
         return users.get(id);
     }
+
+    public void removeUserById(int id) {
+        this.users.remove(id);
+    }
+
+    public void updateUser(User user){
+        User u = users.get(user.getId());
+        u.setEmail(user.getEmail());
+        u.setName(user.getName());
+        users.put(user.getId(),user);
+    }
+
+    public void insertUserToDb(User user) {
+        this.users.put(user.getId(),user);
+    }
 }
