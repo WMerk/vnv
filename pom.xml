@@ -14,11 +14,45 @@
         <version>1.4.1.RELEASE</version>
     </parent>
 
+    <packaging>jar</packaging>
+
+    <repositories>
+        <repository>
+            <id>johm-mvn-repo</id>
+            <url>https://raw.github.com/agrison/johm/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <!-- tag::neo4j[] -->
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!-- end::neo4j[] -->
+
+        <!-- tag::redis[] -->
+        <dependency>
+            <groupId>redis</groupId>
+            <artifactId>johm</artifactId>
+            <version>0.6.7</version>
+            <type>jar</type>
+        </dependency>
+        <!-- end::redis[] -->
     </dependencies>
 
     <properties>
