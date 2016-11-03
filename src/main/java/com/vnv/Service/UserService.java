@@ -17,6 +17,12 @@ public class UserService {
     private UserDao userDao;
 
     public Collection<User> getAllUser(){
-        return userDao.getAllUser();
+        return this.userDao.getAllUser();
+    }
+
+    public User getUserById(int id){
+        //A exists check should be implemented
+        // and a errormessage on failor
+        return this.userDao.getUserById(id);
     }
 }

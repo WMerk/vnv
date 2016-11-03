@@ -28,4 +28,8 @@ public class UserDao {
     public Collection<User> getAllUser(){
         return this.users.values();
     }
+
+    public User getUserById(int id) {
+        return users.get(id);
+    }
 }
