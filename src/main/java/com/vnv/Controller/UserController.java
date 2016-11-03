@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-/**
- * Created by Waldemar on 03.11.2016.
- */
 @RestController
-@RequestMapping("/Users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
