@@ -1,8 +1,5 @@
 package com.vnv.Entity;
 
-/**
- * Created by Waldemar on 03.11.2016.
- */
 public class User {
 
     private int id;
