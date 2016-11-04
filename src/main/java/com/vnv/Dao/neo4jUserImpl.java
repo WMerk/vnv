@@ -4,21 +4,19 @@ import com.vnv.Entity.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * Created by Waldemar on 04.11.2016.
+ */
 @Repository
-@Qualifier("mongoData")
-public class MongoStudentDaoImpl implements UserDao {
+@Qualifier("neo4j")
+public class neo4jUserImpl implements UserDao {
 
 
     @Override
     public Collection<User> getAllUser() {
-        return new ArrayList<User>(){
-            {
-                add(new User(1,"Mario","Nothing"));
-            }
-        };
+        return null;
     }
 
     @Override

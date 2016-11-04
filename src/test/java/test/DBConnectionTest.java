@@ -1,6 +1,6 @@
 package test;
 
-import com.vnv.Database;
+import com.vnv.Model.Database;
 import com.vnv.Main;
 import org.junit.Test;
 import org.junit.runner.RunWith;

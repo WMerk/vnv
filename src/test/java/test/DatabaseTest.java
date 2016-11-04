@@ -1,6 +1,6 @@
 package test;
 
-import com.vnv.Database;
+import com.vnv.Model.Database;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import org.junit.After;

@@ -1,4 +1,4 @@
-package com.vnv;
+package com.vnv.Model;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.neo4j.driver.v1.AuthTokens;

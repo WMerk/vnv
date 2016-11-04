@@ -168,7 +168,6 @@ public class User {
         this.time = time;
     }
 
-    @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +

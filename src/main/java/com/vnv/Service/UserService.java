@@ -12,7 +12,7 @@ import java.util.Collection;
 public class UserService {
 
     @Autowired
-    @Qualifier("mongoData")
+    @Qualifier("redis")
     private UserDao userDao;
 
     public Collection<User> getAllUser(){
