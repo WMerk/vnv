@@ -9,9 +9,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 
-/**
- * Created by Gabriel on 02.11.2016.
- */
 @Model
 public class User {
 
@@ -29,9 +26,9 @@ public class User {
     @Attribute
     private Boolean mailValid;
     @Attribute
-    private byte[] hashedPw;
+    private String hashedPw;
     @Attribute
-    private byte[] salt;
+    private String salt;
     @Indexed
     @Attribute
     private String phone;
@@ -96,19 +93,19 @@ public class User {
         this.mailValid = mailValid;
     }
 
-    public byte[] getHashedPw() {
+    public String getHashedPw() {
         return hashedPw;
     }
 
-    public void setHashedPw(byte[] hashedPw) {
+    public void setHashedPw(String hashedPw) {
         this.hashedPw = hashedPw;
     }
 
-    public byte[] getSalt() {
+    public String getSalt() {
         return salt;
     }
 
-    public void setSalt(byte[] salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 
@@ -168,6 +165,7 @@ public class User {
         this.time = time;
     }
 
+    @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
@@ -175,8 +173,8 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", mail='" + mail + '\'' +
                 ", mailValid=" + mailValid +
-                ", hashedPw=" + Arrays.toString(hashedPw) +
-                ", salt=" + Arrays.toString(salt) +
+                ", hashedPw='" + hashedPw + '\'' +
+                ", salt='" + salt + '\'' +
                 ", phone='" + phone + '\'' +
                 ", phoneValid=" + phoneValid +
                 ", time=" + time +
