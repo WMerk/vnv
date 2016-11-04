@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-/**
- * Created by Waldemar on 04.11.2016.
- */
 @Repository
 @Qualifier("neo4j")
 public class neo4jUserImpl implements UserDao {

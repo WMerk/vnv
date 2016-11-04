@@ -12,10 +12,6 @@ import redis.clients.johm.JOhm;
 
 import javax.annotation.PostConstruct;
 
-
-/**
- * Created by Gabriel on 02.11.2016.
- */
 @Component
 public class Database {
 

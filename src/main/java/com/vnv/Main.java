@@ -6,10 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-
-/**
- * Created by Waldemar on 03.11.2016.
- */
 @SpringBootApplication
 public class Main {
 
