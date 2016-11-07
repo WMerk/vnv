@@ -12,7 +12,7 @@ import redis.clients.johm.JOhm;
 
 import javax.annotation.PostConstruct;
 
-@Component
+//@Component
 public class Database {
 
     public static Session neo4j = null;

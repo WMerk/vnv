@@ -9,8 +9,8 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class Main {
 
-    @Autowired
-    public Database db;// = new Database();
+    //@Autowired
+   // public Database db;// = new Database();
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Main.class,args);

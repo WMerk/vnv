@@ -19,7 +19,8 @@ import java.util.Collection;
 public class UserService {
 
     @Autowired
-    @Qualifier("redis")
+    //@Qualifier("redis")
+    @Qualifier("fakeData")
     private UserDao userDao;
 
     public Collection<User> getAllUser(){

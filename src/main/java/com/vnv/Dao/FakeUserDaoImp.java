@@ -19,18 +19,21 @@ public class FakeUserDaoImp implements UserDao {
             {
                 put(1,new User(){
                     {
+                        setUid(12L);
                         setFirstName("Patrick");
                         setMail("patrick@gmail.com");
                     }
                 });
-                put(1,new User(){
+                put(2,new User(){
                     {
+                        setUid(13L);
                         setFirstName("Gabriel");
                         setMail("gabriel@gmail.com");
                     }
                 });
-                put(1,new User(){
+                put(3,new User(){
                     {
+                        setUid(14L);
                         setFirstName("Waldemar");
                         setMail("waldemar@gmail.com");
                     }
@@ -43,17 +46,17 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public Collection<User> getAllUser() {
-        return null;
+        return users.values();
     }
 
     @Override
     public User getUserById(int id) {
-        return null;
+        return users.get(id);
     }
 
     @Override
     public void removeUserById(int id) {
-
+        users.remove(id);
     }
 
     @Override
@@ -63,6 +66,7 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public void insertUserToDb(User user) {
+        users.put(70,user);
 
     }
 }
