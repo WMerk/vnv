@@ -26,11 +26,10 @@ public class UserServiceTest {
     @Test
     public void registerUser() throws Exception {
 
-        JSONObject testUser = new JSONObject();
-        testUser.put("mail", "test.user@test.com");
-        testUser.put("firstName", "test");
-        testUser.put("lastName", "user");
-        testUser.put("password", "pass");
+        User testUser = new User();
+        testUser.setMail("test.user@test.com");
+        testUser.setFirstName("test");
+        testUser.setLastName("user");
         assertNotNull(us.registerUser(testUser));
     }
 

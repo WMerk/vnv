@@ -2,6 +2,7 @@ package com.vnv.Controller;
 
 import com.vnv.Entity.User;
 import com.vnv.Service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -41,8 +42,12 @@ public class UserController {
         userService.updateUser(user);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void insertUser(@RequestParam User user){
-        userService.insertUser(user);
+
+    @RequestMapping(value="/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONObject registerUser(@RequestBody User user){
+        System.out.println(user);
+        return userService.registerUser(user);
     }
+
+
 }

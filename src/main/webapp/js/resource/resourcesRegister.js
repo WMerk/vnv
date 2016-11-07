@@ -1,5 +1,5 @@
 vnvApp.factory('doRegisterResource', function($resource) {
-     return $resource('/url',
+     return $resource('/users/register',
         { },
         { query: { 	method:"POST",
             isArray:false,
