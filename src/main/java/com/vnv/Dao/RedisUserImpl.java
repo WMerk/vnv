@@ -14,7 +14,7 @@ public class RedisUserImpl implements UserDao{
 
     @Override
     public Collection<User> getAllUser() {
-        return null;
+        return JOhm.getAll(User.class);
     }
 
     @Override

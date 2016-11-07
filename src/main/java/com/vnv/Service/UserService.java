@@ -44,7 +44,7 @@ public class UserService {
         this.userDao.insertUserToDb(user);
     }
 
-    public boolean registerUser(JSONObject json) {
+    public JSONObject registerUser(JSONObject json) {
         String pw, mail, fn, ln;
         try {
             //get required fields
@@ -54,7 +54,7 @@ public class UserService {
             ln = json.getString("lastName");
         } catch (JSONException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
 
         User user = new User();
@@ -79,7 +79,7 @@ public class UserService {
         System.out.println(user);
         userDao.insertUserToDb(user);
 
-        return true;
+        return user.toJSON();
     }
 
 }

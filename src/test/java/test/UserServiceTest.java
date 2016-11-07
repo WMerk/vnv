@@ -31,7 +31,7 @@ public class UserServiceTest {
         testUser.put("firstName", "test");
         testUser.put("lastName", "user");
         testUser.put("password", "pass");
-        assertTrue(us.registerUser(testUser));
+        assertNotNull(us.registerUser(testUser));
     }
 
 

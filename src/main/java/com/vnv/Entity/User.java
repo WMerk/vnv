@@ -1,5 +1,6 @@
 package com.vnv.Entity;
 
+import org.json.JSONObject;
 import redis.clients.johm.Attribute;
 import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
@@ -183,6 +184,15 @@ public class User {
                 ", sessionId='" + sessionId + '\'' +
                 ", confirmationLink='" + confirmationLink + '\'' +
                 '}';
+    }
+
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject(this);
+        json.remove("hashedPw");
+        json.remove("salt");
+        json.remove("confirmationLink");
+        json.remove("sessionId");
+        return json;
     }
 }
 

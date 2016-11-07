@@ -43,8 +43,7 @@ public final class Password {
 
     }
 
-    public static Boolean checkPassword(String password, String salt, String hashedPassword)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static Boolean checkPassword(String password, String salt, String hashedPassword) {
         return slowEquals(hashPassword(password, salt).getBytes(), hashedPassword.getBytes());
     }
 
