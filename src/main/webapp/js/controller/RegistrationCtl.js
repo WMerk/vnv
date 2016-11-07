@@ -10,7 +10,7 @@ vnvApp.controller(
                 params['firstName'] = $scope.user.firstName;
                 params['lastName'] = $scope.user.lastName;
                 params['mail'] = $scope.user.mail;
-                params['confirmPw'] = $scope.user.hashedPw;
+                params['hashedPw'] = $scope.user.confirmPw;
 
                 $scope.user = doRegisterResource.query(params);
                 $scope.user = '';
