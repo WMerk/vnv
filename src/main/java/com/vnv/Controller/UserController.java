@@ -44,9 +44,11 @@ public class UserController {
 
 
     @RequestMapping(value="/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public JSONObject registerUser(@RequestBody User user){
-        System.out.println(user);
-        return userService.registerUser(user);
+    public String registerUser(@RequestBody User user){
+        //System.out.println(user);
+        JSONObject res = userService.registerUser(user);
+        //System.out.println(res);
+        return res.toString();
     }
 
 
