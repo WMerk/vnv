@@ -30,6 +30,7 @@ public class UserServiceTest {
         testUser.setMail("test.user@test.com");
         testUser.setFirstName("test");
         testUser.setLastName("user");
+        testUser.setHashedPw("notHashed");
         assertNotNull(us.registerUser(testUser));
     }
 
