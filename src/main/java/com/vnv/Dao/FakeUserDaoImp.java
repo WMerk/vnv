@@ -55,6 +55,12 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
+    public User getUserByMail(String mail) {
+        //TODO
+        return null;
+    }
+
+    @Override
     public void removeUserById(int id) {
         users.remove(id);
     }

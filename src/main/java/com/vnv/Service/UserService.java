@@ -4,14 +4,19 @@ import com.vnv.Controller.Password;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
 @Service
 public class UserService {
+
+    private static Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     //@Qualifier("redis")
@@ -37,10 +42,18 @@ public class UserService {
     }
 
     public void insertUser(User user) {
+        log.debug("Insert user {} to db", user);
         this.userDao.insertUserToDb(user);
     }
 
     public JSONObject registerUser(User user) {
+
+        log.debug("Registering user {}", user);
+
+        if (userDao.getUserByMail(user.getMail()) != null) {
+            log.info("Mail {} already registered", user.getMail());
+            return new JSONObject("{error: mail already registered}");
+        }
 
         String[] pwhash = Password.hashPassword(user.getHashedPw());
         user.setHashedPw(pwhash[0]);
