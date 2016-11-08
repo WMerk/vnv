@@ -3,6 +3,8 @@ package com.vnv.Controller;
 import com.vnv.Entity.User;
 import com.vnv.Service.UserService;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+    private static Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -47,7 +51,7 @@ public class UserController {
     public String registerUser(@RequestBody User user){
         //System.out.println(user);
         JSONObject res = userService.registerUser(user);
-        //System.out.println(res);
+        log.debug(res.toString());
         return res.toString();
     }
 

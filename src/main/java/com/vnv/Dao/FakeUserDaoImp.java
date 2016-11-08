@@ -57,6 +57,8 @@ public class FakeUserDaoImp implements UserDao {
     @Override
     public User getUserByMail(String mail) {
         //TODO
+        if ("test@test.de".equals(mail))
+            return new User();
         return null;
     }
 
