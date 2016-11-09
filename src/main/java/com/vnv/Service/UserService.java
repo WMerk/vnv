@@ -1,6 +1,6 @@
 package com.vnv.Service;
 
-import com.vnv.Controller.Password;
+import com.vnv.Model.Password;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import org.json.JSONObject;
@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -61,6 +60,38 @@ public class UserService {
 
         this.insertUser(user);
 
+        return user.toJSON();
+    }
+
+    public JSONObject loginUser(String mail, String pw, String sessionId) {
+        User user = userDao.getUserByMail(mail);
+        if (user==null) {
+            //mail not found
+            return new JSONObject("{error: wrong mail or password}");
+        }
+        if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
+            user.setSessionId(sessionId);
+            updateUser(user);
+            return user.toJSON();
+        }
+        return new JSONObject("{error: wrong mail or password}");
+    }
+
+    public JSONObject checkSession(String sessionId) {
+        User user = userDao.getUserBySessionId(sessionId);
+        if (user==null) {
+            return new JSONObject("{error: user not logged in}");
+        }
+        return user.toJSON();
+    }
+
+    public JSONObject logoutUser(String sessionId) {
+        User user = userDao.getUserBySessionId(sessionId);
+        if (user==null) {
+            return new JSONObject("{error: already logged out}");
+        }
+        user.setSessionId(null);
+        userDao.updateUser(user);
         return user.toJSON();
     }
 

@@ -13,27 +13,28 @@ import java.util.Map;
 public class FakeUserDaoImp implements UserDao {
 
     public static Map<Integer,User> users;
+    private static int id = 4;
 
     static {
         users = new HashMap<Integer, User>(){
             {
                 put(1,new User(){
                     {
-                        setUid(12L);
+                        setUid(1L);
                         setFirstName("Patrick");
                         setMail("patrick@gmail.com");
                     }
                 });
                 put(2,new User(){
                     {
-                        setUid(13L);
+                        setUid(2L);
                         setFirstName("Gabriel");
                         setMail("gabriel@gmail.com");
                     }
                 });
                 put(3,new User(){
                     {
-                        setUid(14L);
+                        setUid(3L);
                         setFirstName("Waldemar");
                         setMail("waldemar@gmail.com");
                     }
@@ -56,9 +57,21 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User getUserByMail(String mail) {
-        //TODO
-        if ("test@test.de".equals(mail))
-            return new User();
+        for (int i=1; i<id; i++) {
+            User u = users.get(i);
+            if (mail.equals(u.getMail()))
+                return u;
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserBySessionId(String sessionId) {
+        for (int i=1; i<id; i++) {
+            User u = users.get(i);
+            if (sessionId.equals(u.getSessionId()))
+                return u;
+        }
         return null;
     }
 
@@ -69,12 +82,13 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-
+        users.put(user.getUid().intValue(), user);
     }
 
     @Override
     public void insertUserToDb(User user) {
-        users.put(70,user);
-
+        user.setUid(new Long(id));
+        users.put(id,user);
+        id++;
     }
 }

@@ -46,6 +46,24 @@ public class RedisUserImpl implements UserDao{
     }
 
     @Override
+    public User getUserBySessionId(String sessionId) {
+        List<User> users = JOhm.find(User.class, "sessionId", sessionId);
+        if (users.isEmpty()) {
+            log.debug("No user found for sessionId {}", sessionId);
+            return null;
+        }
+        if (users.size() > 1) {
+            //this shouldn't happen
+            //if this happens, someone screwed up the database
+            //you should look why it's possible to store multiple users with same sessionId
+            //TODO Nevertheless proper exception handling is required here
+            log.error("Multiple users found for sessionId {}", sessionId);
+            return null;
+        }
+        return users.get(0);
+    }
+
+    @Override
     public void removeUserById(int id) {
         JOhm.delete(User.class, id);
     }

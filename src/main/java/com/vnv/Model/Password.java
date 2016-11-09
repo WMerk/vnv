@@ -1,4 +1,4 @@
-package com.vnv.Controller;
+package com.vnv.Model;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

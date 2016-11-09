@@ -1,8 +1,7 @@
 package test;
 
-import com.vnv.Controller.Password;
+import com.vnv.Model.Password;
 import org.junit.Test;
-import org.springframework.beans.factory.parsing.PassThroughSourceExtractor;
 
 import static org.junit.Assert.*;
 

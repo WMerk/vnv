@@ -11,9 +11,12 @@ public interface UserDao {
 
     User getUserByMail(String mail);
 
+    User getUserBySessionId(String sessionId);
+
     void removeUserById(int id);
 
     void updateUser(User user);
 
     void insertUserToDb(User user);
+
 }
