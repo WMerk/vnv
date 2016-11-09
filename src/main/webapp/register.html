@@ -21,7 +21,7 @@
                 <div class="centered-pills">
                     <ul class="nav nav-pills">
                         <li role="presentation"><a href="#/">Login</a></li>
-                        <li role="presentation" class="active"><a href="#Register">Register</a></li>
+                        <li role="presentation" class="active"><a href="#Register">Registrierung</a></li>
                     </ul>
                     <hr>
                 </div>
@@ -29,21 +29,21 @@
             <div class="form-bottom">
                 <form role="form" name="registerForm" id="registerForm" method="post" class="login-form">
                     <div class="form-group">
-                        <input ng-model="user.firstName" type="text" placeholder="First Name..." class="form-control" id="form-firstname" ng-required="true">
+                        <input ng-model="user.firstName" type="text" placeholder="Vorname..." class="form-control" id="form-firstname" ng-required="true">
                     </div>
                     <div class="form-group">
-                        <input ng-model="user.lastName" type="text" placeholder="Last Name..." class="form-control" id="form-lastname" ng-required="true">
+                        <input ng-model="user.lastName" type="text" placeholder="Nachname..." class="form-control" id="form-lastname" ng-required="true">
                     </div>
                     <div class="form-group">
-                        <input ng-model="user.mail" type="email" placeholder="Email..." class="form-control" id="form-email" ng-required="true">
+                        <input ng-model="user.mail" type="email" placeholder="E-Mail..." class="form-control" id="form-email" ng-required="true">
                     </div>
                     <div class="form-group">
-                        <input ng-model="user.pw" type="password"  placeholder="Password..." class="form-control" id="form-password" oninput="validatePw()" ng-required="true">
+                        <input ng-model="user.pw" type="password"  placeholder="Passwort..." class="form-control" id="form-password" oninput="validatePw()" ng-required="true">
                     </div>
                     <div class="form-group">
-                        <input ng-model="user.confirmPw" type="password" placeholder="Confirm Password..." class="form-control" oninput="validatePw()" id="form-confirmPassword" ng-required="true">
+                        <input ng-model="user.confirmPw" type="password" placeholder="Passwort bestätigen..." class="form-control" oninput="validatePw()" id="form-confirmPassword" ng-required="true">
                     </div>
-                    <button id="signUp" ng-click="registerForm.$valid && doRegister()" type="submit" class="btn">Sign up!</button>
+                    <button id="signUp" ng-click="registerForm.$valid && doRegister()" type="submit" class="btn">Registrieren</button>
                 </form>
             </div>
         </div>
