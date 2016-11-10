@@ -1,4 +1,4 @@
-package test;
+package com.vnv.Service;
 
 import com.vnv.Entity.User;
 import com.vnv.Main;

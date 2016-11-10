@@ -1,4 +1,4 @@
-package test;
+package com.vnv.Service;
 
 import com.vnv.Model.Password;
 import org.junit.Test;
