@@ -4,20 +4,33 @@ vnvApp.controller(
         '$scope',
         '$location',
         'doRegisterResource',
-        function($scope, $location, doRegisterResource) {
+        'userService',
+        function($scope, $location, doRegisterResource, userService) {
 
             $scope.doRegister = function() {
 
                 var params = {};
-                params['firstName'] = $scope.user.firstName;
-                params['lastName'] = $scope.user.lastName;
-                params['mail'] = $scope.user.mail;
-                params['hashedPw'] = $scope.user.confirmPw;
+                params['firstName'] = $scope.registration.firstName;
+                params['lastName'] = $scope.registration.lastName;
+                params['mail'] = $scope.registration.mail;
+                params['hashedPw'] = $scope.registration.confirmPw;
 
-                $scope.user = doRegisterResource.query(params);
-                $scope.user = '';
+                var response = doRegisterResource.query(params);
 
-                $location.path('/Main');
+                response.$promise.then(function(data){
+                   if(data.error === undefined){
+                       // no error, registration successful
+                       userService.setCurrentUser(data);
+                       $scope.registration = '';
+                       $location.path('/Main');
+                   }else{
+                       // error, registration not successful
+                       $('#errorAlreadyRegistered').css("display", "block");
+                       $('#form-email').css("background-color", "rgba(206,132,131,0.58)");
+                       $('#form-email').css("color", "#fff");
+                   }
+
+                });
             };
 
 } ]);
