@@ -1,4 +1,11 @@
-<div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Willkommen!</strong> Die Registrierung war erfolgreich.
+<div data-ng-init="init()">
+    <div style="display: none" id="successfulRegistration" class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Willkommen!</strong> Die Registrierung war erfolgreich.
+    </div>
+
+    <div>
+        <p>Eingeloggter User:</p>
+        FirstName: {{user.firstName}}, LastName {{user.lastName}}, Mail:{{user.mail}}
+    </div>
 </div>

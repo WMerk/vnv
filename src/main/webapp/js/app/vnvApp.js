@@ -5,9 +5,6 @@ vnvApp.config([ '$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
         templateUrl : 'login.html',
         controller : 'LoginCtl'
-    }).when('/Login', {
-        templateUrl : 'login.html',
-        controller : 'LoginCtl'
     }).when('/Register', {
         templateUrl : 'register.html',
         controller : 'RegistrationCtl'
