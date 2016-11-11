@@ -77,7 +77,7 @@ public class RegisterDefs extends BasedriverConfiguration {
         Thread.sleep(1000);
         browser.get("localhost:8080/#/Main");
 
-        WebElement element = browser.findElement(id("successmsg"));
+        WebElement element = browser.findElement(id("successfulRegistration"));
 
         String text = element.getText();
 
