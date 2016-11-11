@@ -22,7 +22,7 @@ public class RedisUserImpl implements UserDao{
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return JOhm.get(User.class, id);
     }
 
@@ -64,7 +64,7 @@ public class RedisUserImpl implements UserDao{
     }
 
     @Override
-    public void removeUserById(int id) {
+    public void removeUserById(long id) {
         JOhm.delete(User.class, id);
     }
 

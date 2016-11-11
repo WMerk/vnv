@@ -1,5 +1,7 @@
 package com.vnv.Service;
 
+import com.vnv.Dao.UserRelDao;
+import com.vnv.Model.ErrorMessage;
 import com.vnv.Model.Password;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
@@ -21,6 +23,11 @@ public class UserService {
     //@Qualifier("redis")
     @Qualifier("fakeData")
     private UserDao userDao;
+
+    @Autowired
+    //@Qualifier("neo4j")
+    @Qualifier("fakeData")
+    private UserRelDao userRelDao;
 
     public Collection<User> getAllUser(){
         return this.userDao.getAllUser();
@@ -51,7 +58,7 @@ public class UserService {
 
         if (userDao.getUserByMail(user.getMail()) != null) {
             log.info("Mail {} already registered", user.getMail());
-            return new JSONObject("{error: mail already registered}");
+            return new JSONObject(ErrorMessage.AlreadyRegistered);
         }
 
         String[] pwhash = Password.hashPassword(user.getHashedPw());
@@ -59,6 +66,11 @@ public class UserService {
         user.setSalt(pwhash[1]);
 
         this.insertUser(user);
+        user = userDao.getUserByMail(user.getMail());
+        if (user==null) {
+            return new JSONObject(String.format(ErrorMessage.Error, "could not register user"));
+        }
+        userRelDao.addUser(user);
 
         return user.toJSON();
     }
@@ -67,32 +79,40 @@ public class UserService {
         User user = userDao.getUserByMail(mail);
         if (user==null) {
             //mail not found
-            return new JSONObject("{error: wrong mail or password}");
+            return new JSONObject(ErrorMessage.WrongMailPassword);
         }
         if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
             user.setSessionId(sessionId);
             updateUser(user);
             return user.toJSON();
         }
-        return new JSONObject("{error: wrong mail or password}");
+        return new JSONObject(ErrorMessage.WrongMailPassword);
     }
 
-    public JSONObject checkSession(String sessionId) {
+    public boolean checkLogin(String sessionId, long uid) {
         User user = userDao.getUserBySessionId(sessionId);
-        if (user==null) {
-            return new JSONObject("{error: user not logged in}");
+        if (user!=null && user.getUid().longValue()==uid) {
+            return true;
         }
-        return user.toJSON();
+        return false;
     }
 
     public JSONObject logoutUser(String sessionId) {
         User user = userDao.getUserBySessionId(sessionId);
         if (user==null) {
-            return new JSONObject("{error: already logged out}");
+            return new JSONObject(ErrorMessage.AlreadyLoggedOut);
         }
         user.setSessionId(null);
         userDao.updateUser(user);
         return user.toJSON();
+    }
+
+    public JSONObject deleteUser(String sessionId, long uid) {
+        if (checkLogin(sessionId, uid)) {
+            userDao.removeUserById(uid);
+            userRelDao.deleteUser(uid);
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
 }

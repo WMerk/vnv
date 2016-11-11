@@ -14,7 +14,7 @@ import java.util.Map;
 public class FakeUserDaoImp implements UserDao {
 
     public static Map<Integer,User> users;
-    private static int id = 4;
+    private static int id = 2;
 
     private static String[] demoHashPw = Password.hashPassword("test");
 
@@ -45,7 +45,7 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return users.get(id);
     }
 
@@ -70,7 +70,7 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUserById(int id) {
+    public void removeUserById(long id) {
         users.remove(id);
     }
 

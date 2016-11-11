@@ -7,13 +7,13 @@ import java.util.Collection;
 public interface UserDao {
     Collection<User> getAllUser();
 
-    User getUserById(int id);
+    User getUserById(long id);
 
     User getUserByMail(String mail);
 
     User getUserBySessionId(String sessionId);
 
-    void removeUserById(int id);
+    void removeUserById(long id);
 
     void updateUser(User user);
 

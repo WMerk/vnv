@@ -3,6 +3,8 @@ package com.vnv.Service;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Service.UserService;
+import org.json.JSONObject;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ public class UserServiceTest {
 
     @Autowired
     UserService us;
+    JSONObject user;
 
     @Test
     public void registerUser() throws Exception {
@@ -27,7 +30,15 @@ public class UserServiceTest {
         testUser.setFirstName("test");
         testUser.setLastName("user");
         testUser.setHashedPw("notHashed");
-        assertNotNull(us.registerUser(testUser));
+        testUser.setSessionId("session");
+        user = us.registerUser(testUser);
+        assertNotNull(user);
+        assertFalse(user.has("error"));
+    }
+
+    @After
+    public void tearDown() {
+        us.deleteUser("session", user.getLong("uid"));
     }
 
 
