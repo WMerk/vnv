@@ -11,8 +11,8 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class Main {
 
-    //@Autowired
-    //public Database db;// = new Database();
+//    @Autowired
+//    public Database db;// = new Database();
 
     private static Logger log = LoggerFactory.getLogger(Main.class);
 

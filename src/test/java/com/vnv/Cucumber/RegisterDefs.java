@@ -8,10 +8,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.hamcrest.Matchers;
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.internal.MouseAction;
 
+import java.util.Objects;
 import java.util.Random;
 
 import static org.junit.Assert.assertThat;
@@ -35,8 +39,13 @@ public class RegisterDefs extends BasedriverConfiguration {
         browser.findElement(id("form-lastname")).sendKeys(username);
         Thread.sleep(100);
         Random random = new Random();
-        browser.findElement(id("form-email")).sendKeys(random.nextInt() + email);
-        Thread.sleep(100);
+        if(Objects.equals(email, "test@test.de")){
+            browser.findElement(id("form-email")).sendKeys(email);
+        }
+        else {
+            browser.findElement(id("form-email")).sendKeys(random.nextInt() + email);
+        }
+        Thread.sleep(300);
         browser.findElement(id("form-password")).sendKeys(password);
         Thread.sleep(100);
         browser.findElement(id("form-confirmPassword")).sendKeys(password);
@@ -48,16 +57,16 @@ public class RegisterDefs extends BasedriverConfiguration {
     @When("^the register button is clicked$")
 
     public void the_register_button_is_clicked() throws Throwable {
-        Thread.sleep(1000);
         WebElement registerForm = browser.findElement(id("signUp"));
         registerForm.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
+//        JavascriptExecutor executor = (JavascriptExecutor) browser;
+//        executor.executeScript("arguments[0].click();", registerForm);
     }
 
 
 
     @Then("^the register page is shown and the cssSelector is \"([^\"]*)\" and the message is \"([^\"]*)\"$")
-
     public void theRegisterPageIsShownAndTheCssSelectorIsAndTheMessageIs(String cssSelector, String message) throws Throwable {
 
         WebElement element = browser.findElement(id("successfulRegistration"));

@@ -16,6 +16,8 @@ import java.util.Collection;
 public class UserService {
 
     private static Logger log = LoggerFactory.getLogger(UserService.class);
+//    private boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().
+//            getInputArguments().toString().contains("jdwp");
 
     @Autowired
     //@Qualifier("redis")

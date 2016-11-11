@@ -14,7 +14,7 @@ import java.util.Map;
 public class FakeUserDaoImp implements UserDao {
 
     public static Map<Integer,User> users;
-    private static int id = 4;
+    private static int id = 2;
 
     private static String[] demoHashPw = Password.hashPassword("test");
 
