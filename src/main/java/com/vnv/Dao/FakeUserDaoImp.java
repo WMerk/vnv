@@ -1,6 +1,7 @@
 package com.vnv.Dao;
 
 import com.vnv.Entity.User;
+import com.vnv.Model.Password;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
@@ -15,30 +16,23 @@ public class FakeUserDaoImp implements UserDao {
     public static Map<Integer,User> users;
     private static int id = 4;
 
+    private static String[] demoHashPw = Password.hashPassword("test");
+
     static {
         users = new HashMap<Integer, User>(){
             {
                 put(1,new User(){
                     {
                         setUid(1L);
-                        setFirstName("Patrick");
-                        setMail("patrick@gmail.com");
+                        setFirstName("test");
+                        setLastName("user");
+                        setMail("test@test.de");
+                        setTime(0);
+                        setHashedPw(demoHashPw[0]);
+                        setSalt(demoHashPw[1]);
                     }
                 });
-                put(2,new User(){
-                    {
-                        setUid(2L);
-                        setFirstName("Gabriel");
-                        setMail("gabriel@gmail.com");
-                    }
-                });
-                put(3,new User(){
-                    {
-                        setUid(3L);
-                        setFirstName("Waldemar");
-                        setMail("waldemar@gmail.com");
-                    }
-                });
+
 
             }
         };
