@@ -16,10 +16,10 @@ Feature: Register
 
 
 
-#  Scenario: Register failed
-#
-#    Given the username is "newuser" and the email is "email@email.de" and the password "1"
-#
-#    When the register button is clicked
-#
-#    Then the register page is shown
+  Scenario: Register failed
+
+    Given the username is "newuser" and the email is "email@email.de" and the password "1"
+
+    When the register button is clicked
+
+    Then the register page is shown

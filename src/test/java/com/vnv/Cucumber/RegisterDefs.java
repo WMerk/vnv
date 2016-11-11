@@ -75,7 +75,7 @@ public class RegisterDefs extends BasedriverConfiguration {
     public void theRegisterPageIsShownAndTheCssSelectorIsAndTheMessageIs(String cssSelector, String message) throws Throwable {
 
         Thread.sleep(1000);
-        browser.get("localhost:8080/#/Main");
+        //browser.get("localhost:8080/#/Main");
 
         WebElement element = browser.findElement(id("successfulRegistration"));
 
