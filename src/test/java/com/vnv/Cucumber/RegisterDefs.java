@@ -27,29 +27,17 @@ public class RegisterDefs extends BasedriverConfiguration {
     @Given("^the username is \"([^\"]*)\" and the email is \"([^\"]*)\" and the password \"([^\"]*)\"$")
 
     public void the_username_is_something_and_the_email_is_something_and_the_password_something(String username, String email, String password) throws Throwable {
-
         browser = webDriver();
-
         browser.get("localhost:8080/#/Register");
-
         browser.findElement(id("form-firstname")).sendKeys(username);
-
         Thread.sleep(100);
-
         browser.findElement(id("form-lastname")).sendKeys(username);
-
         Thread.sleep(100);
-
         Random random = new Random();
-
         browser.findElement(id("form-email")).sendKeys(email);
-
         Thread.sleep(100);
-
         browser.findElement(id("form-password")).sendKeys(password);
-
         Thread.sleep(100);
-
         browser.findElement(id("form-confirmPassword")).sendKeys(password);
 
     }
@@ -59,13 +47,9 @@ public class RegisterDefs extends BasedriverConfiguration {
     @When("^the register button is clicked$")
 
     public void the_register_button_is_clicked() throws Throwable {
-
         Thread.sleep(1000);
-
         WebElement registerForm = browser.findElement(id("signUp"));
-
-        registerForm.submit();
-
+        registerForm.click();
     }
 
 
@@ -76,13 +60,9 @@ public class RegisterDefs extends BasedriverConfiguration {
 
         Thread.sleep(1000);
         //browser.get("localhost:8080/#/Main");
-
         WebElement element = browser.findElement(id("successfulRegistration"));
-
         String text = element.getText();
-
         assertThat(text.contains(message), Matchers.is(true));
-
     }
 
 
@@ -102,12 +82,8 @@ public class RegisterDefs extends BasedriverConfiguration {
     public void theRegisterPageIsShown() throws Throwable {
 
         Thread.sleep(1000);
-
         WebElement registerForm = browser.findElement(id("register-button"));
-
         String disabled = registerForm.getAttribute("disabled");
-
         assertThat(disabled, Matchers.notNullValue());
-
     }
 }

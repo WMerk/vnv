@@ -58,7 +58,7 @@ public class BasedriverConfiguration {
 
         if (SystemUtils.IS_OS_WINDOWS) {
 
-            file = new File("C:\\Projekte\\vnv\\src\\test\\recources\\chromedriver.exe");
+            file = new File("src/test/resources/chromedriver.exe");
 
         }
 
