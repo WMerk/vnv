@@ -86,8 +86,6 @@ public class BasedriverConfiguration {
 
     private WebDriver firefoxDriver(){
 
-
-
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 
         capabilities.setJavascriptEnabled(true);
