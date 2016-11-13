@@ -77,4 +77,10 @@ public class RedisUserImpl implements UserDao{
     public void insertUserToDb(User user) {
         JOhm.save(user);
     }
+
+    @Override
+    public Collection<User> searchUser(String query) {
+        //TODO
+        return null;
+    }
 }

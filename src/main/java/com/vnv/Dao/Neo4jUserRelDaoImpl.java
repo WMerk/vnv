@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+
 @Repository
 @Qualifier("neo4j")
 public class Neo4jUserRelDaoImpl implements UserRelDao {
@@ -78,5 +80,23 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
         String query = String.format(deleteUserQuery, uid);
         log.debug("Query is {}", query);
         Database.neo4j.run(query);
+    }
+
+    @Override
+    public Collection<User> getFriends(User user) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Collection<User> getRequestsRecv(User user) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Collection<User> getRequestsSent(User user) {
+        //TODO
+        return null;
     }
 }

@@ -19,4 +19,6 @@ public interface UserDao {
 
     void insertUserToDb(User user);
 
+    Collection<User> searchUser(String query);
+
 }

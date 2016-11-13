@@ -13,4 +13,7 @@ public interface UserRelDao {
     void removeRequest(User requestFrom, User requestTo);
     void deleteUser(long uid);
 
+    Collection<User> getFriends(User user);
+    Collection<User> getRequestsRecv(User user);
+    Collection<User> getRequestsSent(User user);
 }

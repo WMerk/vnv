@@ -85,4 +85,10 @@ public class FakeUserDaoImp implements UserDao {
         users.put(id,user);
         id++;
     }
+
+    @Override
+    public Collection<User> searchUser(String query) {
+        //TODO
+        return null;
+    }
 }

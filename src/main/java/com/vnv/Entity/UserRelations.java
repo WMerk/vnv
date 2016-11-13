@@ -4,17 +4,17 @@ import java.util.Collection;
 
 public class UserRelations {
 
-    private User user;
+    private long uid;
     private Collection<User> friends;
     private Collection<User> sentRequests;
     private Collection<User> receivedRequests;
 
-    public User getUser() {
-        return user;
+    public long getUid() {
+        return uid;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUid(long uid) {
+        this.uid = uid;
     }
 
     public Collection<User> getFriends() {
@@ -44,7 +44,7 @@ public class UserRelations {
     @Override
     public String toString() {
         return "UserRelations{" +
-                "user=" + user +
+                "uid=" + uid +
                 ", friends=" + friends +
                 ", sentRequests=" + sentRequests +
                 ", receivedRequests=" + receivedRequests +
