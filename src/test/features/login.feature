@@ -1,4 +1,6 @@
 Feature: Login
+  As a guest user
+  I want to login with my mailaddress and password
 
   Scenario: Login successful
     Given the email is "test@test.de" and the password "test"
