@@ -35,3 +35,21 @@ vnvApp.controller(
             };
 
 } ]);
+
+function validatePw() {
+    if (document.getElementById('form-confirmPassword').value != document.getElementById('form-password').value) {
+        $('#signUp').prop('disabled', true);
+        $('#form-confirmPassword').css("background-color", "rgba(206,132,131,0.58)");
+        $('#form-confirmPassword').css("color", "#fff");
+    } else {
+        $('#signUp').prop('disabled', false);
+        $('#form-confirmPassword').css("background-color", "#f8f8f8");
+        $('#form-confirmPassword').css("color", "#000");
+    }
+}
+
+function resetEmailError() {
+    $('#errorAlreadyRegistered').css("display", "none");
+    $('#form-email').css("background-color", "#f8f8f8");
+    $('#form-email').css("color", "#000");
+}

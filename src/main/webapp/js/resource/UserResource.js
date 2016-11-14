@@ -19,3 +19,14 @@ vnvApp.factory('doLogin', function($resource) {
         }
     );
 });
+
+vnvApp.factory('doLogout', function($resource) {
+    return $resource('/users/logout',
+        { },
+        { query: { 	method:"POST",
+            isArray:false,
+            headers:{'Content-Type':'application/json; charset=utf-8'}
+        }
+        }
+    );
+});

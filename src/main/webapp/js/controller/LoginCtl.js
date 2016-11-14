@@ -32,3 +32,7 @@ vnvApp.controller(
             };
 
         } ]);
+
+function resetLoginError() {
+    $('#errorLogin').css("display", "none");
+}
