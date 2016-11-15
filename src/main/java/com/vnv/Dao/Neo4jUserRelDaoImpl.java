@@ -5,12 +5,14 @@ import com.vnv.Model.Database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
 @Repository
 @Qualifier("neo4j")
+@Profile("prod")
 public class Neo4jUserRelDaoImpl implements UserRelDao {
 
     private static Logger log = LoggerFactory.getLogger(Neo4jUserRelDaoImpl.class);

@@ -3,6 +3,7 @@ package com.vnv.Dao;
 import com.vnv.Entity.User;
 import com.vnv.Model.Password;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 @Repository
 @Qualifier("fakeData")
+@Profile("debug")
 public class FakeUserDaoImp implements UserDao {
 
     public static Map<Integer,User> users;

@@ -3,6 +3,7 @@ package com.vnv.Dao;
 import com.vnv.Entity.User;
 import com.vnv.Entity.UserRelations;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 
 @Repository
 @Qualifier("fakeData")
+@Profile("debug")
 public class FakeUserRelDaoImpl implements UserRelDao {
 
     public static HashMap<Integer, UserRelations> relations;

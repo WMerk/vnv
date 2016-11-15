@@ -21,7 +21,6 @@ public class RegisterDefs extends BasedriverConfiguration {
     private WebDriver browser;
 
     @Given("^the username is \"([^\"]*)\" and the email is \"([^\"]*)\" and the password \"([^\"]*)\"$")
-
     public void the_username_is_something_and_the_email_is_something_and_the_password_something(String username, String email, String password) throws Throwable {
         browser = webDriver();
         browser.get("localhost:8080/#/Register");

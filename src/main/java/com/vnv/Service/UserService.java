@@ -18,17 +18,16 @@ import java.util.Collection;
 public class UserService {
 
     private static Logger log = LoggerFactory.getLogger(UserService.class);
-//    private boolean isDebug = java.lang.management.ManagementFactory.getRuntimeMXBean().
-//            getInputArguments().toString().contains("jdwp");
+
 
     @Autowired
     //@Qualifier("redis")
-    @Qualifier("fakeData")
+    //@Qualifier("fakeData")
     private UserDao userDao;
 
     @Autowired
     //@Qualifier("neo4j")
-    @Qualifier("fakeData")
+    //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
     public Collection<User> getAllUser(){
