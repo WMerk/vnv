@@ -6,13 +6,15 @@ import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.GraphDatabase;
 import org.neo4j.driver.v1.Session;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPool;
 import redis.clients.johm.JOhm;
 
 import javax.annotation.PostConstruct;
 
-//@Component
+@Profile("prod")
+@Component
 public class Database {
 
     public static Session neo4j = null;
