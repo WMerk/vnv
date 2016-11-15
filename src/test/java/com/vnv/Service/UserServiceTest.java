@@ -1,7 +1,10 @@
 package com.vnv.Service;
 
+import ch.qos.logback.classic.pattern.SyslogStartConverter;
+import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import com.vnv.Main;
+import com.vnv.Model.ErrorMessage;
 import com.vnv.Service.UserService;
 import org.json.JSONObject;
 import org.junit.After;
@@ -10,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Collection;
 
 import static org.junit.Assert.*;
 
@@ -21,6 +26,9 @@ public class UserServiceTest {
     @Autowired
     UserService us;
     JSONObject user;
+
+    @Autowired
+    UserDao usDao;
 
     @Test
     public void registerUser() throws Exception {
@@ -36,9 +44,62 @@ public class UserServiceTest {
         assertFalse(user.has("error"));
     }
 
+    @Test
+    public void loginUserCorrect() throws Exception {
+        registerUser();
+        System.out.println(user);
+        user = us.loginUser("test.user@test.com", "notHashed", "sessionId");
+        assertNotNull(user);
+        assertFalse(user.has("error"));
+    }
+
+    @Test
+    public void loginUserWrong() throws Exception {
+        registerUser();
+        JSONObject user = us.loginUser("test.user@test.com", "wrongPassword", "sessionId");
+        assertNotNull(user);
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.WrongMailPassword, user.toString());
+    }
+
+    @Test
+    public void loginUserNotExisting() throws Exception {
+        JSONObject user = us.loginUser("test.user@test.com", "notHashed", "sessionId");
+        assertNotNull(user);
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.WrongMailPassword, user.toString());
+    }
+
+    @Test
+    public void checkLogin() throws Exception {
+        loginUserCorrect();
+        assertTrue(us.checkLogin("sessionId", this.user.getLong("uid")));
+        assertFalse(us.checkLogin("session", this.user.getLong("uid")));
+    }
+
+    @Test
+    public void logout() throws Exception {
+        user = us.logoutUser("noSessionId");
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.AlreadyLoggedOut, user.toString());
+
+        loginUserCorrect();
+        JSONObject user = us.logoutUser("sessionId");
+        assertFalse(user.has("error"));
+        assertFalse(us.checkLogin("sessionId", this.user.getLong("uid")));
+
+        user = us.logoutUser("sessionId");
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.AlreadyLoggedOut, user.toString());
+
+    }
+
     @After
     public void tearDown() {
-        us.deleteUser("session", user.getLong("uid"));
+        if (user != null) {
+            System.out.println("DELETE USER " + user.getLong("uid"));
+            usDao.removeUserById(user.getLong("uid"));
+        }
     }
 
 

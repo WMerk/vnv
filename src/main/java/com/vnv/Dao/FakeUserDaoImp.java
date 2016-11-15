@@ -15,15 +15,15 @@ import java.util.Map;
 @Profile("debug")
 public class FakeUserDaoImp implements UserDao {
 
-    public static Map<Integer,User> users;
-    private static int id = 2;
+    public static Map<Long,User> users;
+    private static long id = 2;
 
     private static String[] demoHashPw = Password.hashPassword("test");
 
     static {
-        users = new HashMap<Integer, User>(){
+        users = new HashMap<Long, User>(){
             {
-                put(1,new User(){
+                put(1L,new User(){
                     {
                         setUid(1L);
                         setFirstName("test");
@@ -53,10 +53,11 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User getUserByMail(String mail) {
-        for (int i=1; i<id; i++) {
-            User u = users.get(i);
-            if (mail.equals(u.getMail()))
-                return u;
+        for (long i=1; i<id; i++) {
+            User u = getUserById(i);
+            if (u!=null)
+                if (mail.equals(u.getMail()))
+                    return u;
         }
         return null;
     }
@@ -64,9 +65,11 @@ public class FakeUserDaoImp implements UserDao {
     @Override
     public User getUserBySessionId(String sessionId) {
         for (int i=1; i<id; i++) {
-            User u = users.get(i);
-            if (sessionId.equals(u.getSessionId()))
-                return u;
+            User u = getUserById(i);
+            if (u!=null) {
+                if (sessionId.equals(u.getSessionId()))
+                    return u;
+            }
         }
         return null;
     }
@@ -78,12 +81,12 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        users.put(user.getUid().intValue(), user);
+        users.put(user.getUid().longValue(), user);
     }
 
     @Override
     public void insertUserToDb(User user) {
-        user.setUid(new Long(id));
+        user.setUid(id);
         users.put(id,user);
         id++;
     }

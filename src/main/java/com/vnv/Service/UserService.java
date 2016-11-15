@@ -34,13 +34,13 @@ public class UserService {
         return this.userDao.getAllUser();
     }
 
-    public User getUserById(int id){
+    public User getUserById(long id){
         //A exists check should be implemented
         // and a errormessage on failor
         return this.userDao.getUserById(id);
     }
 
-    public void removeUserById(int id) {
+    public void removeUserById(long id) {
         this.userDao.removeUserById(id);
     }
 
