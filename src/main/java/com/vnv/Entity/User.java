@@ -192,6 +192,8 @@ public class User {
         json.remove("salt");
         json.remove("confirmationLink");
         json.remove("sessionId");
+        json.remove("googleId");
+        json.remove("facebookId");
         return json;
     }
 }

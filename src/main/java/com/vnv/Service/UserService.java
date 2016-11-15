@@ -31,16 +31,19 @@ public class UserService {
     private UserRelDao userRelDao;
 
     public Collection<User> getAllUser(){
+        log.debug("getting all users");
         return this.userDao.getAllUser();
     }
 
     public User getUserById(long id){
         //A exists check should be implemented
         // and a errormessage on failor
+        log.debug("getting user by id {}", id);
         return this.userDao.getUserById(id);
     }
 
     public void updateUser(User user){
+        log.debug("updating user {}", user);
         userDao.updateUser(user);
     }
 
@@ -50,9 +53,7 @@ public class UserService {
     }
 
     public JSONObject registerUser(User user) {
-
         log.debug("Registering user {}", user);
-
         if (userDao.getUserByMail(user.getMail()) != null) {
             log.info("Mail {} already registered", user.getMail());
             return new JSONObject(ErrorMessage.AlreadyRegistered);
@@ -67,12 +68,15 @@ public class UserService {
         if (user==null) {
             return new JSONObject(String.format(ErrorMessage.Error, "could not register user"));
         }
+        log.debug("User {} successfully added to DB", user);
+        log.debug("Adding user to graphDB");
         userRelDao.addUser(user);
 
         return user.toJSON();
     }
 
     public JSONObject loginUser(String mail, String pw, String sessionId) {
+        log.debug("Log in for user with mail {}", mail);
         User user = userDao.getUserByMail(mail);
         if (user==null) {
             //mail not found
@@ -87,6 +91,7 @@ public class UserService {
     }
 
     public boolean checkLogin(String sessionId, long uid) {
+        log.debug("Checking if user with uid {} and sessionId {} is logged in", uid, sessionId);
         User user = userDao.getUserBySessionId(sessionId);
         if (user!=null && user.getUid().longValue()==uid) {
             return true;
@@ -95,6 +100,7 @@ public class UserService {
     }
 
     public JSONObject logoutUser(String sessionId) {
+        log.debug("Log out for sessionId {}", sessionId);
         User user = userDao.getUserBySessionId(sessionId);
         if (user==null) {
             return new JSONObject(ErrorMessage.AlreadyLoggedOut);
@@ -105,6 +111,7 @@ public class UserService {
     }
 
     public JSONObject deleteUser(String sessionId, long uid) {
+        log.debug("Deleting user with uid {} and sessionId {}", uid, sessionId);
         if (checkLogin(sessionId, uid)) {
             userDao.removeUserById(uid);
             userRelDao.deleteUser(uid);

@@ -52,7 +52,6 @@ public class UserServiceTest {
     @Test
     public void loginUserCorrect() throws Exception {
         registerUser();
-        System.out.println(user);
         user = us.loginUser("test.user@test.com", "notHashed", "sessionId");
         assertNotNull(user);
         assertFalse(user.has("error"));
