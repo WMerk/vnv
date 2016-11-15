@@ -15,11 +15,19 @@ vnvApp.controller(
             };
 
             $scope.doLogout = function() {
-                doLogout.query(userService.getCurrentUser());
+                var response = doLogout.query(userService.getCurrentUser());
+
+                response.$promise.then(function(data) {
+
+                    if(data.error === undefined){
+                        userService.setCurrentUser(null);
+                        $location.path('/');
+                    }else{
+
+                    }
 
 
-
-                $location.path('/');
+                });
             };
 
         } ]);

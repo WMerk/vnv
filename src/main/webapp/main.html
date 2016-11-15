@@ -3,7 +3,9 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Willkommen!</strong> Die Registrierung war erfolgreich.
     </div>
-
+    <div class="logoutAnchor">
+        <a ng-click="doLogout()" href="">Ausloggen</a>
+    </div>
     <div>
         <p>Eingeloggter User:</p>
         FirstName: {{user.firstName}}, LastName {{user.lastName}}, Mail:{{user.mail}}
