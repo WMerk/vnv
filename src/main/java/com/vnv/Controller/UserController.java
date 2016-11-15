@@ -26,27 +26,6 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public Collection<User> getAllUser(){
-        return userService.getAllUser();
-    }
-
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public User getUserById(@PathVariable("id") int id){
-        return userService.getUserById(id);
-    }
-
-    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public void removeUserById(@PathVariable("id") int id){
-        userService.removeUserById(id);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void updateUser(@RequestBody User user){
-        userService.updateUser(user);
-    }
-
-
     @RequestMapping(value="/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String registerUser(@RequestBody User user, HttpSession session){
         //System.out.println(user);

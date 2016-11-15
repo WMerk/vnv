@@ -40,10 +40,6 @@ public class UserService {
         return this.userDao.getUserById(id);
     }
 
-    public void removeUserById(long id) {
-        this.userDao.removeUserById(id);
-    }
-
     public void updateUser(User user){
         userDao.updateUser(user);
     }
@@ -112,6 +108,7 @@ public class UserService {
         if (checkLogin(sessionId, uid)) {
             userDao.removeUserById(uid);
             userRelDao.deleteUser(uid);
+            return new JSONObject("{\"ok\":\"200\"}");
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }

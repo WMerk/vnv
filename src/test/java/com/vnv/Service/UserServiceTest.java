@@ -42,6 +42,11 @@ public class UserServiceTest {
         user = us.registerUser(testUser);
         assertNotNull(user);
         assertFalse(user.has("error"));
+        JSONObject user = us.registerUser(testUser);
+        assertNotNull(user);
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.AlreadyRegistered, user.toString());
+
     }
 
     @Test
@@ -91,6 +96,17 @@ public class UserServiceTest {
         user = us.logoutUser("sessionId");
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.AlreadyLoggedOut, user.toString());
+    }
+
+    @Test public void deleteUser() throws Exception {
+        registerUser();
+        JSONObject user = us.deleteUser("session", this.user.getLong("uid"));
+        assertFalse(user.has("error"));
+        assertNull(usDao.getUserById(this.user.getLong("uid")));
+
+        user = us.deleteUser("wrongSession", this.user.getLong("uid"));
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, user.toString());
 
     }
 
