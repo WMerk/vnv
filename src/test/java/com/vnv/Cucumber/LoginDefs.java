@@ -18,6 +18,7 @@ public class LoginDefs extends BasedriverConfiguration {
 
     private WebDriver browser;
 
+
     @Given("^the email is \"([^\"]*)\" and the password \"([^\"]*)\"$")
     public void theEmailIsAndThePassword(String email, String password) throws Throwable {
         browser = webDriver();
