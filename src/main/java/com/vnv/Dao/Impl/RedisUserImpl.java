@@ -1,5 +1,6 @@
-package com.vnv.Dao;
+package com.vnv.Dao.Impl;
 
+import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ import java.util.List;
 @Repository
 @Qualifier("redis")
 @Profile("prod")
-public class RedisUserImpl implements UserDao{
+public class RedisUserImpl implements UserDao {
 
     private static Logger log = LoggerFactory.getLogger(RedisUserImpl.class);
 

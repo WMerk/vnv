@@ -1,5 +1,6 @@
-package com.vnv.Dao;
+package com.vnv.Dao.Impl;
 
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
 import com.vnv.Model.Database;
 import org.slf4j.Logger;

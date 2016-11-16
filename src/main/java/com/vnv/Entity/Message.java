@@ -8,9 +8,6 @@ import redis.clients.johm.Model;
 
 import java.util.Date;
 
-/**
- * Created by Gabriel on 01.11.2016.
- */
 @Model
 public class Message {
 

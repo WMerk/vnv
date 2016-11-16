@@ -6,9 +6,7 @@ import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
 import redis.clients.johm.Model;
 
-import java.util.Arrays;
 import java.util.Date;
-
 
 @Model
 public class User {

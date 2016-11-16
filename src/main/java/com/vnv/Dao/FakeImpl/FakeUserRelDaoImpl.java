@@ -1,5 +1,6 @@
-package com.vnv.Dao;
+package com.vnv.Dao.FakeImpl;
 
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
 import com.vnv.Entity.UserRelations;
 import org.springframework.beans.factory.annotation.Qualifier;

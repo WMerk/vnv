@@ -1,11 +1,9 @@
 package com.vnv.Service;
 
-import ch.qos.logback.classic.pattern.SyslogStartConverter;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
-import com.vnv.Service.UserService;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -13,8 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Collection;
 
 import static org.junit.Assert.*;
 
