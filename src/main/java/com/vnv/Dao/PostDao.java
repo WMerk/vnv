@@ -16,7 +16,7 @@ public interface PostDao {
 
     /**
      * gets all posts from the database
-     * @return Collection fo all posts
+     * @return Collection of all posts
      */
     Collection<Post> getAllPosts();
 
