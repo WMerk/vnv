@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.tagName;
 
-public class LoginDefs extends BasedriverConfiguration {
+public class LoginSteps extends BasedriverConfiguration {
 
     private WebDriver browser;
 

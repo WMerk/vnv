@@ -16,7 +16,7 @@ import java.util.Random;
 import static org.junit.Assert.assertThat;
 import static org.openqa.selenium.By.id;
 
-public class RegisterDefs extends BasedriverConfiguration {
+public class RegisterSteps extends BasedriverConfiguration {
 
     private WebDriver browser;
 
