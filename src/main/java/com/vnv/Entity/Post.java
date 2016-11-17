@@ -4,7 +4,7 @@ import redis.clients.johm.Attribute;
 import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
 
-public class Offer {
+public class Post {
 
     @Id
     private Long id;
@@ -13,10 +13,13 @@ public class Offer {
     private long uid;
     @Attribute
     @Indexed
-    private String type;
+    private String type; //offer or request
     @Attribute
     @Indexed
-    private String offerName;
+    private String flavour; //verschenken Dienstleistung or verleihen
+    @Attribute
+    @Indexed
+    private String postName;
     @Attribute
     @Indexed
     private String category;
@@ -52,12 +55,20 @@ public class Offer {
         this.type = type;
     }
 
-    public String getOfferName() {
-        return offerName;
+    public String getFlavour() {
+        return flavour;
     }
 
-    public void setOfferName(String offerName) {
-        this.offerName = offerName;
+    public void setFlavour(String flavour) {
+        this.flavour = flavour;
+    }
+
+    public String getPostName() {
+        return postName;
+    }
+
+    public void setPostName(String postName) {
+        this.postName = postName;
     }
 
     public String getCategory() {
@@ -94,11 +105,12 @@ public class Offer {
 
     @Override
     public String toString() {
-        return "Offer{" +
+        return "Post{" +
                 "id=" + id +
                 ", uid=" + uid +
                 ", type='" + type + '\'' +
-                ", offerName='" + offerName + '\'' +
+                ", flavour='" + flavour + '\'' +
+                ", postName='" + postName + '\'' +
                 ", category='" + category + '\'' +
                 ", period='" + period + '\'' +
                 ", picPath='" + picPath + '\'' +
