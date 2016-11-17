@@ -6,7 +6,7 @@ import com.vnv.Entity.Message;
 import java.util.Collection;
 
 public class FakeMessageDaoImpl implements MessageDao {
-    
+
     @Override
     public Message getMessageById(long id) {
         return null;
