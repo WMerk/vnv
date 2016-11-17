@@ -3,12 +3,18 @@ package com.vnv.Dao.FakeImpl;
 import com.vnv.Dao.PostDao;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
+@Qualifier("fakeData")
+@Profile("debug")
 public class FakePostDaoImpl implements PostDao{
 
     public static Map<Long,Post> posts;

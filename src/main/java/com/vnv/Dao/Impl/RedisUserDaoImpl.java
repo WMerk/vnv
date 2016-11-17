@@ -15,9 +15,9 @@ import java.util.List;
 @Repository
 @Qualifier("redis")
 @Profile("prod")
-public class RedisUserImpl implements UserDao {
+public class RedisUserDaoImpl implements UserDao {
 
-    private static Logger log = LoggerFactory.getLogger(RedisUserImpl.class);
+    private static Logger log = LoggerFactory.getLogger(RedisUserDaoImpl.class);
 
     @Override
     public Collection<User> getAllUser() {
@@ -68,7 +68,7 @@ public class RedisUserImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        JOhm.delete(User.class, id);
+        JOhm.delete(User.class, id, true, true);
     }
 
     @Override
