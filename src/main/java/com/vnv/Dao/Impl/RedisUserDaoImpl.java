@@ -67,18 +67,18 @@ public class RedisUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void removeUserById(long id) {
-        JOhm.delete(User.class, id, true, true);
+    public boolean removeUserById(long id) {
+        return JOhm.delete(User.class, id, true, true);
     }
 
     @Override
-    public void updateUser(User user) {
-        JOhm.save(user);
+    public User updateUser(User user) {
+        return JOhm.save(user);
     }
 
     @Override
-    public void insertUserToDb(User user) {
-        JOhm.save(user);
+    public User insertUserToDb(User user) {
+        return JOhm.save(user);
     }
 
     @Override

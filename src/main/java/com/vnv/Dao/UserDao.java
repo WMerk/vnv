@@ -13,11 +13,11 @@ public interface UserDao {
 
     User getUserBySessionId(String sessionId);
 
-    void removeUserById(long id);
+    boolean removeUserById(long id);
 
-    void updateUser(User user);
+    User updateUser(User user);
 
-    void insertUserToDb(User user);
+    User insertUserToDb(User user);
 
     Collection<User> searchUser(String query);
 
