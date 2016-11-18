@@ -29,10 +29,7 @@ public class PostController {
 
     @RequestMapping(value="", method= RequestMethod.POST)
     public String insertPost(@RequestBody Post post, HttpSession session) {
-        JSONObject res = new JSONObject(ErrorMessage.NotLoggedIn);
-        if (userService.checkLogin(session.getId(), post.getUid())) {
-            res = postService.insertPost(post);
-        }
+        JSONObject res =  postService.insertPost(post, session.getId());
         log.debug(res.toString());
         return res.toString();
     }

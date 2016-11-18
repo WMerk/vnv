@@ -83,14 +83,16 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User updateUser(User user) {
-        return users.put(user.getUid().longValue(), user);
+        users.put(user.getUid().longValue(), user);
+        return getUserById(user.getUid());
     }
 
     @Override
     public User insertUserToDb(User user) {
         user.setUid(id);
         id++;
-        return users.put(user.getUid(),user);
+        users.put(user.getUid(),user);
+        return getUserById(user.getUid());
     }
 
     @Override

@@ -4,9 +4,11 @@ import org.json.JSONObject;
 import redis.clients.johm.Attribute;
 import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
+import redis.clients.johm.Model;
 
 import java.util.Date;
 
+@Model
 public class Post {
 
     @Id
