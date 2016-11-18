@@ -2,9 +2,15 @@ package com.vnv.Dao.Impl;
 
 import com.vnv.Dao.MessageDao;
 import com.vnv.Entity.Message;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+@Repository
+@Qualifier("redis")
+@Profile("prod")
 public class RedisMessageDaoImpl implements MessageDao {
 
     @Override

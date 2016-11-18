@@ -2,9 +2,15 @@ package com.vnv.Dao.FakeImpl;
 
 import com.vnv.Dao.MessageDao;
 import com.vnv.Entity.Message;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
+@Repository
+@Qualifier("fakeData")
+@Profile("debug")
 public class FakeMessageDaoImpl implements MessageDao {
 
     @Override
