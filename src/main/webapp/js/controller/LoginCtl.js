@@ -20,6 +20,7 @@ vnvApp.controller(
                         // no error, registration successful
                         userService.setCurrentUser(data);
                         userService.setNewUser(false);
+                        userService.setAuthenticated(true);
                         $scope.login = '';
                         $('#errorLogin').css("display", "none");
                         $location.path('/Main');
@@ -29,6 +30,9 @@ vnvApp.controller(
                     }
 
                 });
+
+
+
             };
 
         } ]);

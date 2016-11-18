@@ -1,4 +1,5 @@
 vnvApp.service('userService', function() {
+    var authenticated;
     var currentUser;
     var newUser = false;
 
@@ -14,6 +15,12 @@ vnvApp.service('userService', function() {
         },
         setNewUser: function(value) {
             newUser = value;
+        },
+        getAuthenticated: function(){
+            return authenticated;
+        },
+        setAuthenticated: function (value) {
+            authenticated = value
         }
     };
 

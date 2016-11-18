@@ -22,6 +22,7 @@ vnvApp.controller(
                        // no error, registration successful
                        userService.setCurrentUser(data);
                        userService.setNewUser(true);
+                       userService.setAuthenticated(true);
                        $scope.registration = '';
                        $location.path('/Main');
                    }else{
@@ -30,6 +31,8 @@ vnvApp.controller(
                        $('#form-email').css("background-color", "rgba(206,132,131,0.58)");
                        $('#form-email').css("color", "#fff");
                    }
+
+
 
                 });
             };

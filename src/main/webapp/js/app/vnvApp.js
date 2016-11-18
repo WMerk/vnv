@@ -15,3 +15,4 @@ vnvApp.config([ '$routeProvider', function($routeProvider) {
         redirectTo : '/'
     });
 } ]);
+
