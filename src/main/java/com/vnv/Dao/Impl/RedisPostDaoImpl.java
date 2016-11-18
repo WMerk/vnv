@@ -42,17 +42,17 @@ public class RedisPostDaoImpl implements PostDao {
     }
 
     @Override
-    public void insertPost(Post post) {
-        JOhm.save(post);
+    public Post insertPost(Post post) {
+        return JOhm.save(post);
     }
 
     @Override
-    public void updatePost(Post post) {
-        JOhm.save(post);
+    public Post updatePost(Post post) {
+        return JOhm.save(post);
     }
 
     @Override
-    public void deletePost(long id) {
-        JOhm.delete(Post.class, id, true, true);
+    public boolean deletePost(long id) {
+        return JOhm.delete(Post.class, id, true, true);
     }
 }

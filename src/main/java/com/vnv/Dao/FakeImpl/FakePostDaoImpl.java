@@ -90,19 +90,22 @@ public class FakePostDaoImpl implements PostDao{
     }
 
     @Override
-    public void insertPost(Post post) {
+    public Post insertPost(Post post) {
         post.setId(id);
         posts.put(id, post);
         id++;
+        return post;
     }
 
     @Override
-    public void updatePost(Post post) {
+    public Post updatePost(Post post) {
         posts.put(post.getId(), post);
+        return post;
     }
 
     @Override
-    public void deletePost(long id) {
+    public boolean deletePost(long id) {
         posts.remove(id);
+        return true;
     }
 }

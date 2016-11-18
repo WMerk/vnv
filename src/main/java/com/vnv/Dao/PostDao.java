@@ -45,18 +45,18 @@ public interface PostDao {
      * inserts a post into the database
      * @param post  the post to be inserted
      */
-    void insertPost(Post post);
+    Post insertPost(Post post);
 
     /**
      * updates a post in the database
      * @param post  the updated post that will be updated in the database
      */
-    void updatePost(Post post);
+    Post updatePost(Post post);
 
     /**
      * removes the post with the given id from the database
      * @param id    the id of the post to be removed
      */
-    void deletePost(long id);
+    boolean deletePost(long id);
 
 }

@@ -1,8 +1,11 @@
 package com.vnv.Entity;
 
+import org.json.JSONObject;
 import redis.clients.johm.Attribute;
 import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
+
+import java.util.Date;
 
 public class Post {
 
@@ -10,7 +13,7 @@ public class Post {
     private Long id;
     @Attribute
     @Indexed
-    private long uid;
+    private long uid; //uid for the user who created this post
     @Attribute
     @Indexed
     private String type; //offer or request
@@ -30,6 +33,8 @@ public class Post {
     private String picPath;
     @Attribute
     private String description;
+    @Attribute
+    private long creationTime = new Date().getTime();
 
     public Long getId() {
         return id;
@@ -103,6 +108,14 @@ public class Post {
         this.description = description;
     }
 
+    public long getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(long creationTime) {
+        this.creationTime = creationTime;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -115,6 +128,12 @@ public class Post {
                 ", period='" + period + '\'' +
                 ", picPath='" + picPath + '\'' +
                 ", description='" + description + '\'' +
+                ", creationTime=" + creationTime +
                 '}';
+    }
+
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject(this);
+        return json;
     }
 }
