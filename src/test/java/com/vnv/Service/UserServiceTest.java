@@ -5,6 +5,7 @@ import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
+import com.vnv.Model.Fake;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -29,22 +30,15 @@ public class UserServiceTest {
     @Autowired
     UserDao usDao;
 
-    Faker faker = new Faker(new Locale("de"));
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String mail = firstName+"."+lastName+"@test.com";
-    String pw = faker.lorem().word();
-    String sessionId = faker.beer().style();
+    User testUser = Fake.getFakeUser();
+    String mail = testUser.getMail();
+    String pw = testUser.getHashedPw();
+    String sessionId = testUser.getSessionId();
 
     @Test
     public void registerUser() throws Exception {
 
-        User testUser = new User();
-        testUser.setMail(mail);
-        testUser.setFirstName(firstName);
-        testUser.setLastName(lastName);
-        testUser.setHashedPw(pw);
-        testUser.setSessionId(sessionId);
+
         user = us.registerUser(testUser);
         assertNotNull(user);
         assertFalse(user.has("error"));

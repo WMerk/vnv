@@ -7,6 +7,7 @@ import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
+import com.vnv.Model.Fake;
 import cucumber.api.java.cs.A;
 import org.json.JSONObject;
 import org.junit.*;
@@ -14,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import redis.clients.johm.JOhm;
 
 import java.util.Locale;
 
@@ -35,38 +37,21 @@ public class PostServiceTest {
     long uid;
     long pid;
 
-    Faker faker = new Faker(new Locale("de"));
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String mail = firstName+"."+lastName+"@test.com";
-    String pw = faker.lorem().word();
-    String sessionId = faker.beer().name();
+    User u = Fake.getFakeUser();
+    String sessionId = u.getSessionId();
 
     @Before
     public void setUp() throws Exception {
-        User u = new User();
-        u.setFirstName(firstName);
-        u.setLastName(lastName);
-        u.setSessionId(sessionId);
-        u.setMail(mail);
-        u.setHashedPw(pw);
         uid = us.registerUser(u).getLong("uid");
     }
 
     @Test
     public void createPost() throws Exception {
-        Post post = new Post();
-        post.setPostName("Test");
-        post.setType("offer");
-        post.setFlavour("verschenken");
-        post.setCategory("Technik");
-        post.setUid(uid);
-        post.setDescription(faker.lorem().sentence());
+        Post post = Fake.getFakeOffer(uid);
 
         res = ps.insertPost(post, sessionId);
         assertNotNull(res);
         pid = res.getLong("id");
-        System.out.println(res);
         assertFalse(res.has("error"));
     }
 
