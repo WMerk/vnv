@@ -68,7 +68,7 @@
             <version>1.4.1.RELEASE</version>
         </dependency>
 
-
+        <!-- tag::Cucumber[] -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-spring</artifactId>
@@ -88,7 +88,15 @@
             <artifactId>selenium-java</artifactId>
             <version>3.0.1</version>
         </dependency>
+        <!-- end::Cucumber[] -->
 
+        <!-- tag::Faker[] -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.11</version>
+        </dependency>
+        <!-- end::Faker[] -->
 
     </dependencies>
 

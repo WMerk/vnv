@@ -1,5 +1,6 @@
 package com.vnv.Service;
 
+import com.github.javafaker.Faker;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import com.vnv.Main;
@@ -11,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -26,15 +29,22 @@ public class UserServiceTest {
     @Autowired
     UserDao usDao;
 
+    Faker faker = new Faker(new Locale("de"));
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String mail = firstName+"."+lastName+"@test.com";
+    String pw = faker.lorem().word();
+    String sessionId = faker.beer().style();
+
     @Test
     public void registerUser() throws Exception {
 
         User testUser = new User();
-        testUser.setMail("test.user@test.com");
-        testUser.setFirstName("test");
-        testUser.setLastName("user");
-        testUser.setHashedPw("notHashed");
-        testUser.setSessionId("session");
+        testUser.setMail(mail);
+        testUser.setFirstName(firstName);
+        testUser.setLastName(lastName);
+        testUser.setHashedPw(pw);
+        testUser.setSessionId(sessionId);
         user = us.registerUser(testUser);
         assertNotNull(user);
         assertFalse(user.has("error"));
@@ -48,7 +58,7 @@ public class UserServiceTest {
     @Test
     public void loginUserCorrect() throws Exception {
         registerUser();
-        user = us.loginUser("test.user@test.com", "notHashed", "sessionId");
+        user = us.loginUser(mail, pw, sessionId);
         assertNotNull(user);
         assertFalse(user.has("error"));
     }
@@ -56,7 +66,7 @@ public class UserServiceTest {
     @Test
     public void loginUserWrong() throws Exception {
         registerUser();
-        JSONObject user = us.loginUser("test.user@test.com", "wrongPassword", "sessionId");
+        JSONObject user = us.loginUser(mail, "wrongPassword", sessionId);
         assertNotNull(user);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.WrongMailPassword, user.toString());
@@ -64,7 +74,7 @@ public class UserServiceTest {
 
     @Test
     public void loginUserNotExisting() throws Exception {
-        JSONObject user = us.loginUser("test.user@test.com", "notHashed", "sessionId");
+        JSONObject user = us.loginUser(mail, pw, sessionId);
         assertNotNull(user);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.WrongMailPassword, user.toString());
@@ -73,8 +83,8 @@ public class UserServiceTest {
     @Test
     public void checkLogin() throws Exception {
         loginUserCorrect();
-        assertTrue(us.checkLogin("sessionId", this.user.getLong("uid")));
-        assertFalse(us.checkLogin("session", this.user.getLong("uid")));
+        assertTrue(us.checkLogin(sessionId, this.user.getLong("uid")));
+        assertFalse(us.checkLogin("wrongSession", this.user.getLong("uid")));
     }
 
     @Test
@@ -84,18 +94,18 @@ public class UserServiceTest {
         assertEquals(ErrorMessage.AlreadyLoggedOut, user.toString());
 
         loginUserCorrect();
-        JSONObject user = us.logoutUser("sessionId");
+        JSONObject user = us.logoutUser(sessionId);
         assertFalse(user.has("error"));
-        assertFalse(us.checkLogin("sessionId", this.user.getLong("uid")));
+        assertFalse(us.checkLogin(sessionId, this.user.getLong("uid")));
 
-        user = us.logoutUser("sessionId");
+        user = us.logoutUser(sessionId);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.AlreadyLoggedOut, user.toString());
     }
 
     @Test public void deleteUser() throws Exception {
         registerUser();
-        JSONObject user = us.deleteUser("session", this.user.getLong("uid"));
+        JSONObject user = us.deleteUser(sessionId, this.user.getLong("uid"));
         assertFalse(user.has("error"));
         assertNull(usDao.getUserById(this.user.getLong("uid")));
 
