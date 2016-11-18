@@ -5,9 +5,9 @@ vnvApp.controller(
         '$location',
         'userService',
         'doLogin',
-        function($scope, $location, userService, doLogin) {
+        function ($scope, $location, userService, doLogin) {
 
-            $scope.doLogin = function() {
+            $scope.doLogin = function () {
 
                 var params = {};
                 params['mail'] = $scope.login.mail;
@@ -15,8 +15,8 @@ vnvApp.controller(
 
                 var response = doLogin.query(params);
 
-                response.$promise.then(function(data){
-                    if(data.error === undefined){
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
                         // no error, registration successful
                         userService.setCurrentUser(data);
                         userService.setNewUser(false);
@@ -24,7 +24,7 @@ vnvApp.controller(
                         $scope.login = '';
                         $('#errorLogin').css("display", "none");
                         $location.path('/Main');
-                    }else{
+                    } else {
                         // error, login failed
                         $('#errorLogin').css("display", "block");
                     }
@@ -32,10 +32,9 @@ vnvApp.controller(
                 });
 
 
-
             };
 
-        } ]);
+        }]);
 
 function resetLoginError() {
     $('#errorLogin').css("display", "none");
