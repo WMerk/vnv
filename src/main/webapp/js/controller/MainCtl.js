@@ -14,7 +14,7 @@ vnvApp.controller(
                     $('#successfulRegistration').css("display", "block");
                 }
 
-                $scope.template = 'navigation.html';
+                $scope.template = userService.getNavigationTemplate();
 
             };
 

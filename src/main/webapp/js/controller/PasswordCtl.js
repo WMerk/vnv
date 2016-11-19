@@ -11,7 +11,7 @@ vnvApp.controller(
                 userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
                 $scope.authenticated = userService.getAuthenticated();
-                $scope.template = 'navigation.html';
+                $scope.template = userService.getNavigationTemplate();
             };
 
             $scope.changePassword = function () {
@@ -32,3 +32,15 @@ vnvApp.controller(
 
 
         }]);
+
+function validatePw() {
+    if (document.getElementById('form-newPW').value != document.getElementById('form-confirmNewPW').value) {
+        $('#form-changePW').prop('disabled', true);
+        $('#form-confirmNewPW').css("background-color", "rgba(206,132,131,0.58)");
+        $('#form-confirmNewPW').css("color", "#fff");
+    } else {
+        $('#form-changePW').prop('disabled', false);
+        $('#form-confirmNewPW').css("background-color", "#f8f8f8");
+        $('#form-confirmNewPW').css("color", "#000");
+    }
+}

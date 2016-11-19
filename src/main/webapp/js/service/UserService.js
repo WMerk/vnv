@@ -3,6 +3,8 @@ vnvApp.service('userService', function () {
     var currentUser;
     var newUser = false;
 
+    var navigationTemplate = 'html/templates/navigation.html';
+
     return {
         getCurrentUser: function () {
             return currentUser;
@@ -21,7 +23,10 @@ vnvApp.service('userService', function () {
         },
         setAuthenticated: function (value) {
             authenticated = value
-        }
+        },
+        getNavigationTemplate: function () {
+            return navigationTemplate;
+        },
     };
 
 });

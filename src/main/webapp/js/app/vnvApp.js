@@ -3,25 +3,25 @@ var vnvApp = angular.module('vnvApp', [
 
 vnvApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'login.html',
+        templateUrl: '/html/login.html',
         controller: 'LoginCtl'
     }).when('/Register', {
-        templateUrl: 'register.html',
+        templateUrl: '/html/register.html',
         controller: 'RegistrationCtl'
     }).when('/Main', {
-        templateUrl: 'main.html',
+        templateUrl: '/html/main.html',
         controller: 'MainCtl'
     }).when('/Profile', {
-        templateUrl: 'profile.html',
+        templateUrl: '/html/profile.html',
         controller: 'ProfileCtl'
     }).when('/Settings', {
-        templateUrl: 'settings.html',
+        templateUrl: '/html/settings.html',
         controller: 'SettingsCtl'
     }).when('/Password', {
-        templateUrl: 'password.html',
+        templateUrl: '/html/password.html',
         controller: 'PasswordCtl'
     }).when('/DeleteUser', {
-        templateUrl: 'deleteuser.html',
+        templateUrl: '/html/deleteuser.html',
         controller: 'DeleteUserCtl'
     }).otherwise({
         redirectTo: '/'
