@@ -32,7 +32,7 @@ vnvApp.controller(
 
         }]);
 
-function validatePw() {
+function validateChangePw() {
     if (document.getElementById('form-newPW').value != document.getElementById('form-confirmNewPW').value) {
         $('#form-changePW').prop('disabled', true);
         $('#form-confirmNewPW').css("background-color", "rgba(206,132,131,0.58)");

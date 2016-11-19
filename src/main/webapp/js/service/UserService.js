@@ -4,6 +4,7 @@ vnvApp.service('userService',
         function ($cookies) {
             var currentUser = null;
             var newUser = false;
+            var accountDeleted = false;
 
             var navigationTemplate = 'html/templates/navigation.html';
 
@@ -26,6 +27,12 @@ vnvApp.service('userService',
                 },
                 getNavigationTemplate: function () {
                     return navigationTemplate;
+                },
+                setAccountDeleted: function (value) {
+                    accountDeleted = value;
+                },
+                getAccountDeleted: function () {
+                    return accountDeleted;
                 },
                 clearData: function () {
                     this.setCurrentUser(null);

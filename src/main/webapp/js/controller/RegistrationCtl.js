@@ -9,6 +9,7 @@ vnvApp.controller(
 
             $scope.init = function () {
                 userService.clearData();
+                userService.setAccountDeleted(false);
             };
 
             $scope.doRegister = function () {
@@ -34,7 +35,6 @@ vnvApp.controller(
                         $('#form-email').css("background-color", "rgba(206,132,131,0.58)");
                         $('#form-email').css("color", "#fff");
                     }
-
 
                 });
             };

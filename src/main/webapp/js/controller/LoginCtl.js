@@ -8,6 +8,7 @@ vnvApp.controller(
         function ($scope, $location, userService, doLogin) {
 
             $scope.init = function () {
+                $scope.accountDeleted = userService.getAccountDeleted();
                 userService.clearData();
             };
 
@@ -34,6 +35,7 @@ vnvApp.controller(
 
                 });
 
+                userService.setAccountDeleted(false);
 
             };
 

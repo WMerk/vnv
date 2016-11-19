@@ -20,6 +20,7 @@ vnvApp.controller(
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, delete User successful
+                        userService.setAccountDeleted(true);
                         userService.clearData();
                         $location.path('/');
                     } else {
