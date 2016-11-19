@@ -1,0 +1,22 @@
+<div data-ng-init="init()">
+
+    <div ng-include="templateNavigation"></div>
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button ng-click="showTemplateLend()" type="button" class="btn btn-default">Verleihen</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button ng-click="showTemplateService()" type="button" class="btn btn-default">Dienstleistung</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button ng-click="showTemplateDonate()" type="button" class="btn btn-default">Verschenken</button>
+        </div>
+    </div>
+
+
+    <div ng-include="templateOffer"></div>
+
+
+
+</div>

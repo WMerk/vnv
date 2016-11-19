@@ -1,5 +1,5 @@
 vnvApp.controller(
-    'ProfileCtl',
+    'CreateOfferCtl',
     [
         '$scope',
         '$location',
@@ -7,9 +7,21 @@ vnvApp.controller(
         function ($scope, $location, userService) {
 
             $scope.init = function () {
-                userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
             };
+
+            $scope.showTemplateLend = function () {
+
+            };
+            $scope.showTemplateService = function () {
+
+            };
+            $scope.showTemplateDonate = function () {
+
+            };
+
+
+
 
         }]);
