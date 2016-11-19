@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertThat;
 import static org.openqa.selenium.By.id;
@@ -23,7 +24,8 @@ public class RegisterSteps extends BasedriverConfiguration {
     @Given("^the username is \"([^\"]*)\" and the email is \"([^\"]*)\" and the password \"([^\"]*)\"$")
     public void the_username_is_something_and_the_email_is_something_and_the_password_something(String username, String email, String password) throws Throwable {
         browser = webDriver();
-        browser.get("localhost:8080/#/Register");
+        browser.findElement(id("anchorLoginShowRegister")).click();
+        Thread.sleep(1000);
 
         if(!username.isEmpty()) {
             browser.findElement(id("form-firstname")).sendKeys(username.split(" ")[0]);
