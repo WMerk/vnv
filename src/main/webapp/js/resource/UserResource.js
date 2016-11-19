@@ -36,3 +36,29 @@ vnvApp.factory('doLogout', function ($resource) {
         }
     );
 });
+
+vnvApp.factory('doDeleteUser', function ($resource) {
+    return $resource('/users/delete',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doChangePassword', function ($resource) {
+    return $resource('/users/changePassword',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});

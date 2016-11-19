@@ -17,6 +17,12 @@ vnvApp.config(['$routeProvider', function ($routeProvider) {
     }).when('/Settings', {
         templateUrl: 'settings.html',
         controller: 'SettingsCtl'
+    }).when('/Password', {
+        templateUrl: 'password.html',
+        controller: 'PasswordCtl'
+    }).when('/DeleteUser', {
+        templateUrl: 'deleteuser.html',
+        controller: 'DeleteUserCtl'
     }).otherwise({
         redirectTo: '/'
     });
