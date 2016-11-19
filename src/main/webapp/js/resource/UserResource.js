@@ -42,7 +42,7 @@ vnvApp.factory('doDeleteUser', function ($resource) {
         {},
         {
             query: {
-                method: "POST",
+                method: "DELETE",
                 isArray: false,
                 headers: {'Content-Type': 'application/json; charset=utf-8'}
             }

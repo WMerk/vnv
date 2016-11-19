@@ -15,6 +15,7 @@ vnvApp.controller(
             };
 
             $scope.deleteUser = function () {
+
                 var response = doDeleteUser.query(userService.getCurrentUser());
 
                 response.$promise.then(function (data) {
