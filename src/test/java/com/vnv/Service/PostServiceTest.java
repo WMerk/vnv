@@ -9,6 +9,7 @@ import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
 import com.vnv.Model.Fake;
 import cucumber.api.java.cs.A;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -71,6 +72,15 @@ public class PostServiceTest {
         user = ps.deletePost("wrongSession", uid, pid);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.NotLoggedIn, user.toString());
+    }
+
+    @Test
+    public void categories() throws Exception {
+        JSONObject res = ps.getCategories();
+        assertNotNull(res);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("categories"));
+        JSONArray categories = res.getJSONArray("categories");
     }
 
     @After
