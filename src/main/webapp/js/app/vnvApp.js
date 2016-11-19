@@ -1,7 +1,8 @@
 var vnvApp = angular.module('vnvApp', [
     'ngResource', 'ngRoute', 'ngCookies']);
 
-vnvApp.config(['$routeProvider', function ($routeProvider) {
+vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+
     $routeProvider.when('/', {
         templateUrl: '/html/login.html',
         controller: 'LoginCtl'
@@ -26,5 +27,14 @@ vnvApp.config(['$routeProvider', function ($routeProvider) {
     }).otherwise({
         redirectTo: '/'
     });
+
+    //check browser support for html 5 mode (removes # from url)
+    if(window.history && window.history.pushState){
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
+
 }]);
 
