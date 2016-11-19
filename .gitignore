@@ -9,4 +9,4 @@ out
 gen
 .gitignore
 target/
-src/main/resources/application.properties
+#src/main/resources/application.properties
