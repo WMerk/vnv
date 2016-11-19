@@ -30,4 +30,11 @@ public class PostController {
         return res.toString();
     }
 
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    public String getCategories() {
+        JSONObject res = postService.getCategories();
+        log.debug(res.toString());
+        return res.toString();
+    }
+
 }

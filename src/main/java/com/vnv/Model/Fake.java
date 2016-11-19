@@ -1,6 +1,5 @@
 package com.vnv.Model;
 
-
 import com.github.javafaker.Faker;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
@@ -13,6 +12,8 @@ public class Fake {
     public static Faker faker = new Faker(new Locale("de"));
 
     private static String[] flavours = {"verschenken", "Dienstleistung", "verleihen"};
+    private static Random random = new Random();
+
 
     public static User getFakeUser() {
         User u = new User();
@@ -28,8 +29,8 @@ public class Fake {
     private static Post getFakePost(long uid) {
         Post p = new Post();
         p.setUid(uid);
-        p.setFlavour(flavours[new Random().nextInt(3)]);
-        //p.setCategory(); //TODO
+        p.setFlavour(flavours[random.nextInt(3)]);
+        p.setCategory("Sonstiges");
         p.setDescription(faker.lorem().paragraph());
         p.setPostName(faker.lorem().word());
         return p;

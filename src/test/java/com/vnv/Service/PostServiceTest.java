@@ -55,8 +55,9 @@ public class PostServiceTest {
 
         res = ps.insertPost(post, sessionId);
         assertNotNull(res);
-        pid = res.getLong("id");
+        System.out.println(res);
         assertFalse(res.has("error"));
+        pid = res.getLong("id");
 
     }
 
