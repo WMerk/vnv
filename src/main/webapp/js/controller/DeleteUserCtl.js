@@ -10,7 +10,6 @@ vnvApp.controller(
             $scope.init = function () {
                 userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
-                $scope.authenticated = userService.getAuthenticated();
                 $scope.template = userService.getNavigationTemplate();
             };
 
@@ -21,10 +20,9 @@ vnvApp.controller(
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, delete User successful
-                        userService.setCurrentUser(null);
-                        userService.setAuthenticated(false);
+                        userService.clearData();
                         $location.path('/');
-                    }else {
+                    } else {
                         // error, delete failed
                     }
 

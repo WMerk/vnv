@@ -1,5 +1,5 @@
 var vnvApp = angular.module('vnvApp', [
-    'ngResource', 'ngRoute']);
+    'ngResource', 'ngRoute', 'ngCookies']);
 
 vnvApp.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {

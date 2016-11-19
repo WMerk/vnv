@@ -1,32 +1,35 @@
-vnvApp.service('userService', function () {
-    var authenticated;
-    var currentUser;
-    var newUser = false;
+vnvApp.service('userService',
+    [
+        '$cookies',
+        function ($cookies) {
+            var currentUser = null;
+            var newUser = false;
 
-    var navigationTemplate = 'html/templates/navigation.html';
+            var navigationTemplate = 'html/templates/navigation.html';
 
-    return {
-        getCurrentUser: function () {
-            return currentUser;
-        },
-        setCurrentUser: function (value) {
-            currentUser = value;
-        },
-        getNewUser: function () {
-            return newUser;
-        },
-        setNewUser: function (value) {
-            newUser = value;
-        },
-        getAuthenticated: function () {
-            return authenticated;
-        },
-        setAuthenticated: function (value) {
-            authenticated = value
-        },
-        getNavigationTemplate: function () {
-            return navigationTemplate;
-        },
-    };
+            return {
+                getCurrentUser: function () {
+                    if(currentUser == null){
+                        currentUser = $cookies.getObject('currentUser');
+                    }
+                    return currentUser;
+                },
+                setCurrentUser: function (value) {
+                    $cookies.putObject('currentUser', value);
+                    currentUser = value;
+                },
+                getNewUser: function () {
+                    return newUser;
+                },
+                setNewUser: function (value) {
+                    newUser = value;
+                },
+                getNavigationTemplate: function () {
+                    return navigationTemplate;
+                },
+                clearData: function () {
+                    this.setCurrentUser(null);
+                },
+            };
 
-});
+        }]);

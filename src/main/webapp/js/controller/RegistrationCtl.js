@@ -7,6 +7,10 @@ vnvApp.controller(
         'doRegister',
         function ($scope, $location, userService, doRegister) {
 
+            $scope.init = function () {
+                userService.clearData();
+            };
+
             $scope.doRegister = function () {
 
                 var params = {};
@@ -22,7 +26,6 @@ vnvApp.controller(
                         // no error, registration successful
                         userService.setCurrentUser(data);
                         userService.setNewUser(true);
-                        userService.setAuthenticated(true);
                         $scope.registration = '';
                         $location.path('/Main');
                     } else {
