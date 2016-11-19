@@ -1,4 +1,4 @@
-package com.vnv.Model;
+package com.vnv;
 
 import com.github.javafaker.Faker;
 import com.vnv.Entity.Post;
