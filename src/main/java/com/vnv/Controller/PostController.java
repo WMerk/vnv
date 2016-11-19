@@ -30,6 +30,13 @@ public class PostController {
         return res.toString();
     }
 
+    @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String deletePost(@RequestBody Post post, HttpSession session) {
+        JSONObject res = postService.deletePost(session.getId(), post.getUid(), post.getId());
+        log.debug(res.toString());
+        return res.toString();
+    }
+
     @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public String getCategories() {
         JSONObject res = postService.getCategories();

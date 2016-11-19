@@ -56,5 +56,12 @@ public class UserController {
         return res.toString();
     }
 
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String changePassword(@RequestBody JSONObject json, HttpSession session) {
+        JSONObject res = userService.changePassword(json.getLong("uid"),
+                json.getString("oldPassword"), json.getString("newPassword"), session.getId());
+        log.debug(res.toString());
+        return res.toString();
+    }
 
 }
