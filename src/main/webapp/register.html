@@ -46,7 +46,7 @@
                         <input ng-model="registration.confirmPw" type="password" placeholder="Passwort bestätigen..."
                                class="form-control" oninput="validatePw()" id="form-confirmPassword" ng-required="true">
                     </div>
-                    <button id="signUp" ng-click="registerForm.$valid && doRegister()" type="submit" class="btn">
+                    <button id="signUp" ng-click="registerForm.$valid && doRegister()" type="submit" class="authenticate">
                         Registrieren
                     </button>
                 </form>

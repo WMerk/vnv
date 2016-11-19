@@ -11,6 +11,9 @@ vnvApp.config(['$routeProvider', function ($routeProvider) {
     }).when('/Main', {
         templateUrl: 'main.html',
         controller: 'MainCtl'
+    }).when('/Profile', {
+        templateUrl: 'profile.html',
+        controller: 'ProfileCtl'
     }).when('/Settings', {
         templateUrl: 'settings.html',
         controller: 'SettingsCtl'

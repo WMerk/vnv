@@ -1,5 +1,5 @@
 vnvApp.controller(
-    'SettingsCtl',
+    'ProfileCtl',
     [
         '$scope',
         '$location',
