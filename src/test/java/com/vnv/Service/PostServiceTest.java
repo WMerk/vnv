@@ -49,10 +49,15 @@ public class PostServiceTest {
     public void createPost() throws Exception {
         Post post = Fake.getFakeOffer(uid);
 
+        res = ps.insertPost(post, "wrongSessionId");
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
         res = ps.insertPost(post, sessionId);
         assertNotNull(res);
         pid = res.getLong("id");
         assertFalse(res.has("error"));
+
     }
 
     @Test
