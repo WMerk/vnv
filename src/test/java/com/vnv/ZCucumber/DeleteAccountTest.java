@@ -1,7 +1,12 @@
 package com.vnv.ZCucumber;
 
-/**
- * Created by Waldemar on 20.11.2016.
- */
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(   plugin ={ "pretty",
+        "html:target/cucumber-htmlreport"},
+        features = "src/test/features/deleteAccount.feature")
 public class DeleteAccountTest {
 }
