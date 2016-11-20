@@ -1,11 +1,13 @@
 package com.vnv.ZCucumber;
 
 import Configuration.BasedriverConfiguration;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -54,5 +56,13 @@ public class LoginSteps extends BasedriverConfiguration {
         WebElement element = browser.findElement(id("errorLogin"));
         String text = element.getText();
         assertThat(text.contains(message), Matchers.is(true));
+    }
+
+    @Then("^the logged in user is deleted from database again$")
+    public void theLoggedInUserIsDeletedFromDatabaseAgain() throws Throwable {
+        browser.findElement(By.linkText("Profil")).click();
+        browser.findElement(By.linkText("Einstellungen")).click();
+        browser.findElement(By.linkText("Account löschen")).click();
+        browser.findElement(By.id("deleteAccountButton")).click();
     }
 }
