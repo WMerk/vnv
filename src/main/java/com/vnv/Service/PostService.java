@@ -1,9 +1,11 @@
 package com.vnv.Service;
 
+import com.vnv.Dao.CategoryDao;
 import com.vnv.Dao.PostDao;
+import com.vnv.Entity.Category;
 import com.vnv.Entity.Post;
 import com.vnv.Model.ErrorMessage;
-import net.minidev.json.JSONArray;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +21,11 @@ public class PostService {
 
     private static Logger log = LoggerFactory.getLogger(PostService.class);
 
-    @Value("${app.posts.categories}")
-    private String[] categories;
-
     @Autowired
     private PostDao postDao;
+
+    @Autowired
+    private CategoryDao categoryDao;
 
     @Autowired
     private UserService userService;
@@ -31,11 +33,7 @@ public class PostService {
     public JSONObject insertPost(Post post, String sessionId) {
         log.debug("Inserting post {} to database", post);
         if (userService.checkLogin(sessionId, post.getUid())) {
-            if (categories != null && Arrays.asList(categories).contains(post.getCategory())) {
                 return postDao.insertPost(post).toJSON();
-            } else {
-                return new JSONObject(ErrorMessage.NoCategory);
-            }
         }
         log.debug("Aborting, user not logged in");
         return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -51,14 +49,26 @@ public class PostService {
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
-    public JSONObject getCategories() {
-        if (categories != null) {
-            JSONArray jsonArray = new JSONArray();
-            for (int i=0; i<categories.length; i++) {
-                jsonArray.add(categories[i]);
+    public JSONArray getCategories() {
+        Collection<Category> categories = categoryDao.getAllCategories();
+        JSONArray /*json = new JSONArray(Arrays.asList(categories));*/
+        json = new JSONArray(categories);
+        return json;
+    }
+
+    @Value("${app.posts.categories}")
+    private String[] categories;
+
+    //@PostConstruct
+    public void initCategories() {
+        if (categories!=null) {
+            for (String c : categories) {
+                if (c != null && categoryDao.getCategoryByName(c)==null) {
+                    Category category = new Category();
+                    category.setName(c);
+                    log.debug(categoryDao.insertCategory(category).toString());
+                }
             }
-            return new JSONObject(String.format("{categories:%s}", jsonArray.toJSONString()));
         }
-        return new JSONObject(ErrorMessage.NoCategoriesAvailable);
     }
 }

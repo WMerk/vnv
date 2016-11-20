@@ -1,6 +1,7 @@
 package com.vnv;
 
 import com.github.javafaker.Faker;
+import com.vnv.Entity.Category;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 
@@ -30,7 +31,9 @@ public class Fake {
         Post p = new Post();
         p.setUid(uid);
         p.setFlavour(flavours[random.nextInt(3)]);
-        p.setCategory("Sonstiges");
+        Category c = new Category();
+        c.setId(0L);c.setName("TestCategory");
+        p.setCategory(c);
         p.setDescription(faker.lorem().paragraph());
         p.setPostName(faker.lorem().word());
         return p;

@@ -1,6 +1,7 @@
 package com.vnv;
 
 import com.vnv.Model.Database;
+import com.vnv.Service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,19 +14,18 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class Main {
 
-    public Database db;
-
     private static Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Main.class,args);
+        ctx.getBean(PostService.class).initCategories();
     }
 
     @Profile("prod")
     @PostConstruct
-    private void initDB() {
+    private static void initDB() {
         log.debug("Init DB");
-        db = new Database();
+        Database db = new Database();
     }
 
 }

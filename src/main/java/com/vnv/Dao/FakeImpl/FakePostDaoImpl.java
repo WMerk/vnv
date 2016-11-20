@@ -1,6 +1,7 @@
 package com.vnv.Dao.FakeImpl;
 
 import com.vnv.Dao.PostDao;
+import com.vnv.Entity.Category;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +30,7 @@ public class FakePostDaoImpl implements PostDao{
                         setUid(1L);
                         setType("offer");
                         setFlavour("verschenken");
-                        setCategory("Technik");
+                        setCategory(new Category(){{setId(0L);setName("TestCategory");}});
                         setPostName("Test");
                         setDescription("This is a test offer");
                     }
