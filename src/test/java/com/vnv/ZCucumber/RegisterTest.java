@@ -11,6 +11,6 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(   plugin ={ "pretty",
                             "html:target/cucumber-htmlreport"},
-                    features = "src/test/features")
-public class CucumberTest {
+                    features = "src/test/features/register.feature")
+public class RegisterTest {
 }

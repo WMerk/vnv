@@ -2,11 +2,13 @@ package com.vnv.ZCucumber;
 
 
 import Configuration.BasedriverConfiguration;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -79,5 +81,13 @@ public class RegisterSteps extends BasedriverConfiguration {
         WebElement registerError = browser.findElement(id("errorAlreadyRegistered"));
         String text = registerError.getText();
         assertThat(message,Matchers.is(text));
+    }
+
+    @Then("^the registered user is deleted from database again$")
+    public void theRegisteredUserIsDeletedFromDatabaseAgain() throws Throwable {
+        browser.findElement(By.linkText("Profil")).click();
+        browser.findElement(By.linkText("Einstellungen")).click();
+        browser.findElement(By.linkText("Account löschen")).click();
+        browser.findElement(By.id("deleteAccountButton")).click();
     }
 }

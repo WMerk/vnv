@@ -6,6 +6,7 @@ Feature: Register
     Given the username is "vorname nachname" and the email is "email@email.de" and the password "12345678"
     When the register button is clicked
     Then the register page is shown and the cssSelector is "alert-success" and the message is "Willkommen! Die Registrierung war erfolgreich."
+    Then the registered user is deleted from database again
 
   Scenario: Register failed
     Given the username is "" and the email is "email@email.de" and the password "1"
