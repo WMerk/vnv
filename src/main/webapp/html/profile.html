@@ -12,18 +12,18 @@
         <!-- FIRST NAME -->
         <div class="form-group">
             <label>Vorname</label>
-            <input type="text" name="name" class="form-control" ng-model="user.firstName" required="true">
+            <input type="text" name="firstName" class="form-control" ng-model="user.firstName" ng-required="true">
 
         </div>
 
         <!-- LAST NAME -->
         <div class="form-group">
             <label>Nachname</label>
-            <input type="text" name="username" class="form-control" ng-model="user.lastName" required="true">
+            <input type="text" name="lastName" class="form-control" ng-model="user.lastName" ng-required="true">
         </div>
 
         <div class="form-group">
-            <button ng-click="" type="submit" class="btn btn-default">Profil aktualisieren</button>
+            <button ng-click="updateUser()" type="submit" class="btn btn-default">Profil aktualisieren</button>
         </div>
 
     </div>

@@ -3,19 +3,18 @@
     <div ng-include="templateNavigation"></div>
 
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <div class="btn-group" role="group">
-            <button ng-click="showTemplateLend()" type="button" class="btn btn-default">Verleihen</button>
-        </div>
-        <div class="btn-group" role="group">
-            <button ng-click="showTemplateService()" type="button" class="btn btn-default">Dienstleistung</button>
-        </div>
-        <div class="btn-group" role="group">
-            <button ng-click="showTemplateDonate()" type="button" class="btn btn-default">Verschenken</button>
-        </div>
+
+                <a ng-click="showTemplateLend()" type="submit" class="btn btn-default">Verleihen</a>
+
+                <a ng-click="showTemplateService()" type="submit" class="btn btn-default">Dienstleistung</a>
+
+                <a ng-click="showTemplateDonate()" type="submit" class="btn btn-default">Verschenken</a>
     </div>
 
+    <h2>Dein neues Angebot</h2>
 
     <div ng-include="templateOffer"></div>
+
 
 
 

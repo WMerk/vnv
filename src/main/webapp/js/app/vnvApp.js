@@ -31,13 +31,6 @@ vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
         redirectTo: '/'
     });
 
-    //check browser support for html 5 mode (removes # from url)
-    if(window.history && window.history.pushState){
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
-    }
-
-}]);
+}])
+;
 

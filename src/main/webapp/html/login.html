@@ -21,8 +21,8 @@
                 <div class="form-top">
                     <div class="centered-pills">
                         <ul class="nav nav-pills">
-                            <li role="presentation" class="active"><a id="anchorLoginShowLogin" href="/">Login</a></li>
-                            <li role="presentation"><a id="anchorLoginShowRegister" href="Register">Registrierung</a></li>
+                            <li role="presentation" class="active"><a id="anchorLoginShowLogin" href="#/">Login</a></li>
+                            <li role="presentation"><a id="anchorLoginShowRegister" href="#Register">Registrierung</a></li>
                         </ul>
                         <hr>
                     </div>
@@ -34,11 +34,11 @@
                     <form id="loginForm" role="form" name="loginForm" method="post" class="login-form">
                         <div class="form-group">
                             <input ng-model="login.mail" type="email" placeholder="E-Mail..." class="form-control"
-                                   oninput="resetLoginError()" id="form-email" required="true">
+                                   oninput="resetLoginError()" id="form-email" ng-required="true">
                         </div>
                         <div class="form-group">
                             <input ng-model="login.pw" type="password" placeholder="Passwort..." class="form-control"
-                                   oninput="resetLoginError()" id="form-password" required="true">
+                                   oninput="resetLoginError()" id="form-password" ng-required="true">
                         </div>
                         <button ng-click="loginForm.$valid && doLogin()" type="submit" class="authenticate">Login
                         </button>
