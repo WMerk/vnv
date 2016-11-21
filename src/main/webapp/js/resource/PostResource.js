@@ -17,7 +17,8 @@ vnvApp.factory('doLoadCategories', function ($resource) {
         {
             query: {
                 method: "GET",
-                isArray: false,
+                isArray: true,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
             }
         }
     );

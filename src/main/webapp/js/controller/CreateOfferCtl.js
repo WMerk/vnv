@@ -12,8 +12,9 @@ vnvApp.controller(
                 $scope.templateNavigation = userService.getNavigationTemplate();
                 $scope.templateOffer = 'html/templates/createlend.html';
 
-
                 $scope.categories = doLoadCategories.query();
+                $scope.offer = '';
+
             };
 
             $scope.showTemplateLend = function () {
