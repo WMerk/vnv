@@ -1,15 +1,14 @@
 package com.vnv.Service;
 
+import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
+import com.vnv.Entity.User;
 import com.vnv.Model.ErrorMessage;
 import com.vnv.Model.Password;
-import com.vnv.Dao.UserDao;
-import com.vnv.Entity.User;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -130,15 +129,19 @@ public class UserService {
         return user.toJSON();
     }
 
-    public JSONObject deleteUser(String sessionId, long uid) {
+    public JSONObject deleteUser(String sessionId, long uid, String pw) {
         log.debug("Deleting user with uid {} and sessionId {}", uid, sessionId);
         if (checkLogin(sessionId, uid)) {
-            userDao.removeUserById(uid);    //deletes the user from the database
-            userRelDao.deleteUser(uid);     //deletes the user from the graph database
-                                            //this includes deleting all friend connections and friend requests
-            //TODO                          //all posts for that user has to be deleted or at least updated to an explaining status
-            // ...
-            return new JSONObject("{\"ok\":\"200\"}");
+            User storedUser = userDao.getUserById(uid);
+            if (Password.checkPassword(pw, storedUser.getSalt(), storedUser.getHashedPw())) {
+                userDao.removeUserById(uid);    //deletes the user from the database
+                userRelDao.deleteUser(uid);     //deletes the user from the graph database
+                //this includes deleting all friend connections and friend requests
+                //TODO                          //all posts for that user has to be deleted or at least updated to an explaining status
+                // ...
+                return new JSONObject("{\"ok\":\"200\"}");
+            }
+            return new JSONObject(ErrorMessage.WrongPassword);
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
