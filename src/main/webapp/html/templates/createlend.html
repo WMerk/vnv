@@ -1,43 +1,15 @@
-<!-- Page Content -->
-<div id="page-content-wrapper">
+<div style="margin-top: 50px;">
+    <div style="width: 50%; margin:auto" class="btn-group btn-group-justified" role="group">
 
-    <div class="row">
-        <form role="form" method="post">
+        <a ng-click="showTemplateLend()" type="submit" class="btn btn-primary">Verleihen</a>
 
-            <!-- NAME -->
-            <div class="form-group">
-                <label>Angebotsname</label>
-                <input type="text" name="firstName" class="form-control" ng-model="offer.postName" ng-required="true">
+        <a ng-click="showTemplateService()" type="submit" class="btn btn-default">Dienstleistung</a>
 
-            </div>
-
-            <!-- CATEGORY -->
-            <div class="form-group">
-                <label>Kategorie:</label>
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li ng-repeat="category in categories">{{category.name}}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- DESCRIPTIOM -->
-            <div class="form-group">
-                <label>Angebotsbeschreibung</label>
-                <textarea ng-model="offer.description" ng-required="true" class="form-control" rows="5"></textarea>
-            </div>
-
-            <div class="form-group">
-                <button ng-click="" type="submit"
-                        class="btn btn-default">Angebot hinzufügen
-                </button>
-            </div>
-        </form>
-
+        <a ng-click="showTemplateDonate()" type="submit" class="btn btn-default">Verschenken</a>
     </div>
 </div>
+
+<div style="margin-top: 50px">
+    <h2>Dein neues Angebot</h2>
+</div>
+
