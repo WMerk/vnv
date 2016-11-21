@@ -268,21 +268,31 @@ hr {
 }
 
 .logo {
-    max-height: 150px;
-    min-height: 30px;
+    max-width: 15%;
+
 }
 /***** Media queries *****/
 
 @media (min-width: 992px) and (max-width: 1199px) {
+    .logo{
+        max-width: 15%;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
+
+    .logo{
+        max-width: 20%;
+    }
 }
 
 @media (max-width: 767px) {
 
     .inner-bg {
         padding: 60px 0 110px 0;
+    }
+    .logo{
+        max-width: 25%;
     }
 
 }
@@ -291,6 +301,9 @@ hr {
 
     h1, h2 {
         font-size: 32px;
+    }
+    .logo{
+        max-width: 40%;
     }
 
 }
@@ -414,11 +427,11 @@ textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeh
 }
 
 .fadeIn {
-    -webkit-animation: fadein 2.5s; /* Safari and Chrome */
-    -moz-animation: fadein 2.5s; /* Firefox */
-    -ms-animation: fadein 2.5s; /* Internet Explorer */
-    -o-animation: fadein 2.5s; /* Opera */
-    animation: fadein 2.5s;
+    -webkit-animation: fadein 4.5s; /* Safari and Chrome */
+    -moz-animation: fadein 4.5s; /* Firefox */
+    -ms-animation: fadein 4.5s; /* Internet Explorer */
+    -o-animation: fadein 4.5s; /* Opera */
+    animation: fadein 4.5s;
 }
 
 @keyframes fadein {
