@@ -1,11 +1,10 @@
 package com.vnv.Service;
 
-import com.github.javafaker.Faker;
 import com.vnv.Dao.UserDao;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
-import com.vnv.Model.Fake;
+import com.vnv.Fake;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -14,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Locale;
-
+import static com.vnv.Fake.faker;
 import static org.junit.Assert.*;
 
 //@SpringBootTest
@@ -79,6 +77,33 @@ public class UserServiceTest {
         loginUserCorrect();
         assertTrue(us.checkLogin(sessionId, this.user.getLong("uid")));
         assertFalse(us.checkLogin("wrongSession", this.user.getLong("uid")));
+    }
+
+    @Test
+    public void changePassword() throws Exception {
+        loginUserCorrect();
+        String newPassword = faker.internet().password();
+        long uid = user.getLong("uid");
+        //providing wrong password
+        user = us.changePassword(uid, "wrongPassword", newPassword, sessionId);
+        assertNotNull(user);
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.WrongPassword, user.toString());
+
+        //providing correct password
+        user = us.changePassword(uid, pw, newPassword, sessionId);
+        assertNotNull(user);
+        assertFalse(user.has("error"));
+
+        //login with old password
+        JSONObject res = us.loginUser(mail, pw, sessionId);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.WrongMailPassword, res.toString());
+
+        //login with new password
+        res = us.loginUser(mail, newPassword, sessionId);
+        assertFalse(res.has("error"));
+
     }
 
     @Test

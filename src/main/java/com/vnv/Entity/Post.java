@@ -1,14 +1,12 @@
 package com.vnv.Entity;
 
 import org.json.JSONObject;
-import redis.clients.johm.Attribute;
-import redis.clients.johm.Id;
-import redis.clients.johm.Indexed;
-import redis.clients.johm.Model;
+import redis.clients.johm.*;
 
 import java.util.Date;
 
 @Model
+@SupportAll
 public class Post {
 
     @Id
@@ -25,9 +23,9 @@ public class Post {
     @Attribute
     @Indexed
     private String postName;
-    @Attribute
+    @Reference
     @Indexed
-    private String category;
+    private Category category;
     @Attribute
     @Indexed
     private String period;
@@ -78,11 +76,11 @@ public class Post {
         this.postName = postName;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -126,7 +124,7 @@ public class Post {
                 ", type='" + type + '\'' +
                 ", flavour='" + flavour + '\'' +
                 ", postName='" + postName + '\'' +
-                ", category='" + category + '\'' +
+                ", category=" + category +
                 ", period='" + period + '\'' +
                 ", picPath='" + picPath + '\'' +
                 ", description='" + description + '\'' +

@@ -3,12 +3,14 @@ Feature: Login
   I want to login with my mailaddress and password
 
   Scenario: Login successful
-    Given the email is "test@test.de" and the password "test"
+    Given a registerd user with named "login user" with email "login@mail.de" and password "test"
+    And the email is "login@mail.de" and the password "test"
     When the login button is clicked
     Then the main page is shown
+    Then the logged in user is deleted from database again
 
   Scenario: Login failed
-    Given the email is "test@test.de" and the password "falsePassword"
+    Given the email is "login@mail.de" and the password "falsePassword"
     When the login button is clicked
     Then an login error with the message "Falsche E-Mail-Adresse oder Passwort." is shown
 

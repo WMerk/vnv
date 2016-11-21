@@ -2,19 +2,23 @@ package com.vnv.ZCucumber;
 
 
 import Configuration.BasedriverConfiguration;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.hamcrest.Matchers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertThat;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.tagName;
 
 public class RegisterSteps extends BasedriverConfiguration {
 
@@ -23,7 +27,8 @@ public class RegisterSteps extends BasedriverConfiguration {
     @Given("^the username is \"([^\"]*)\" and the email is \"([^\"]*)\" and the password \"([^\"]*)\"$")
     public void the_username_is_something_and_the_email_is_something_and_the_password_something(String username, String email, String password) throws Throwable {
         browser = webDriver();
-        browser.get("localhost:8080/Register");
+        browser.findElement(id("anchorLoginShowRegister")).click();
+        Thread.sleep(1000);
 
         if(!username.isEmpty()) {
             browser.findElement(id("form-firstname")).sendKeys(username.split(" ")[0]);
@@ -31,13 +36,8 @@ public class RegisterSteps extends BasedriverConfiguration {
             browser.findElement(id("form-lastname")).sendKeys(username.split(" ")[1]);
             Thread.sleep(100);
         }
-        Random random = new Random();
-        if(Objects.equals(email, "test@test.de")){
-            browser.findElement(id("form-email")).sendKeys(email);
-        }
-        else {
-            browser.findElement(id("form-email")).sendKeys(random.nextInt() + email);
-        }
+
+        browser.findElement(id("form-email")).sendKeys(email);
         Thread.sleep(300);
         browser.findElement(id("form-password")).sendKeys(password);
         Thread.sleep(100);
@@ -77,5 +77,26 @@ public class RegisterSteps extends BasedriverConfiguration {
         WebElement registerError = browser.findElement(id("errorAlreadyRegistered"));
         String text = registerError.getText();
         assertThat(message,Matchers.is(text));
+    }
+
+    @Then("^login and delete the registered user with the email \"([^\"]*)\" and the password \"([^\"]*)\" from database again$")
+    public void loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String email, String password) throws Throwable {
+        browser = webDriver();
+        browser.findElement(id("form-email")).sendKeys(email);
+        Thread.sleep(100);
+        browser.findElement(id("form-password")).sendKeys(password);
+        Thread.sleep(100);
+        browser.findElement(tagName("button")).click();
+        Thread.sleep(3000);
+
+        theRegisteredUserIsDeletedFromDatabaseAgain();
+    }
+
+    @Then("^the registered user is deleted from database again$")
+    public void theRegisteredUserIsDeletedFromDatabaseAgain() throws Throwable {
+        browser.findElement(By.linkText("Profil")).click();
+        browser.findElement(By.linkText("Einstellungen")).click();
+        browser.findElement(By.linkText("Account löschen")).click();
+        browser.findElement(By.id("deleteAccountButton")).click();
     }
 }

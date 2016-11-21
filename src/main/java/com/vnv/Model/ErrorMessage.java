@@ -9,6 +9,7 @@ public class ErrorMessage {
     public static String NotLoggedIn = String.format(Error, "not logged in");
     public static String AlreadyLoggedOut = String.format(Error, "already logged out");
     public static String WrongMailPassword = String.format(Error, "wrong mail or password");
+    public static String WrongPassword = String.format(Error, "wrong password");
     public static String AlreadyRegistered = String.format(Error, "mail already registered");
 
     public static String NoCategoriesAvailable = String.format(Error, "no categories available");

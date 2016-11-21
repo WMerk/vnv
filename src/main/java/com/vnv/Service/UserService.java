@@ -30,24 +30,24 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
-    public Collection<User> getAllUser(){
+    private Collection<User> getAllUser(){
         log.debug("getting all users");
         return this.userDao.getAllUser();
     }
 
-    public User getUserById(long id){
+    private User getUserById(long id){
         //A exists check should be implemented
         // and a errormessage on failor
         log.debug("getting user by id {}", id);
         return this.userDao.getUserById(id);
     }
 
-    public void updateUser(User user){
+    private void updateUser(User user){
         log.debug("updating user {}", user);
         userDao.updateUser(user);
     }
 
-    public void insertUser(User user) {
+    private void insertUser(User user) {
         log.debug("Insert user {} to db", user);
         this.userDao.insertUserToDb(user);
     }
@@ -73,6 +73,26 @@ public class UserService {
         userRelDao.addUser(user);
 
         return user.toJSON();
+    }
+
+    public JSONObject changePassword(long uid, String oldPassword, String newPassword, String sesionId) {
+        if (checkLogin(sesionId, uid)) {
+            User user = userDao.getUserById(uid);
+            if (Password.checkPassword(oldPassword, user.getSalt(), user.getHashedPw())) {
+                String[] pwH = Password.hashPassword(newPassword);
+                user.setHashedPw(pwH[0]);
+                user.setSalt(pwH[1]);
+                user = userDao.updateUser(user);
+                if (user == null)
+                    return new JSONObject(ErrorMessage.DefaultError);
+                return user.toJSON();
+            } else {
+                log.debug("Wrong password");
+                return new JSONObject(ErrorMessage.WrongPassword);
+            }
+        }
+        log.debug("Aborting user not logged in");
+        return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
     public JSONObject loginUser(String mail, String pw, String sessionId) {
