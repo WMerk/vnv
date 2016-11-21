@@ -14,6 +14,10 @@ Feature: Register
     Then the register page is shown
 
   Scenario: Email is already stored in Database
-    Given the username is "vorname nachname" and the email is "test@test.de" and the password "123456"
+    Given a registerd user with named "registered user" with email "registeruser@mail.de" and password "test"
+    Given the username is "vorname nachname" and the email is "registeruser@mail.de" and the password "test"
     When the register button is clicked
     Then an Registrationerror with the message "Es existiert bereits ein Account mit dieser Mailadresse." is shown
+
+  Scenario: Cleanup
+    Then login and delete the registered user with the email "registeruser@mail.de" and the password "test" from database again

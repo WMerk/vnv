@@ -18,6 +18,7 @@ import java.util.TreeMap;
 
 import static org.junit.Assert.assertThat;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.tagName;
 
 public class RegisterSteps extends BasedriverConfiguration {
 
@@ -35,13 +36,8 @@ public class RegisterSteps extends BasedriverConfiguration {
             browser.findElement(id("form-lastname")).sendKeys(username.split(" ")[1]);
             Thread.sleep(100);
         }
-        Random random = new Random();
-        if(Objects.equals(email, "test@test.de")){
-            browser.findElement(id("form-email")).sendKeys(email);
-        }
-        else {
-            browser.findElement(id("form-email")).sendKeys(random.nextInt() + email);
-        }
+
+        browser.findElement(id("form-email")).sendKeys(email);
         Thread.sleep(300);
         browser.findElement(id("form-password")).sendKeys(password);
         Thread.sleep(100);
@@ -81,6 +77,19 @@ public class RegisterSteps extends BasedriverConfiguration {
         WebElement registerError = browser.findElement(id("errorAlreadyRegistered"));
         String text = registerError.getText();
         assertThat(message,Matchers.is(text));
+    }
+
+    @Then("^login and delete the registered user with the email \"([^\"]*)\" and the password \"([^\"]*)\" from database again$")
+    public void loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String email, String password) throws Throwable {
+        browser = webDriver();
+        browser.findElement(id("form-email")).sendKeys(email);
+        Thread.sleep(100);
+        browser.findElement(id("form-password")).sendKeys(password);
+        Thread.sleep(100);
+        browser.findElement(tagName("button")).click();
+        Thread.sleep(3000);
+
+        theRegisteredUserIsDeletedFromDatabaseAgain();
     }
 
     @Then("^the registered user is deleted from database again$")
