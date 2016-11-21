@@ -171,38 +171,12 @@ h3 {
 }
 
 .logo {
-    max-width: 15%;
-
+    max-height: 100px;
+    min-height: 30px;
 }
-/***** Media queries *****/
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    .logo{
-        max-width: 15%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-    .logo{
-        max-width: 20%;
-    }
-}
-
-@media (max-width: 767px) {
-
-    .inner-bg {
-        padding: 60px 0 110px 0;
-    }
-    .logo{
-        max-width: 25%;
-    }
 
 .authenticate {
     width: 100%;
-    .logo{
-        max-width: 40%;
-    }
     height: 50px;
     margin: 0;
     padding: 0 20px;
@@ -306,28 +280,6 @@ input[type="password"]:focus,
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-}
-
-.authenticate:focus {
-    outline: 0;
-    opacity: 0.6;
-    background: #4aaf51;
-    color: #fff;
-}
-
-.authenticate.btn:active:focus, button.btn.active:focus {
-    outline: 0;
-    opacity: 0.6;
-    background: #4aaf51;
-    color: #fff;
-}
-
-.fadeIn {
-    -webkit-animation: fadein 4.5s; /* Safari and Chrome */
-    -moz-animation: fadein 4.5s; /* Firefox */
-    -ms-animation: fadein 4.5s; /* Internet Explorer */
-    -o-animation: fadein 4.5s; /* Opera */
-    animation: fadein 4.5s;
 }
 
 @keyframes fadein {
