@@ -48,7 +48,7 @@ public class UserController {
 
     @RequestMapping(value="/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deleteUser(@RequestBody User user, HttpSession session) {
-        JSONObject res = userService.deleteUser(session.getId(), user.getUid());
+        JSONObject res = userService.deleteUser(session.getId(), user.getUid(), user.getHashedPw());
         log.debug(res.toString());
         return res.toString();
     }
