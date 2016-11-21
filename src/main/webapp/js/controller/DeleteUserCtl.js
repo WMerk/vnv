@@ -10,7 +10,7 @@ vnvApp.controller(
             $scope.init = function () {
                 userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
-                $scope.template = userService.getNavigationTemplate();
+                $scope.templateNavigation = userService.getNavigationTemplate();
             };
 
             $scope.deleteUser = function () {

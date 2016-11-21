@@ -1,16 +1,5 @@
 <div data-ng-init="init()">
 
-    <div class="alert alert-danger">
-        <strong>Achtung!</strong> Diese Seite befindet sich noch in der Bearbeitung.
-    </div>
-
-    <!-- HEADER -->
-    <div class="page-header">
-        <h1>vnv
-            <small>Verleihen. Dienstleistungen. Verschenken.</small>
-        </h1>
-    </div>
-
     <div id="deleteSuccessful" class="alert alert-success" ng-if="accountDeleted">
         <strong>Schade, dass du uns verlässt!</strong> Dein Account wurde gelöscht.
     </div>
@@ -22,7 +11,9 @@
                     <div class="centered-pills">
                         <ul class="nav nav-pills">
                             <li role="presentation" class="active"><a id="anchorLoginShowLogin" href="/">Login</a></li>
-                            <li role="presentation"><a id="anchorLoginShowRegister" href="Register">Registrierung</a></li>
+                            <li role="presentation"><a id="anchorLoginShowRegister" href="Register">Registrierung</a>
+                            </li>
+
                         </ul>
                         <hr>
                     </div>
@@ -34,11 +25,11 @@
                     <form id="loginForm" role="form" name="loginForm" method="post" class="login-form">
                         <div class="form-group">
                             <input ng-model="login.mail" type="email" placeholder="E-Mail..." class="form-control"
-                                   oninput="resetLoginError()" id="form-email" required="true">
+                                   oninput="resetLoginError()" id="form-email" ng-required="true">
                         </div>
                         <div class="form-group">
                             <input ng-model="login.pw" type="password" placeholder="Passwort..." class="form-control"
-                                   oninput="resetLoginError()" id="form-password" required="true">
+                                   oninput="resetLoginError()" id="form-password" ng-required="true">
                         </div>
                         <button ng-click="loginForm.$valid && doLogin()" type="submit" class="authenticate">Login
                         </button>
@@ -49,6 +40,7 @@
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 social-login">
                 <h3>...oder Einloggen mit:</h3>
+
                 <div class="social-login-buttons">
                     <a class="btn btn-link-1 btn-link-1-facebook" href="">
                         <i class="fa fa-facebook"></i> Facebook
@@ -60,6 +52,7 @@
                         <i class="fa fa-google-plus"></i> Google Plus
                     </a>
                 </div>
+
             </div>
         </div>
 

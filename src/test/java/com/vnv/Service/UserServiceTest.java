@@ -124,13 +124,18 @@ public class UserServiceTest {
 
     @Test public void deleteUser() throws Exception {
         registerUser();
-        JSONObject user = us.deleteUser(sessionId, this.user.getLong("uid"));
-        assertFalse(user.has("error"));
-        assertNull(usDao.getUserById(this.user.getLong("uid")));
 
-        user = us.deleteUser("wrongSession", this.user.getLong("uid"));
+        JSONObject user = us.deleteUser("wrongSession", this.user.getLong("uid"), pw);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.NotLoggedIn, user.toString());
+
+        user = us.deleteUser(sessionId, this.user.getLong("uid"), "wrongPassword");
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.WrongPassword, user.toString());
+
+        user = us.deleteUser(sessionId, this.user.getLong("uid"), pw);
+        assertFalse(user.has("error"));
+        assertNull(usDao.getUserById(this.user.getLong("uid")));
 
     }
 

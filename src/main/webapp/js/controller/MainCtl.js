@@ -13,7 +13,7 @@ vnvApp.controller(
                     $('#successfulRegistration').css("display", "block");
                 }
 
-                $scope.template = userService.getNavigationTemplate();
+                $scope.templateNavigation = userService.getNavigationTemplate();
 
             };
 

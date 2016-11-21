@@ -24,9 +24,13 @@ vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
     }).when('/DeleteUser', {
         templateUrl: '/html/deleteuser.html',
         controller: 'DeleteUserCtl'
+    }).when('/CreateOffer', {
+        templateUrl: '/html/createoffer.html',
+        controller: 'CreateOfferCtl'
     }).otherwise({
         redirectTo: '/'
     });
+
 
     //check browser support for html 5 mode (removes # from url)
     if(window.history && window.history.pushState){
@@ -36,5 +40,6 @@ vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
         });
     }
 
-}]);
+}])
+;
 
