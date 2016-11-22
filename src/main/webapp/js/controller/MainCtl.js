@@ -12,6 +12,10 @@ vnvApp.controller(
                 if (userService.getNewUser()) {
                     $('#successfulRegistration').css("display", "block");
                 }
+                if (userService.getOfferCreated()) {
+                    $('#successfulCreateOffer').css("display", "block");
+                    userService.setOfferCreated(false);
+                }
 
                 $scope.templateNavigation = userService.getNavigationTemplate();
 

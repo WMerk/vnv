@@ -6,6 +6,8 @@ $(document).ready(function () {
         container: container,
         todayHighlight: true,
         autoclose: true,
+        startDate: "today",
+        language: "de",
     };
     date_input.datepicker(options);
 })

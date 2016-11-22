@@ -26,6 +26,9 @@ vnvApp.controller(
                     "name": "Bitte auswählen",
                     "id": 0,
                 }
+
+                $scope.errorSelectCategory = false;
+                $scope.errorCreateOffer = false;
             };
 
             $scope.showTemplateLend = function () {
@@ -51,6 +54,11 @@ vnvApp.controller(
 
             $scope.doCreateNewOffer = function () {
 
+                if($scope.offer.category.id == 0){
+                    $scope.errorSelectCategory = true;
+                    return;
+                }
+
                 var user = userService.getCurrentUser();
                 $scope.offer.uid = user.uid;
 
@@ -59,10 +67,12 @@ vnvApp.controller(
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error
-                        $scope.offer = '';
+                        $scope.resetOffer();
+                        userService.setOfferCreated(true);
                         $location.path('/Main');
                     } else {
                         // error
+                        $scope.errorCreateOffer = true;
 
                     }
 
@@ -72,6 +82,7 @@ vnvApp.controller(
 
             $scope.selectCategory = function (category) {
                 $scope.offer.category = category;
+                $scope.errorSelectCategory = false;
             };
 
 

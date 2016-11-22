@@ -16,8 +16,15 @@
 <div class="container-fluid" style="margin-top: 50px;">
     <div class="form-horizontal">
 
+        <div ng-show="errorSelectCategory" id="errorSelectCategory" class="alert alert-danger text-center">
+            Bitte wählen Sie eine Kategorie aus.
+        </div>
+        <div ng-show="errorCreateOffer" id="errorCreateOffer" class="alert alert-danger text-center">
+            Beim Erstellen des Angebotes ist ein Fehler aufgetreten.
+        </div>
+
         <!-- Form code begins -->
-        <form id="formCreateOffer" method="post">
+        <form id="formCreateOffer" name="formCreateOffer" method="post">
 
             <!-- NAME -->
             <div class="form-group">
@@ -49,7 +56,7 @@
 
             <!-- TIME -->
             <div class="form-group">
-                <label class="col-md-2 control-label" for="insertOfferDate">Gültigkeitsdauer:</label>
+                <label class="col-md-2 control-label" for="insertOfferDate">Gültig bis:</label>
                 <div class="col-md-6">
                     <input class="form-control" ng-model="offer.period" ng-required="true" id="insertOfferDate"
                            name="date" placeholder="DD.MM.YYYY" type="text"/>
@@ -67,7 +74,7 @@
             </div>
 
             <div class="form-group text-center">
-                <button ng-click="doCreateNewOffer()" type="submit" class="btn btn-primary">Angebot hinzufügen
+                <button ng-click="formCreateOffer.$valid && doCreateNewOffer()" type="submit" class="btn btn-primary">Angebot hinzufügen
                 </button>
             </div>
         </form>
