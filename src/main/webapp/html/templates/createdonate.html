@@ -13,38 +13,65 @@
     <h2>Dein neues Angebot</h2>
 </div>
 
-<div class="bootstrap-iso">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12">
 
-                <!-- Form code begins -->
-                <form method="post">
-                    <div class="form-group"> <!-- Date input -->
-                        <label class="control-label" for="date">Date</label>
-                        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-                    </div>
-                    <div class="form-group"> <!-- Submit button -->
-                        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                    </div>
-                </form>
-                <!-- Form code ends -->
+<div class="container-fluid" style="margin-top: 50px;">
+    <div class="form-horizontal">
 
+        <!-- Form code begins -->
+        <form id="formCreateOffer" method="post">
+
+            <!-- NAME -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertOfferName">Angebotsname:</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" id="insertOfferName" ng-model="offer.name"
+                           ng-required="true">
+                </div>
             </div>
-        </div>
+
+            <script language="javascript" type="text/javascript" src="/js/components/datepicker.js"></script>
+            <!-- CATEGORY -->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Kategorie:</label>
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{offer.category.name}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="insertOfferCategory">
+                            <li ng-click="selectCategory(category)" ng-repeat="category in categories"><a href="#">{{category.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIME -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertOfferDate">Gültigkeitsdauer:</label>
+                <div class="col-md-6">
+                    <input class="form-control" ng-model="offer.period" ng-required="true" id="insertOfferDate"
+                           name="date" placeholder="DD.MM.YYYY" type="text"/>
+                </div>
+            </div>
+
+            <!-- DESCRIPTIOM -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertOfferDescription">Angebotsbeschreibung:</label>
+                <div class="col-md-6">
+                <textarea class="form-control" id="insertOfferDescription" ng-model="offer.description"
+                          ng-required="true"
+                          rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button ng-click="doCreateNewOffer()" type="submit" class="btn btn-primary">Angebot hinzufügen
+                </button>
+            </div>
+        </form>
+
     </div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        var options={
-            format: 'dd.mm.yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        };
-        date_input.datepicker(options);
-    })
-</script>
