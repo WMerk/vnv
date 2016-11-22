@@ -29,6 +29,8 @@ public final class Password {
      * @return String[] with hashedPassword Salt
      */
     public static String[] hashPassword(String password) {
+        if (password == null)
+            return null;
         String salt = generateSalt();
         String hashedPassword = hashPassword(password, salt);
         return new String[] {hashedPassword, salt };
@@ -66,6 +68,8 @@ public final class Password {
      * @return true if password matches false if not
      */
     public static Boolean checkPassword(String password, String salt, String hashedPassword) {
+        if (password == null || salt == null || hashedPassword == null)
+            return false;
         return slowEquals(hashPassword(password, salt).getBytes(), hashedPassword.getBytes());
     }
 
