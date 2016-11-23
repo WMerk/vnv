@@ -2,6 +2,7 @@ package com.vnv.ZCucumber;
 
 import Configuration.BasedriverConfiguration;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -68,9 +69,14 @@ public class OfferDienstleistungenSteps extends BasedriverConfiguration{
 
     @Then("^the mainpage with the message \"([^\"]*)\" in the element with id \"([^\"]*)\" is shown$")
     public void theMainpageWithTheMessageInTheElementWithIdIsShown(String message, String id) throws Throwable {
-        WebElement registerError = browser.findElement(id(id));
-        String text = registerError.getText().split("\\n")[1];
+        WebElement succeessMessage = browser.findElement(id(id));
+        String text = succeessMessage.getText().split("\\n")[1];
         assertThat(message, Matchers.equalTo(text));
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        closeBrowser();
     }
 
 
@@ -84,6 +90,10 @@ public class OfferDienstleistungenSteps extends BasedriverConfiguration{
         Thread.sleep(100);
         browser.findElement(By.id("deleteAccountButton")).click();
         Thread.sleep(100);
-        closeBrowser();
+    }
+
+    @Then("^the offer form is still shown and an warning to fill out the offername is shown$")
+    public void theOfferFormIsStillShownAndAnWarningToFillOutTheOffernameIsShown() throws Throwable {
+        assertThat(browser.findElement(id("formCreateOffer")), Matchers.notNullValue());
     }
 }
