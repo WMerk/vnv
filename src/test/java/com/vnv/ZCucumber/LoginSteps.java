@@ -61,8 +61,12 @@ public class LoginSteps extends BasedriverConfiguration {
     @Then("^the logged in user is deleted from database again$")
     public void theLoggedInUserIsDeletedFromDatabaseAgain() throws Throwable {
         browser.findElement(By.linkText("Profil")).click();
+        Thread.sleep(100);
         browser.findElement(By.linkText("Einstellungen")).click();
+        Thread.sleep(100);
         browser.findElement(By.linkText("Account löschen")).click();
+        Thread.sleep(100);
         browser.findElement(By.id("deleteAccountButton")).click();
+        Thread.sleep(100);
     }
 }
