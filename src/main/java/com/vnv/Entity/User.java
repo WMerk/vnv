@@ -37,6 +37,8 @@ public class User {
     private long time = new Date().getTime();
     //@Attribute
     //private Date registrationDate = new Date();
+    @Attribute
+    private String picPath;
     @Indexed
     @Attribute
     private String googleId;
@@ -124,6 +126,14 @@ public class User {
         this.phoneValid = phoneValid;
     }
 
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
     public String getGoogleId() {
         return googleId;
     }
@@ -177,6 +187,7 @@ public class User {
                 ", phone='" + phone + '\'' +
                 ", phoneValid=" + phoneValid +
                 ", time=" + time +
+                ", picPath='" + picPath + '\'' +
                 ", googleId='" + googleId + '\'' +
                 ", facebookId='" + facebookId + '\'' +
                 ", sessionId='" + sessionId + '\'' +
