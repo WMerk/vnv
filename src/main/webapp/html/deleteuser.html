@@ -1,7 +1,5 @@
 <div data-ng-init="init()">
-
     <div ng-include="templateNavigation"></div>
-
 </div>
 
 <div id="wrapper">
@@ -23,25 +21,32 @@
             </li>
         </ul>
     </div>
-    <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
+
+        <div style="margin-top: 50px">
+            <h2>Account löschen</h2>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="form-horizontal">
 
                 <form method="post">
                     <p>Hier kannst Du deinen Account löschen. Bitte beachte, dass deine Daten nach der Löschung verworfen werden und
                         somit nicht wieder herstellbar sind.</p>
 
-                    <button ng-click="deleteUser()" id="deleteAccountButton" class="btn btn-default">Account löschen</button>
+                    <div class="form-group text-center" style="margin-top: 50px">
+                        <button ng-click="deleteUser()" type="submit"
+                                id="deleteAccountButton"
+                                class="btn btn-primary">Account löschen
+                        </button>
+                    </div>
                 </form>
 
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
 
 </div>

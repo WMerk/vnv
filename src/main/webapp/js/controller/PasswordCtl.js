@@ -33,13 +33,13 @@ vnvApp.controller(
         }]);
 
 function validateChangePw() {
-    if (document.getElementById('form-newPW').value != document.getElementById('form-confirmNewPW').value) {
-        $('#form-changePW').prop('disabled', true);
-        $('#form-confirmNewPW').css("background-color", "rgba(206,132,131,0.58)");
-        $('#form-confirmNewPW').css("color", "#fff");
+    if (document.getElementById('passwordInputNewPw').value != document.getElementById('passwordInputConfirmPw').value) {
+        $('#passwordButtonChangePw').prop('disabled', true);
+        $('#passwordInputConfirmPw').css("background-color", "rgba(206,132,131,0.58)");
+        $('#passwordInputConfirmPw').css("color", "#fff");
     } else {
-        $('#form-changePW').prop('disabled', false);
-        $('#form-confirmNewPW').css("background-color", "#f8f8f8");
-        $('#form-confirmNewPW').css("color", "#000");
+        $('#passwordButtonChangePw').prop('disabled', false);
+        $('#passwordInputConfirmPw').css("background-color", "#f8f8f8");
+        $('#passwordInputConfirmPw').css("color", "#000");
     }
 }

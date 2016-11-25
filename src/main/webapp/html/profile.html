@@ -1,39 +1,61 @@
 <div data-ng-init="init()">
-
     <div ng-include="templateNavigation"></div>
+</div>
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+<div style="margin-top: 50px">
+    <h2>Profil bearbeiten</h2>
+</div>
 
-        <div class="row">
-            <form role="form" class=".form-horizontal" method="post">
+<div class="container-fluid" style="margin-top: 50px;">
 
-                <!-- Profil Picture -->
-                <div class="form-group">
-                    <img style="display:inline" src="../img/avatar.png" class="img-responsive img-thumbnail"
-                         alt="Dein Proflbild">
+    <div class="form-horizontal">
+        <form id="updateUserForm" role="form" method="post">
+
+            <!-- Profil Picture -->
+            <div class="form-group text-center">
+                <img style="display:inline" src="../img/avatar.png" class="img-responsive img-thumbnail"
+                     alt="Dein Proflbild">
+            </div>
+
+            <div class="col-md-offset-3">
+
+                <!-- E-MAIL -->
+                <div class="form-group" style="margin-top: 50px;">
+                    <label class="col-md-2 control-label" for="updateUserInputEmail">E-Mail:</label>
+                    <div class="col-md-5">
+                        <input type="email" name="mail" ng-model="user.mail" id="updateUserInputEmail"
+                               class="form-control" ng-required="true">
+                    </div>
+
                 </div>
 
                 <!-- FIRST NAME -->
                 <div class="form-group">
-                    <label>Vorname</label>
-                    <input type="text" name="firstName" ng-model="user.firstName"
-                           ng-required="true">
-
+                    <label class="col-md-2 control-label" for="updateUserInputFirstName">Vorname:</label>
+                    <div class="col-md-5">
+                        <input type="text" name="firstName" ng-model="user.firstName" id="updateUserInputFirstName"
+                               class="form-control" ng-required="true">
+                    </div>
                 </div>
 
                 <!-- LAST NAME -->
                 <div class="form-group">
-                    <label>Nachname</label>
-                    <input type="text" name="lastName" ng-model="user.lastName" ng-required="true">
+                    <label class="col-md-2 control-label" for="updateUserInputLastName">Nachname:</label>
+                    <div class="col-md-5">
+                        <input type="text" name="lastName" ng-model="user.lastName" ng-required="true"
+                               class="form-control" id="updateUserInputLastName">
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <button ng-click="updateUser()" type="submit" class="btn btn-default">Profil aktualisieren</button>
-                </div>
+            </div>
+            <div class=" form-group text-center" style="margin-top: 50px">
+                <button ng-click="updateUserForm.$valid && updateUser()" type="submit"
+                        id="updateUserButtonUpdate"
+                        class="btn btn-primary">Profil aktualisieren
+                </button>
+            </div>
 
-            </form>
-        </div>
+        </form>
     </div>
-
 </div>
+s
