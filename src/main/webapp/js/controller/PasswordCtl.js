@@ -8,20 +8,29 @@ vnvApp.controller(
         function ($scope, $location, userService, doChangePassword) {
 
             $scope.init = function () {
-                userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
+                $scope.successChangePassword = false;
+                $scope.errorChangePassword = false;
             };
 
             $scope.changePassword = function () {
-                var response = doChangePassword.query();
+                var params = {};
+                params['uid'] = $scope.user.uid;
+                params['oldPassword'] = $scope.oldPassword;
+                params['newPassword'] = $scope.newPassword;
+
+                var response = doChangePassword.query(params);
 
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, change Password successful
-
+                        $scope.user = response;
+                        $scope.successChangePassword = true;
                     }else {
                         // error, change Password failed
+                        $scope.user = response;
+                        $scope.errorChangePassword = true;
 
                     }
 
@@ -33,13 +42,13 @@ vnvApp.controller(
         }]);
 
 function validateChangePw() {
-    if (document.getElementById('form-newPW').value != document.getElementById('form-confirmNewPW').value) {
-        $('#form-changePW').prop('disabled', true);
-        $('#form-confirmNewPW').css("background-color", "rgba(206,132,131,0.58)");
-        $('#form-confirmNewPW').css("color", "#fff");
+    if (document.getElementById('passwordInputNewPw').value != document.getElementById('passwordInputConfirmPw').value) {
+        $('#passwordButtonChangePw').prop('disabled', true);
+        $('#passwordInputConfirmPw').css("background-color", "rgba(206,132,131,0.58)");
+        $('#passwordInputConfirmPw').css("color", "#fff");
     } else {
-        $('#form-changePW').prop('disabled', false);
-        $('#form-confirmNewPW').css("background-color", "#f8f8f8");
-        $('#form-confirmNewPW').css("color", "#000");
+        $('#passwordButtonChangePw').prop('disabled', false);
+        $('#passwordInputConfirmPw').css("background-color", "#f8f8f8");
+        $('#passwordInputConfirmPw').css("color", "#000");
     }
 }

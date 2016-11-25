@@ -11,6 +11,7 @@ vnvApp.controller(
                 $scope.user = userService.getCurrentUser();
                 if (userService.getNewUser()) {
                     $('#successfulRegistration').css("display", "block");
+                    userService.setNewUser(false);
                 }
                 if (userService.getOfferCreated()) {
                     $('#successfulCreateOffer').css("display", "block");

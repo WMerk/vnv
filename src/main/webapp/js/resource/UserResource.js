@@ -50,6 +50,19 @@ vnvApp.factory('doDeleteUser', function ($resource) {
     );
 });
 
+vnvApp.factory('doUpdateUser', function ($resource) {
+    return $resource('/users/update',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
 vnvApp.factory('doChangePassword', function ($resource) {
     return $resource('/users/changePassword',
         {},

@@ -14,9 +14,7 @@ vnvApp.controller(
                 $scope.templateOffer = 'html/templates/createlend.html';
 
                 $scope.resetOffer();
-
                 $scope.loadCategories();
-
             };
 
             $scope.resetOffer = function () {
