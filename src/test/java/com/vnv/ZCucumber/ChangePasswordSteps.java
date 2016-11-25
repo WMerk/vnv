@@ -19,7 +19,7 @@ public class ChangePasswordSteps extends BasedriverConfiguration {
 
     @And("^the change password settings is selected$")
     public void theChangePasswordSettingsIsSelected() throws Throwable {
-        
+
         browser.findElement(By.linkText("Passwort ändern")).click();
     }
 
