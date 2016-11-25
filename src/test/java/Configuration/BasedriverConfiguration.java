@@ -24,6 +24,9 @@ public class BasedriverConfiguration {
 
 
     protected WebDriver webDriver(String url) throws InterruptedException {
+        if (browser != null){
+            return browser;
+        }
         browser = chromeDriver();
         browser.get(server + url);
         Thread.sleep(200);

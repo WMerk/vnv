@@ -22,10 +22,8 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
 
     @And("^the settings are selected$")
     public void theSettingsAreSelected() throws Throwable {
-        WebElement profil = browser.findElement(By.linkText("Profil"));
-        profil.click();
+        browser.findElement(By.linkText("Profil")).click();
         browser.findElement(By.linkText("Einstellungen")).click();
-
     }
 
     @And("^the delete account settings is selected$")
