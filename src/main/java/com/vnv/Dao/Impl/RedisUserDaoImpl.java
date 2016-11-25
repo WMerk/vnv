@@ -67,6 +67,24 @@ public class RedisUserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserByFacebookId(String id) {
+        List<User> users = JOhm.find(User.class, "facebookId", id);
+        if (users.isEmpty()) {
+            log.debug("No user found for facebookId {}", id);
+            return null;
+        }
+        if (users.size() > 1) {
+            //this shouldn't happen
+            //if this happens, someone screwed up the database
+            //you should look why it's possible to store multiple users with same sessionId
+            //TODO Nevertheless proper exception handling is required here
+            log.error("Multiple users found for facebookId {}", id);
+            return null;
+        }
+        return users.get(0);
+    }
+
+    @Override
     public boolean removeUserById(long id) {
         return JOhm.delete(User.class, id, true, true);
     }

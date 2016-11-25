@@ -76,6 +76,18 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
+    public User getUserByFacebookId(String id) {
+        for (int i=1; i<this.id; i++) {
+            User u = getUserById(i);
+            if (u!=null) {
+                if (id.equals(u.getFacebookId()))
+                    return u;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean removeUserById(long id) {
         users.remove(id);
         return true;

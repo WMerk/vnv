@@ -13,6 +13,8 @@ public interface UserDao {
 
     User getUserBySessionId(String sessionId);
 
+    User getUserByFacebookId(String id);
+
     boolean removeUserById(long id);
 
     User updateUser(User user);
