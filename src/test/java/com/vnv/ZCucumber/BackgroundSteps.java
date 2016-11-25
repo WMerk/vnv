@@ -15,7 +15,7 @@ public class BackgroundSteps extends BasedriverConfiguration {
 
     private WebDriver browser;
 
-    @Given("^a registerd user with named \"([^\"]*)\" with email \"([^\"]*)\" and password \"([^\"]*)\"$")
+    @Given("^a registerd user named \"([^\"]*)\" with email \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void aRegisterdUserWithNamedWithEmailAndPassword(String name, String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("anchorLoginShowRegister")).click();
@@ -53,5 +53,11 @@ public class BackgroundSteps extends BasedriverConfiguration {
         browser.findElement(By.linkText("Account löschen")).click();
         browser.findElement(By.id("deleteAccountButton")).click();
 
+    }
+
+    @Given("^a registerd user named <name> with email <email> and password <password>$")
+    public void aRegisterdUserNamedNameWithEmailEmailAndPasswordPassword() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }
