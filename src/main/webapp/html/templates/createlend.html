@@ -47,7 +47,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="insertOfferCategory">
-                            <li ng-click="selectCategory(category)" ng-repeat="category in categories"><a href="#">{{category.name}}</a>
+                            <li ng-click="selectCategory(category)" ng-repeat="category in categories | orderBy : 'id'"><a href="#">{{category.name}}</a>
                             </li>
                         </ul>
                     </div>

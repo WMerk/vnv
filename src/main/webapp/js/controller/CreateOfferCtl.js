@@ -49,7 +49,19 @@ vnvApp.controller(
             };
 
             $scope.loadCategories = function () {
-                $scope.categories = doLoadCategories.query();
+                var response = doLoadCategories.query();
+
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        $scope.categories = response;
+                    } else {
+                        // error, query failed
+                    }
+
+                });
+
+
             };
 
             $scope.doCreateNewOffer = function () {
