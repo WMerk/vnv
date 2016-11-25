@@ -8,13 +8,11 @@ vnvApp.controller(
         function ($scope, $location, userService, doDeleteUser) {
 
             $scope.init = function () {
-                userService.setNewUser(false);
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
             };
 
             $scope.deleteUser = function () {
-
                 var response = doDeleteUser.query(userService.getCurrentUser());
 
                 response.$promise.then(function (data) {
