@@ -3,7 +3,7 @@ Feature: offer Verleihen
   I want to create an offer to lend something
 
   Scenario:
-    Given a registerd user with named "offer Verleihen" with email "offer@Verleihen.de" and password "test"
+    Given a registerd user named "offer Verleihen" with email "offer@Verleihen.de" and password "test"
     And offer login with the email "offer@Verleihen.de" and the password "test"
     And the Link "Neues Angebot" is clicked
     And the flavior "Verleihen" is selected

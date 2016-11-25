@@ -3,7 +3,7 @@ Feature: Login
   I want to login with my mailaddress and password
 
   Scenario: Login successful
-    Given a registerd user with named "login user" with email "login@mail.de" and password "test"
+    Given a registerd user named "login user" with email "login@mail.de" and password "test"
     And the email is "login@mail.de" and the password "test"
     When the login button is clicked
     Then the main page is shown

@@ -3,7 +3,7 @@ Feature: offer Dienstleistung
   I want to create an offer for a service
 
   Scenario:
-    Given a registerd user with named "offer Dienstleistungen" with email "offer@Dienstleistungen.de" and password "test"
+    Given a registerd user named "offer Dienstleistungen" with email "offer@Dienstleistungen.de" and password "test"
     And offer login with the email "offer@Dienstleistungen.de" and the password "test"
     And the Link "Neues Angebot" is clicked
     And the flavior "Dienstleistung" is selected

@@ -3,7 +3,7 @@ Feature: offer Verschenken
   I want to create an offer to comp something to someone
 
   Scenario:
-    Given a registerd user with named "offer Verschenken" with email "offer@Verschenken.de" and password "test"
+    Given a registerd user named "offer Verschenken" with email "offer@Verschenken.de" and password "test"
     And offer login with the email "offer@Verschenken.de" and the password "test"
     And the Link "Neues Angebot" is clicked
     And the flavior "Verschenken" is selected
