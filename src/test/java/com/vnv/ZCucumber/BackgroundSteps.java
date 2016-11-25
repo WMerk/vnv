@@ -2,6 +2,7 @@ package com.vnv.ZCucumber;
 
 import Configuration.BasedriverConfiguration;
 import cucumber.api.PendingException;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.tagName;
 
 
 public class BackgroundSteps extends BasedriverConfiguration {
@@ -59,5 +61,31 @@ public class BackgroundSteps extends BasedriverConfiguration {
     public void aRegisterdUserNamedNameWithEmailEmailAndPasswordPassword() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
+    }
+
+    @Then("^login and delete the registered user with the email \"([^\"]*)\" and the password \"([^\"]*)\" from database again$")
+    public void loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String email, String password) throws Throwable {
+        browser = webDriver();
+        browser.findElement(id("form-email")).sendKeys(email);
+        Thread.sleep(100);
+        browser.findElement(id("form-password")).sendKeys(password);
+        Thread.sleep(100);
+        browser.findElement(tagName("button")).click();
+        Thread.sleep(3000);
+
+        theRegisteredUserIsDeletedFromDatabaseAgain();
+    }
+
+    @Then("^the registered user is deleted from database again$")
+    public void theRegisteredUserIsDeletedFromDatabaseAgain() throws Throwable {
+        browser.findElement(By.linkText("Profil")).click();
+        browser.findElement(By.linkText("Einstellungen")).click();
+        browser.findElement(By.linkText("Account löschen")).click();
+        browser.findElement(By.id("deleteAccountButton")).click();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        closeBrowser();
     }
 }

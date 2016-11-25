@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(   plugin ={ "pretty",
         "html:target/cucumber-htmlreport"},
         features = "src/test/features/offerVerschenken.feature")
-public class OfferVerschenken {
+public class OfferVerschenkenTest {
 }

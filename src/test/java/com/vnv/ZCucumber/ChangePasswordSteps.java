@@ -1,10 +1,12 @@
 package com.vnv.ZCucumber;
 
 import Configuration.BasedriverConfiguration;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.hamcrest.Matchers;
+import org.junit.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,10 +50,21 @@ public class ChangePasswordSteps extends BasedriverConfiguration {
         Thread.sleep(1000);
     }
 
-    @Then("^the message \"([^\"]*)\" is shown$")
-    public void theMessageIsShown(String message) throws Throwable {
-        WebElement element = browser.findElement(id("successfulChangePassword"));
-        String text = element.getText();
-        assertThat(text.contains(message), Matchers.is(true));
+//    @Then("^the message \"([^\"]*)\" is shown$")
+//    public void theMessageIsShown(String message) throws Throwable {
+//        WebElement element = browser.findElement(id("successfulChangePassword"));
+//        String text = element.getText();
+//        assertThat(text.contains(message), Matchers.is(true));
+//    }
+
+    @After
+    public void tearDown() throws Exception {
+        closeBrowser();
+    }
+
+    @Then("^the message \"([^\"]*)\" form element with id \"([^\"]*)\" is shown$")
+    public void theMessageFormElementWithIdIsShown(String message, String password) throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

@@ -79,24 +79,5 @@ public class RegisterSteps extends BasedriverConfiguration {
         assertThat(message,Matchers.is(text));
     }
 
-    @Then("^login and delete the registered user with the email \"([^\"]*)\" and the password \"([^\"]*)\" from database again$")
-    public void loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String email, String password) throws Throwable {
-        browser = webDriver();
-        browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
-        browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
-        browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
 
-        theRegisteredUserIsDeletedFromDatabaseAgain();
-    }
-
-    @Then("^the registered user is deleted from database again$")
-    public void theRegisteredUserIsDeletedFromDatabaseAgain() throws Throwable {
-        browser.findElement(By.linkText("Profil")).click();
-        browser.findElement(By.linkText("Einstellungen")).click();
-        browser.findElement(By.linkText("Account löschen")).click();
-        browser.findElement(By.id("deleteAccountButton")).click();
-    }
 }
