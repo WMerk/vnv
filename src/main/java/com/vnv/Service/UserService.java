@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collection;
 
 @Service
@@ -41,9 +43,47 @@ public class UserService {
         return this.userDao.getUserById(id);
     }
 
-    private void updateUser(User user){
-        log.debug("updating user {}", user);
-        userDao.updateUser(user);
+    private User combineUsers(User storedUser, User updatedUser) throws InvocationTargetException, IllegalAccessException {
+        log.debug(storedUser.toString());
+        log.debug(updatedUser.toString());
+        for (Method method : updatedUser.getClass().getMethods()) {
+            Class returnType = method.getReturnType();
+            String methodName = method.getName();
+            if (!returnType.equals(void.class) && methodName.startsWith("get")) {
+                //System.out.println(method.getName());
+                Object response = method.invoke(updatedUser);
+                if (response!= null) {
+                    try {
+                        Method setMethod = storedUser.getClass().getMethod(methodName.replace("get", "set"), returnType);
+                        setMethod.invoke(storedUser, response);
+                    } catch (NoSuchMethodException e) {
+                        //should only happen for getClass which is ok
+                        log.warn(e.getMessage());
+                    }
+                }
+            }
+        }
+        log.debug(storedUser.toString());
+        return storedUser;
+    }
+
+    public JSONObject updateUser(User user, String sessionId) {
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            log.debug("updating user {}", user);
+            user.setHashedPw(null); // explicit setting hashedPw to null to prevent changing this field
+            user.setSalt(null);     // ^^
+            User storedUser = userDao.getUserById(user.getUid());
+            try {
+                user = combineUsers(storedUser, user);
+            } catch (InvocationTargetException | IllegalAccessException e) {
+                log.error(e.getLocalizedMessage());
+                return new JSONObject(ErrorMessage.DefaultError);
+            }
+            return userDao.updateUser(user).toJSON();
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
     private void insertUser(User user) {
@@ -103,7 +143,7 @@ public class UserService {
         }
         if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
             user.setSessionId(sessionId);
-            updateUser(user);
+            userDao.updateUser(user);
             return user.toJSON();
         }
         return new JSONObject(ErrorMessage.WrongMailPassword);

@@ -62,4 +62,12 @@ public class UserController {
         return res.toString();
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String updateUser(@RequestBody User user, HttpSession session) {
+        log.debug(user.toString());
+        JSONObject res = userService.updateUser(user, session.getId());
+        log.debug(res.toString());
+        return res.toString();
+    }
+
 }

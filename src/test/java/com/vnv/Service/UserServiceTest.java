@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -136,6 +137,23 @@ public class UserServiceTest {
         user = us.deleteUser(sessionId, this.user.getLong("uid"), pw);
         assertFalse(user.has("error"));
         assertNull(usDao.getUserById(this.user.getLong("uid")));
+
+    }
+
+    @Test public void updateUser() throws Exception {
+        registerUser();
+
+        User newUser = Fake.getFakeUser();
+        newUser.setUid(this.user.getLong("uid"));
+
+        JSONObject user = us.updateUser(newUser, "wrongSession");
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, user.toString());
+
+        user = us.updateUser(newUser, sessionId);
+        assertFalse(user.has("error"));
+        JSONAssert.assertEquals(newUser.toJSON(), user, true);
+        JSONAssert.assertNotEquals(this.user, user, true);
 
     }
 
