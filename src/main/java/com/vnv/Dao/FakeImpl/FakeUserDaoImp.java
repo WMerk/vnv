@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,7 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User insertUserToDb(User user) {
+        user.setTime(new Date().getTime());
         user.setUid(id);
         id++;
         users.put(user.getUid(),user);

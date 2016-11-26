@@ -17,7 +17,7 @@ vnvApp.controller(
             $scope.changePassword = function () {
                 var params = {};
                 params['uid'] = $scope.user.uid;
-                params['oldPassword'] = $scope.oldPassword;
+                params['password'] = $scope.oldPassword;
                 params['newPassword'] = $scope.newPassword;
 
                 var response = doChangePassword.query(params);

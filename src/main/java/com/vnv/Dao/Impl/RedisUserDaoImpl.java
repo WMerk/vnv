@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import redis.clients.johm.JOhm;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -96,6 +97,7 @@ public class RedisUserDaoImpl implements UserDao {
 
     @Override
     public User insertUserToDb(User user) {
+        user.setTime(new Date().getTime());
         return JOhm.save(user);
     }
 

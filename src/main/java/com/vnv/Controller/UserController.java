@@ -54,10 +54,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String changePassword(@RequestBody JSONObject json, HttpSession session) {
-        log.debug(json.toString());
-        JSONObject res = userService.changePassword(json.getLong("uid"),
-                json.getString("oldPassword"), json.getString("newPassword"), session.getId());
+    public String changePassword(@RequestBody User user, HttpSession session) {
+        log.debug(user.toString());
+        JSONObject res = userService.changePassword(user.getUid(),
+                user.getPassword(), user.getNewPassword(), session.getId());
         log.debug(res.toString());
         return res.toString();
     }

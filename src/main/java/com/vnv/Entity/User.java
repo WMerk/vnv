@@ -6,8 +6,6 @@ import redis.clients.johm.Id;
 import redis.clients.johm.Indexed;
 import redis.clients.johm.Model;
 
-import java.util.Date;
-
 @Model
 public class User {
 
@@ -26,6 +24,8 @@ public class User {
     private Boolean mailValid;
     @Attribute
     private String hashedPw;
+    private String password;
+    private String newPassword;
     @Attribute
     private String salt;
     @Indexed
@@ -34,9 +34,7 @@ public class User {
     @Attribute
     private Boolean phoneValid;
     @Attribute
-    private long time = new Date().getTime();
-    //@Attribute
-    //private Date registrationDate = new Date();
+    private long time;
     @Attribute
     private String picPath;
     @Indexed
@@ -100,6 +98,22 @@ public class User {
 
     public void setHashedPw(String hashedPw) {
         this.hashedPw = hashedPw;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getSalt() {
@@ -183,6 +197,8 @@ public class User {
                 ", mail='" + mail + '\'' +
                 ", mailValid=" + mailValid +
                 ", hashedPw='" + hashedPw + '\'' +
+                ", password='" + password + '\'' +
+                ", newPassword='" + newPassword + '\'' +
                 ", salt='" + salt + '\'' +
                 ", phone='" + phone + '\'' +
                 ", phoneValid=" + phoneValid +
@@ -199,6 +215,8 @@ public class User {
         JSONObject json = new JSONObject(this);
         json.remove("hashedPw");
         json.remove("salt");
+        json.remove("password");
+        json.remove("newPassword");
         json.remove("confirmationLink");
         json.remove("sessionId");
         json.remove("googleId");
