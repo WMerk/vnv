@@ -18,6 +18,8 @@ public class UserService {
 
     private static Logger log = LoggerFactory.getLogger(UserService.class);
 
+    @Autowired
+    Password password;
 
     @Autowired
     //@Qualifier("redis")

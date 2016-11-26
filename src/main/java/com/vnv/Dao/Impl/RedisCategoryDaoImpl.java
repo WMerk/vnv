@@ -2,7 +2,8 @@ package com.vnv.Dao.Impl;
 
 import com.vnv.Dao.CategoryDao;
 import com.vnv.Entity.Category;
-import com.vnv.Entity.Post;
+import com.vnv.Model.Database;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -15,6 +16,9 @@ import java.util.List;
 @Qualifier("redis")
 @Profile("prod")
 public class RedisCategoryDaoImpl implements CategoryDao {
+
+    @Autowired
+    Database db;
 
     @Override
     public Category insertCategory(Category category) {

@@ -3,6 +3,8 @@ package com.vnv.Dao.Impl;
 import com.vnv.Dao.PostDao;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
+import com.vnv.Model.Database;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,9 @@ import java.util.Collection;
 @Qualifier("redis")
 @Profile("prod")
 public class RedisPostDaoImpl implements PostDao {
+
+    @Autowired
+    Database db;
 
     @Override
     public Post getPostById(long id) {
