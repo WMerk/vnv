@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +33,7 @@ public class PostController {
 
     @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deletePost(@RequestBody Post post, HttpSession session) {
-        JSONObject res = postService.deletePost(session.getId(), post.getUid(), post.getId());
+        JSONObject res = postService.deletePost(session.getId(), post.getUser().getUid(), post.getId());
         log.debug(res.toString());
         return res.toString();
     }

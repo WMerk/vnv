@@ -47,7 +47,7 @@ public class PostServiceTest {
 
     @Test
     public void createPost() throws Exception {
-        Post post = Fake.getFakeOffer(uid);
+        Post post = Fake.getFakeOffer(userDao.getUserById(uid));
 
         res = ps.insertPost(post, "wrongSessionId");
         assertTrue(res.has("error"));

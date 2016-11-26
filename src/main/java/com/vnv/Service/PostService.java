@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 @Service
@@ -32,7 +31,7 @@ public class PostService {
 
     public JSONObject insertPost(Post post, String sessionId) {
         log.debug("Inserting post {} to database", post);
-        if (userService.checkLogin(sessionId, post.getUid())) {
+        if (userService.checkLogin(sessionId, post.getUser().getUid())) {
                 return postDao.insertPost(post).toJSON();
         }
         log.debug("Aborting, user not logged in");

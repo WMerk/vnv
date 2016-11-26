@@ -1,12 +1,10 @@
 package com.vnv.Entity;
 
 import org.json.JSONObject;
-import redis.clients.johm.Attribute;
-import redis.clients.johm.Id;
-import redis.clients.johm.Indexed;
-import redis.clients.johm.Model;
+import redis.clients.johm.*;
 
 @Model
+@SupportAll
 public class User {
 
     @Id

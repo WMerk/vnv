@@ -27,9 +27,9 @@ public class Fake {
         return u;
     }
 
-    private static Post getFakePost(long uid) {
+    private static Post getFakePost(User user) {
         Post p = new Post();
-        p.setUid(uid);
+        p.setUser(user);
         p.setFlavour(flavours[random.nextInt(3)]);
         Category c = new Category();
         c.setId(0L);c.setName("TestCategory");
@@ -39,14 +39,14 @@ public class Fake {
         return p;
     }
 
-    public static Post getFakeOffer(long uid) {
-        Post p = getFakePost(uid);
+    public static Post getFakeOffer(User user) {
+        Post p = getFakePost(user);
         p.setType("offer");
         return p;
     }
 
-    public static Post getFakeRequest(long uid) {
-        Post p = getFakePost(uid);
+    public static Post getFakeRequest(User user) {
+        Post p = getFakePost(user);
         p.setType("request");
         return p;
     }

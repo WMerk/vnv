@@ -11,9 +11,9 @@ public class Post {
 
     @Id
     private Long id;
-    @Attribute
+    @Reference
     @Indexed
-    private long uid; //uid for the user who created this post
+    private User user;
     @Attribute
     @Indexed
     private String type; //offer or request
@@ -44,12 +44,12 @@ public class Post {
         this.id = id;
     }
 
-    public long getUid() {
-        return uid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getType() {
@@ -120,7 +120,7 @@ public class Post {
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", uid=" + uid +
+                ", user=" + user +
                 ", type='" + type + '\'' +
                 ", flavour='" + flavour + '\'' +
                 ", postName='" + postName + '\'' +

@@ -1,10 +1,7 @@
 package com.vnv.Entity;
 
 
-import redis.clients.johm.Attribute;
-import redis.clients.johm.Id;
-import redis.clients.johm.Indexed;
-import redis.clients.johm.Model;
+import redis.clients.johm.*;
 
 import java.util.Date;
 
@@ -13,12 +10,12 @@ public class Message {
 
     @Id
     private Long id;
-    @Attribute
+    @Reference
     @Indexed
-    private long fromUid;
-    @Attribute
+    private User sender;
+    @Reference
     @Indexed
-    private long toUid;
+    private User receiver;
     @Attribute
     private long time = new Date().getTime();
     //private Date date = new Date();
@@ -35,20 +32,20 @@ public class Message {
         this.id = id;
     }
 
-    public long getFromUid() {
-        return fromUid;
+    public User getSender() {
+        return sender;
     }
 
-    public void setFromUid(long fromUid) {
-        this.fromUid = fromUid;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
-    public long getToUid() {
-        return toUid;
+    public User getReceiver() {
+        return receiver;
     }
 
-    public void setToUid(long toUid) {
-        this.toUid = toUid;
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 
     public long getTime() {
@@ -79,8 +76,8 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", fromUid=" + fromUid +
-                ", toUid=" + toUid +
+                ", sender=" + sender +
+                ", receiver=" + receiver +
                 ", time=" + time +
                 ", subject='" + subject + '\'' +
                 ", text='" + text + '\'' +
