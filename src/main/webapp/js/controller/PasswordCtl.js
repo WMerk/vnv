@@ -12,30 +12,35 @@ vnvApp.controller(
                 $scope.templateNavigation = userService.getNavigationTemplate();
                 $scope.successChangePassword = false;
                 $scope.errorChangePassword = false;
+                $scope.initTmpUser();
             };
 
             $scope.changePassword = function () {
-                var params = {};
-                params['uid'] = $scope.user.uid;
-                params['password'] = $scope.oldPassword;
-                params['newPassword'] = $scope.newPassword;
-
-                var response = doChangePassword.query(params);
+                var response = doChangePassword.query($scope.tmpUser);
 
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, change Password successful
                         $scope.user = response;
                         $scope.successChangePassword = true;
-                    }else {
+                        $scope.errorChangePassword = false;
+                        $scope.initTmpUser();
+                    } else {
                         // error, change Password failed
                         $scope.user = response;
                         $scope.errorChangePassword = true;
-
+                        $scope.successChangePassword = false;
                     }
 
                 });
 
+            };
+
+            $scope.initTmpUser = function () {
+                $scope.tmpUser = userService.getCurrentUser();
+                $scope.tmpUser.password = '';
+                $scope.tmpUser.newPassword = '';
+                $scope.newPassword = '';
             };
 
 
