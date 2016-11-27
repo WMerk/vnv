@@ -173,15 +173,15 @@ public class UserService {
         log.debug("Deleting user with uid {} and sessionId {}", uid, sessionId);
         if (checkLogin(sessionId, uid)) {
             User storedUser = userDao.getUserById(uid);
-            //if (Password.checkPassword(pw, storedUser.getSalt(), storedUser.getHashedPw())) {
+            if (Password.checkPassword(pw, storedUser.getSalt(), storedUser.getHashedPw())) {
                 userDao.removeUserById(uid);    //deletes the user from the database
                 userRelDao.deleteUser(uid);     //deletes the user from the graph database
                 //this includes deleting all friend connections and friend requests
                 //TODO                          //all posts for that user has to be deleted or at least updated to an explaining status
                 // ...
                 return new JSONObject("{\"ok\":\"200\"}");
-            //}
-            //return new JSONObject(ErrorMessage.WrongPassword);
+            }
+            return new JSONObject(ErrorMessage.WrongPassword);
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
