@@ -11,14 +11,13 @@ vnvApp.controller(
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
-                $scope.templateOffer = 'html/templates/createlend.html';
-
-                $scope.resetOffer();
+                $scope.showTemplateLend();
                 $scope.loadCategories();
             };
 
             $scope.resetOffer = function () {
                 $scope.offer = new Object();
+                $scope.offer.type = 'offer';
 
                 $scope.offer.category = {
                     "name": "Bitte auswählen",
@@ -64,13 +63,12 @@ vnvApp.controller(
 
             $scope.doCreateNewOffer = function () {
 
-                if($scope.offer.category.id == 0){
+                if ($scope.offer.category.id == 0) {
                     $scope.errorSelectCategory = true;
                     return;
                 }
 
-                var user = userService.getCurrentUser();
-                $scope.offer.uid = user.uid;
+                $scope.offer.user = userService.getCurrentUser();
 
                 var response = doCreateNewOffer.query($scope.offer);
 
