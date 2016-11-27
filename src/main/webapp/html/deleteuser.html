@@ -38,7 +38,8 @@
                         somit nicht wieder herstellbar sind.</p>
 
                     <div class="form-group text-center" style="margin-top: 50px">
-                        <button data-toggle="modal" data-target="#myModal" type="submit" id="deleteAccountButton"
+                        <button data-toggle="modal" data-target="#modalDeleteAccount" type="submit"
+                                id="deleteAccountButton"
                                 class="btn btn-primary">Account löschen
                         </button>
                     </div>
@@ -50,27 +51,56 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalDeleteAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDeleteAccount" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Abbrechen">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Account löschen</h4>
+                    <h4 class="modal-title" id="modalLabel">Account löschen</h4>
                 </div>
+
+
                 <div class="modal-body">
-                    Bitte bestätigen dein Passwort zur Löschung des Accounts.
+
+                    <form role="form" class="form-horizontal" name="deleteUserForm" id="deleteUserForm"
+                          method="post">
+
+                        <div ng-if="errorDeleteAccount" id="errorDeleteAccount"
+                             class="alert alert-danger text-center">
+                            Das eingegebene Passwort ist nicht korrekt.
+                        </div>
+
+                        Bitte bestätigen dein Passwort zur Löschung des Accounts.
+
+                        <div class="container-fluid" style="margin-top: 20px;">
+                            <div class="form-horizontal">
 
 
+                                <!-- PASSWORD -->
+                                <div class="form-group">
+                                    <label class="control-label" for="deletAccountInputPw">Passwort:</label>
+                                    <div>
+                                        <input type="password" class="form-control" id="deletAccountInputPw"
+                                               ng-model="user.password" required="true">
+                                    </div>
+                                </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                    <button ng-click="deleteUser()" type="button" class="btn btn-primary">Account löschen</button>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                            <button ng-click="deleteUserForm.$valid && deleteUser()" type="submit"
+                                    class="btn btn-primary">Account löschen
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
