@@ -98,7 +98,7 @@ public class UserService {
             return new JSONObject(ErrorMessage.AlreadyRegistered);
         }
 
-        String[] pwhash = Password.hashPassword(user.getHashedPw());
+        String[] pwhash = Password.hashPassword(user.getPassword());
         user.setHashedPw(pwhash[0]);
         user.setSalt(pwhash[1]);
 

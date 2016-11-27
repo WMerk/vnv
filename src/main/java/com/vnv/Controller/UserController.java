@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String loginUser(@RequestBody User user, HttpSession session){
-        JSONObject res = userService.loginUser(user.getMail(), user.getHashedPw(), session.getId());
+        JSONObject res = userService.loginUser(user.getMail(), user.getPassword(), session.getId());
         log.debug(res.toString());
         return res.toString();
     }
@@ -48,7 +48,7 @@ public class UserController {
 
     @RequestMapping(value="/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String deleteUser(@RequestBody User user, HttpSession session) {
-        JSONObject res = userService.deleteUser(session.getId(), user.getUid(), user.getHashedPw());
+        JSONObject res = userService.deleteUser(session.getId(), user.getUid(), user.getPassword());
         log.debug(res.toString());
         return res.toString();
     }

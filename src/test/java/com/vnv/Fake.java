@@ -20,7 +20,7 @@ public class Fake {
         User u = new User();
         u.setLastName(faker.name().lastName());
         u.setFirstName(faker.name().firstName());
-        u.setHashedPw(faker.internet().password());
+        u.setPassword(faker.internet().password());
         u.setSessionId(faker.beer().yeast());
         u.setMail(faker.internet().emailAddress(u.getFirstName()+"."+u.getLastName()));
         u.setPhone(faker.phoneNumber().cellPhone());

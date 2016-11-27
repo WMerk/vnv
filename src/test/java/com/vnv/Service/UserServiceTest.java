@@ -31,7 +31,7 @@ public class UserServiceTest {
 
     User testUser = Fake.getFakeUser();
     String mail = testUser.getMail();
-    String pw = testUser.getHashedPw();
+    String pw = testUser.getPassword();
     String sessionId = testUser.getSessionId();
 
     @Test
