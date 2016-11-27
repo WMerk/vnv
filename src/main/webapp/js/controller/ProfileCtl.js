@@ -15,6 +15,9 @@ vnvApp.controller(
             };
 
             $scope.updateUser = function () {
+                $scope.successUpdateUser = false;
+                $scope.errorUpdateUser = false;
+
                 var response = doUpdateUser.query($scope.user);
 
                 response.$promise.then(function (data) {
@@ -22,10 +25,12 @@ vnvApp.controller(
                         // no error, query successful
                         $scope.user = response;
                         $scope.successUpdateUser = true;
+                        $scope.errorUpdateUser = false;
                     } else {
                         // error, query failed
                         $scope.user = response;
                         $scope.errorUpdateUser = true;
+                        $scope.successUpdateUser = false;
                     }
 
                 });
