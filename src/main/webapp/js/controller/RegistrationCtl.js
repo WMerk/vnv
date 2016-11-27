@@ -18,7 +18,7 @@ vnvApp.controller(
                 params['firstName'] = $scope.registration.firstName;
                 params['lastName'] = $scope.registration.lastName;
                 params['mail'] = $scope.registration.mail;
-                params['hashedPw'] = $scope.registration.confirmPw;
+                params['password'] = $scope.registration.confirmPw;
 
                 var response = doRegister.query(params);
 

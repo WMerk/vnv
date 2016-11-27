@@ -28,7 +28,7 @@
                                    oninput="resetLoginError()" id="form-email" ng-required="true">
                         </div>
                         <div class="form-group">
-                            <input ng-model="login.pw" type="password" placeholder="Passwort..." class="form-control"
+                            <input ng-model="login.password" type="password" placeholder="Passwort..." class="form-control"
                                    oninput="resetLoginError()" id="form-password" ng-required="true">
                         </div>
                         <button ng-click="loginForm.$valid && doLogin()" type="submit" class="authenticate">Login

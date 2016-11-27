@@ -16,7 +16,7 @@ vnvApp.controller(
 
                 var params = {};
                 params['mail'] = $scope.login.mail;
-                params['hashedPw'] = $scope.login.pw;
+                params['password'] = $scope.login.password;
 
                 var response = doLogin.query(params);
 
