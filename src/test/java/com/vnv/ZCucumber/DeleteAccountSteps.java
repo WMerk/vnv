@@ -34,6 +34,14 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
     @When("^the delete Account button is clicked$")
     public void theDeleteAccountButtonIsClicked() throws Throwable {
         browser.findElement(By.id("deleteAccountButton")).click();
+        Thread.sleep(300);
+    }
+
+    @And("^the confirmation with the password \"([^\"]*)\" is done$")
+    public void theConfirmationWithThePasswordIsDone(String password) throws Throwable {
+        browser.findElement(id("deletAccountInputPw")).sendKeys(password);
+        browser.findElement(id("confirmDeleteAccount")).click();
+        Thread.sleep(1000);
     }
 
     @Then("^the mainpage with the message \"([^\"]*)\" is shown$")
@@ -60,6 +68,17 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
         Thread.sleep(100);
 
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
+    }
+
+    @Then("^an error message \"([^\"]*)\" is shown$")
+    public void anErrorMessageIsShown(String message) throws Throwable {
+        assertThat(browser.findElement(id("errorDeleteAccount")).getText().equals(message), Matchers.is(true));
+        cleanup();
+    }
+
+    private void cleanup() {
+        browser.findElement(id("deletAccountInputPw")).sendKeys("test");
+        browser.findElement(id("confirmDeleteAccount")).click();
     }
 }

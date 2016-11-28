@@ -1,6 +1,7 @@
 package Configuration;
 
 import org.apache.commons.lang3.SystemUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -80,6 +81,16 @@ public class BasedriverConfiguration {
             browser.quit();
         }
 
+    }
+
+    protected void cleanUp(WebDriver brow) throws InterruptedException {
+        brow.findElement(By.linkText("Profil")).click();
+        brow.findElement(By.linkText("Einstellungen")).click();
+        brow.findElement(By.linkText("Account löschen")).click();
+        brow.findElement(By.id("deleteAccountButton")).click();
+        Thread.sleep(300);
+        brow.findElement(id("deletAccountInputPw")).sendKeys("test");
+        brow.findElement(id("confirmDeleteAccount")).click();
     }
 
 }

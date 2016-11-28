@@ -82,14 +82,7 @@ public class OfferDienstleistungenSteps extends BasedriverConfiguration{
 
     @Then("^cleanup offer Dienstleistungen$")
     public void cleanupOfferDienstleistungen() throws Throwable {
-        browser.findElement(By.linkText("Profil")).click();
-        Thread.sleep(100);
-        browser.findElement(By.linkText("Einstellungen")).click();
-        Thread.sleep(100);
-        browser.findElement(By.linkText("Account löschen")).click();
-        Thread.sleep(100);
-        browser.findElement(By.id("deleteAccountButton")).click();
-        Thread.sleep(100);
+        cleanUp(browser);
     }
 
     @Then("^the offer form is still shown and an warning to fill out the offername is shown$")

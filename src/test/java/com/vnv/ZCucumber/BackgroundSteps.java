@@ -71,21 +71,14 @@ public class BackgroundSteps extends BasedriverConfiguration {
         browser.findElement(id("form-password")).sendKeys(password);
         Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
-        theRegisteredUserIsDeletedFromDatabaseAgain();
-    }
-
-    @Then("^the registered user is deleted from database again$")
-    public void theRegisteredUserIsDeletedFromDatabaseAgain() throws Throwable {
-        browser.findElement(By.linkText("Profil")).click();
-        browser.findElement(By.linkText("Einstellungen")).click();
-        browser.findElement(By.linkText("Account löschen")).click();
-        browser.findElement(By.id("deleteAccountButton")).click();
+        cleanUp(browser);
     }
 
     @After
     public void tearDown() throws Exception {
         closeBrowser();
     }
+
 }
