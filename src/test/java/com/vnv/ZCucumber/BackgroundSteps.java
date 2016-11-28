@@ -20,6 +20,7 @@ public class BackgroundSteps extends BasedriverConfiguration {
     @Given("^a registerd user named \"([^\"]*)\" with email \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void aRegisterdUserWithNamedWithEmailAndPassword(String name, String email, String password) throws Throwable {
         browser = webDriver();
+        Thread.sleep(300);
         browser.findElement(id("anchorLoginShowRegister")).click();
         Thread.sleep(1000);
 
@@ -71,7 +72,7 @@ public class BackgroundSteps extends BasedriverConfiguration {
         browser.findElement(id("form-password")).sendKeys(password);
         Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         cleanUp(browser);
     }

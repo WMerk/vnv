@@ -23,7 +23,9 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
     @And("^the settings are selected$")
     public void theSettingsAreSelected() throws Throwable {
         browser.findElement(By.linkText("Profil")).click();
+        Thread.sleep(100);
         browser.findElement(By.linkText("Einstellungen")).click();
+        Thread.sleep(200);
     }
 
     @And("^the delete account settings is selected$")
@@ -41,7 +43,7 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
     public void theConfirmationWithThePasswordIsDone(String password) throws Throwable {
         browser.findElement(id("deletAccountInputPw")).sendKeys(password);
         browser.findElement(id("confirmDeleteAccount")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
     @Then("^the mainpage with the message \"([^\"]*)\" is shown$")
@@ -68,7 +70,7 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
         Thread.sleep(100);
 
         browser.findElement(tagName("button")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
     @Then("^an error message \"([^\"]*)\" is shown$")

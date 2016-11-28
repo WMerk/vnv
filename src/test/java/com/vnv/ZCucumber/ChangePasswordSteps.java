@@ -51,7 +51,7 @@ public class ChangePasswordSteps extends BasedriverConfiguration {
     @When("^the change password button is clicked$")
     public void theChangePasswordButtonIsClicked() throws Throwable {
         browser.findElement(id("passwordButtonChangePw")).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
     }
 
     @Then("^the message \"([^\"]*)\" form element with id \"([^\"]*)\" is shown$")
