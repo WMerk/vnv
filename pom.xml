@@ -98,13 +98,6 @@
         </dependency>
         <!-- end::Faker[] -->
 
-        <!-- tag::Facebook[] -->
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-facebook</artifactId>
-        </dependency>
-        <!-- end:Facebook[] -->
-
     </dependencies>
 
     <properties>
