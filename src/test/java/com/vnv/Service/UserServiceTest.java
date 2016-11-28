@@ -152,8 +152,8 @@ public class UserServiceTest {
 
         user = us.updateUser(newUser, sessionId);
         assertFalse(user.has("error"));
-        JSONAssert.assertEquals(newUser.toJSON(), user, true);
-        JSONAssert.assertNotEquals(this.user, user, true);
+        JSONAssert.assertEquals(newUser.toJSON(), user, false);
+        JSONAssert.assertNotEquals(this.user, user, false);
 
     }
 
