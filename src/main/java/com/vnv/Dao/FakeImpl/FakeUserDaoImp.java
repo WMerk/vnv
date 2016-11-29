@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Qualifier("fakeData")
@@ -46,6 +43,22 @@ public class FakeUserDaoImp implements UserDao {
     @Override
     public Collection<User> getAllUser() {
         return users.values();
+    }
+
+    @Override
+    public Collection<User> getAllUserCensored() {
+        List<User> res = new ArrayList<User>(users.values());
+        /*
+        for (User u:res) {
+            u.setPassword(null);
+            u.setNewPassword(null);
+            u.setSalt(null);
+            u.setHashedPw(null);
+            u.setPhone(null);
+            u.setConfirmationLink(null);
+            u.setSessionId(null);
+        }*/
+        return res;
     }
 
     @Override
@@ -109,9 +122,4 @@ public class FakeUserDaoImp implements UserDao {
         return getUserById(user.getUid());
     }
 
-    @Override
-    public Collection<User> searchUser(String query) {
-        //TODO
-        return null;
-    }
 }

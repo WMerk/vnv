@@ -5,6 +5,7 @@ import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
 import com.vnv.Model.ErrorMessage;
 import com.vnv.Model.Password;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +32,13 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
-    private Collection<User> getAllUser(){
+    public JSONObject getAllUser(String sessionId){
         log.debug("getting all users");
-        return this.userDao.getAllUser();
+        if (userDao.getUserBySessionId(sessionId)==null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        Collection<User> users = userDao.getAllUserCensored();
+        JSONArray json = new JSONArray(users);
+        return new JSONObject().put("users", json);
     }
 
     private User getUserById(long id){
@@ -142,6 +147,10 @@ public class UserService {
             return new JSONObject(ErrorMessage.WrongMailPassword);
         }
         if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
+            User sameSessionId = userDao.getUserBySessionId(sessionId);
+            if (sameSessionId!=null) {
+                logoutUser(sessionId);
+            }
             user.setSessionId(sessionId);
             userDao.updateUser(user);
             return user.toJSON();

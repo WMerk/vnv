@@ -5,7 +5,10 @@ import com.vnv.Entity.User;
 import java.util.Collection;
 
 public interface UserDao {
+
     Collection<User> getAllUser();
+
+    Collection<User> getAllUserCensored();
 
     User getUserById(long id);
 
@@ -20,7 +23,5 @@ public interface UserDao {
     User updateUser(User user);
 
     User insertUserToDb(User user);
-
-    Collection<User> searchUser(String query);
 
 }

@@ -26,6 +26,12 @@ public class RedisUserDaoImpl implements UserDao {
     }
 
     @Override
+    public Collection<User> getAllUserCensored() {
+        return JOhm.find(User.class, "findable", true,
+                "hashedPw", "salt", "phone", "sessionId", "confirmationLink");
+    }
+
+    @Override
     public User getUserById(long id) {
         return JOhm.get(User.class, id);
     }
@@ -101,9 +107,4 @@ public class RedisUserDaoImpl implements UserDao {
         return JOhm.save(user);
     }
 
-    @Override
-    public Collection<User> searchUser(String query) {
-        //TODO
-        return null;
-    }
 }

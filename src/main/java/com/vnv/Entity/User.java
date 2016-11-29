@@ -47,6 +47,9 @@ public class User {
     @Indexed
     @Attribute
     private String confirmationLink;
+    @Indexed
+    @Attribute
+    private boolean findable = true;
 
 
 
@@ -184,6 +187,14 @@ public class User {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public boolean isFindable() {
+        return findable;
+    }
+
+    public void setFindable(boolean findable) {
+        this.findable = findable;
     }
 
     @Override

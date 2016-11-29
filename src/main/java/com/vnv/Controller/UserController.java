@@ -26,9 +26,10 @@ public class UserController {
     @RequestMapping(value="/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String registerUser(@RequestBody User user, HttpSession session){
         //System.out.println(user);
-        user.setSessionId(session.getId());
+
         JSONObject res = userService.registerUser(user);
         log.debug(res.toString());
+        userService.loginUser(user.getMail(), user.getPassword(), session.getId());
         return res.toString();
     }
 
@@ -66,6 +67,13 @@ public class UserController {
     public String updateUser(@RequestBody User user, HttpSession session) {
         log.debug(user.toString());
         JSONObject res = userService.updateUser(user, session.getId());
+        log.debug(res.toString());
+        return res.toString();
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String getAllUsers(HttpSession session) {
+        JSONObject res = userService.getAllUser(session.getId());
         log.debug(res.toString());
         return res.toString();
     }
