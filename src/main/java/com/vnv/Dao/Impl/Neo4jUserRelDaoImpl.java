@@ -1,15 +1,21 @@
 package com.vnv.Dao.Impl;
 
+import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
 import com.vnv.Model.Database;
+import org.neo4j.driver.v1.Record;
+import org.neo4j.driver.v1.StatementResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 @Qualifier("neo4j")
@@ -17,6 +23,9 @@ import java.util.Collection;
 public class Neo4jUserRelDaoImpl implements UserRelDao {
 
     private static Logger log = LoggerFactory.getLogger(Neo4jUserRelDaoImpl.class);
+
+    @Autowired
+    UserDao userDao;
 
     private String addQuery = "CREATE (a:User {name:'%s', uid:'%d'})";
     private String addFriendQuery = "MATCH (a:User),(b:User)" +
@@ -36,6 +45,9 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     private String deleteUserQuery = "MATCH (a:User) " +
             "WHERE a.uid = '%d'" +
             "DETACH DELETE a";
+    private String getFriendsQuery = "MATCH (a:User)-[r:ARE_FRIENDS]-(b:User) " +
+            "WHERE a.uid = '%d' " +
+            "return b.uid";
 
     @Override
     public void addUser(User user) {
@@ -87,8 +99,23 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
 
     @Override
     public Collection<User> getFriends(User user) {
-        //TODO
-        return null;
+        log.debug("getting friends for user with uid {} from neo4j", user.getUid());
+        String query = String.format(getFriendsQuery, user.getUid());
+        log.debug("Query is {}", query);
+        StatementResult res = Database.neo4j.run(query);
+        List<User> friends = new ArrayList<>();
+        while (res.hasNext()) {
+            Record record = res.next();
+            //log.debug(record.toString());
+            //for (String key:record.keys())System.out.println(key);
+            if (record.containsKey("b.uid")) {
+                String uidString = record.get("b.uid").asString();
+                long uid = Long.valueOf(uidString);
+                friends.add(userDao.getUserById(uid));
+            } else
+                log.warn(record.toString());
+        }
+        return friends;
     }
 
     @Override

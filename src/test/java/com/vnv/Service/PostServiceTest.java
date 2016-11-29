@@ -2,6 +2,7 @@ package com.vnv.Service;
 
 import com.vnv.Dao.PostDao;
 import com.vnv.Dao.UserDao;
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 import com.vnv.Main;
@@ -26,6 +27,8 @@ public class PostServiceTest {
     PostDao postDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    UserRelDao userRelDao;
     @Autowired
     PostService ps;
     @Autowired
@@ -92,5 +95,6 @@ public class PostServiceTest {
     public void tearDown() throws Exception {
         postDao.deletePost(pid);
         userDao.removeUserById(uid);
+        userRelDao.deleteUser(uid);
     }
 }

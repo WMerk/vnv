@@ -1,10 +1,11 @@
 package com.vnv.Service;
 
 import com.vnv.Dao.UserDao;
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
+import com.vnv.Fake;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
-import com.vnv.Fake;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -28,6 +29,8 @@ public class UserServiceTest {
 
     @Autowired
     UserDao usDao;
+    @Autowired
+    UserRelDao usRelDao;
 
     User testUser = Fake.getFakeUser();
     String mail = testUser.getMail();
@@ -165,11 +168,17 @@ public class UserServiceTest {
         System.out.println(res);
     }
 
+    @Test
+    public void getFriends() throws Exception {
+        System.out.println(usRelDao.getFriends(usDao.getUserById(2)));
+    }
+
     @After
     public void tearDown() {
         if (user != null) {
             System.out.println("DELETE USER " + user.getLong("uid"));
             usDao.removeUserById(user.getLong("uid"));
+            usRelDao.deleteUser(user.getLong("uid"));
         }
     }
 
