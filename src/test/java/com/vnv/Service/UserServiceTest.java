@@ -157,6 +157,14 @@ public class UserServiceTest {
 
     }
 
+    @Test
+    public void getUsers() throws Exception {
+        registerUser();
+
+        JSONObject res = us.getAllUser(testUser, sessionId);
+        System.out.println(res);
+    }
+
     @After
     public void tearDown() {
         if (user != null) {

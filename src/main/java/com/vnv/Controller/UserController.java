@@ -72,8 +72,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public String getAllUsers(HttpSession session) {
-        JSONObject res = userService.getAllUser(session.getId());
+    public String getAllUsers(@RequestBody User user, HttpSession session) {
+        JSONObject res = userService.getAllUser(user, session.getId());
         log.debug(res.toString());
         return res.toString();
     }

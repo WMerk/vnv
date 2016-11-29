@@ -32,13 +32,36 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
-    public JSONObject getAllUser(String sessionId){
+    public JSONObject getAllUser(User user, String sessionId){
         log.debug("getting all users");
         if (userDao.getUserBySessionId(sessionId)==null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
-        Collection<User> users = userDao.getAllUserCensored();
-        JSONArray json = new JSONArray(users);
-        return new JSONObject().put("users", json);
+        if (!checkLogin(sessionId, user.getUid()))
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        Collection<User> friends = userRelDao.getFriends(user);
+        Collection<User> requestsRec = userRelDao.getRequestsRecv(user);
+        Collection<User> requestsSent = userRelDao.getRequestsSent(user);
+        //Collection<User> users = userDao.getAllUserCensored();
+        Collection<User> users = userDao.getAllUser();
+        JSONArray array = new JSONArray();
+        //log.debug(users.toString());
+        for (User u:users) {
+            JSONObject data = u.toJSON();
+            JSONObject json = new JSONObject();
+            json.put("data", data);
+            if (friends != null && friends.contains(user))
+                json.put("request", "accepted");
+            else if (requestsRec != null && requestsRec.contains(user))
+                json.put("request", "received");
+            else if (requestsSent != null && requestsSent.contains(user))
+                json.put("request", "sent");
+            else
+                json.put("request", "none");
+            //log.debug(json.toString());
+            array.put(json);
+        }
+        //JSONArray json = new JSONArray(users);
+        return new JSONObject().put("users", array);
     }
 
     private User getUserById(long id){
