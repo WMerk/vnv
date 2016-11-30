@@ -29,20 +29,20 @@ vnvApp.controller(
             };
 
             $scope.showTemplateLend = function () {
-                $scope.templateOffer = 'html/templates/createlend.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'verleihen';
+                $scope.templateOffer = 'html/templates/createlend.html';
             };
 
             $scope.showTemplateService = function () {
-                $scope.templateOffer = 'html/templates/createservice.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'Dienstleistung';
+                $scope.templateOffer = 'html/templates/createservice.html';
             };
             $scope.showTemplateDonate = function () {
-                $scope.templateOffer = 'html/templates/createdonate.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'verschenken';
+                $scope.templateOffer = 'html/templates/createdonate.html';
             };
 
             $scope.loadCategories = function () {
