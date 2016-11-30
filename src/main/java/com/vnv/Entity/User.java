@@ -198,6 +198,56 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (getTime() != user.getTime()) return false;
+        if (isFindable() != user.isFindable()) return false;
+        if (!getUid().equals(user.getUid())) return false;
+        if (!getFirstName().equals(user.getFirstName())) return false;
+        if (!getLastName().equals(user.getLastName())) return false;
+        if (!getMail().equals(user.getMail())) return false;
+        if (getMailValid() != null ? !getMailValid().equals(user.getMailValid()) : user.getMailValid() != null)
+            return false;
+        if (getHashedPw() != null ? !getHashedPw().equals(user.getHashedPw()) : user.getHashedPw() != null)
+            return false;
+        if (getSalt() != null ? !getSalt().equals(user.getSalt()) : user.getSalt() != null) return false;
+        if (getPhone() != null ? !getPhone().equals(user.getPhone()) : user.getPhone() != null) return false;
+        if (getPhoneValid() != null ? !getPhoneValid().equals(user.getPhoneValid()) : user.getPhoneValid() != null)
+            return false;
+        if (getPicPath() != null ? !getPicPath().equals(user.getPicPath()) : user.getPicPath() != null) return false;
+        if (getGoogleId() != null ? !getGoogleId().equals(user.getGoogleId()) : user.getGoogleId() != null)
+            return false;
+        if (getFacebookId() != null ? !getFacebookId().equals(user.getFacebookId()) : user.getFacebookId() != null)
+            return false;
+        if (getSessionId() != null ? !getSessionId().equals(user.getSessionId()) : user.getSessionId() != null)
+            return false;
+        return getConfirmationLink() != null ? getConfirmationLink().equals(user.getConfirmationLink()) : user.getConfirmationLink() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getUid().hashCode();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getMail().hashCode();
+        result = 31 * result + (getMailValid() != null ? getMailValid().hashCode() : 0);
+        result = 31 * result + (getHashedPw() != null ? getHashedPw().hashCode() : 0);
+        result = 31 * result + (getSalt() != null ? getSalt().hashCode() : 0);
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
+        result = 31 * result + (getPhoneValid() != null ? getPhoneValid().hashCode() : 0);
+        result = 31 * result + (int) (getTime() ^ (getTime() >>> 32));
+        result = 31 * result + (getPicPath() != null ? getPicPath().hashCode() : 0);
+        result = 31 * result + (getGoogleId() != null ? getGoogleId().hashCode() : 0);
+        result = 31 * result + (getFacebookId() != null ? getFacebookId().hashCode() : 0);
+        result = 31 * result + (isFindable() ? 1 : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +

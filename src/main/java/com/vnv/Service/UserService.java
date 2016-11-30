@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -32,28 +34,43 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
-    public JSONObject getAllUser(User user, String sessionId){
+    public JSONObject getAllUser(long uid, String sessionId){
         log.debug("getting all users");
+
         if (userDao.getUserBySessionId(sessionId)==null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
-        if (!checkLogin(sessionId, user.getUid()))
+        if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
-        Collection<User> friends = userRelDao.getFriends(user);
-        Collection<User> requestsRec = userRelDao.getRequestsRecv(user);
-        Collection<User> requestsSent = userRelDao.getRequestsSent(user);
+            
+        User user = userDao.getUserById(uid);
+        Collection<User> friendsC = userRelDao.getFriends(user);
+        Collection<User> requestsRecC = userRelDao.getRequestsRecv(user);
+        Collection<User> requestsSentC = userRelDao.getRequestsSent(user);
+        Set<User> friends = null;
+        Set<User> requestsRec = null;
+        Set<User> requestsSent = null;
+        if (friendsC!=null)
+           friends = new HashSet<>(friendsC);
+        if (requestsRecC!=null)
+            requestsRec = new HashSet<>(requestsRecC);
+        if (requestsSentC!=null)
+            requestsSent = new HashSet<>(requestsSentC);
         //Collection<User> users = userDao.getAllUserCensored();
         Collection<User> users = userDao.getAllUser();
         JSONArray array = new JSONArray();
         //log.debug(users.toString());
+        System.out.println(friendsC);
+        System.out.println(friends);
         for (User u:users) {
+            //System.out.println(u);
             JSONObject data = u.toJSON();
             JSONObject json = new JSONObject();
             json.put("data", data);
-            if (friends != null && friends.contains(user))
+            if (friends != null && friends.contains(u))
                 json.put("request", "accepted");
-            else if (requestsRec != null && requestsRec.contains(user))
+            else if (requestsRec != null && requestsRec.contains(u))
                 json.put("request", "received");
-            else if (requestsSent != null && requestsSent.contains(user))
+            else if (requestsSent != null && requestsSent.contains(u))
                 json.put("request", "sent");
             else
                 json.put("request", "none");

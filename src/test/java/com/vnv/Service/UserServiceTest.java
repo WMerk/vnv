@@ -164,7 +164,7 @@ public class UserServiceTest {
     public void getUsers() throws Exception {
         registerUser();
 
-        JSONObject res = us.getAllUser(testUser, sessionId);
+        JSONObject res = us.getAllUser(testUser.getUid(), sessionId);
         System.out.println(res);
     }
 
