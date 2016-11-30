@@ -1,6 +1,6 @@
 <div data-ng-init="init()">
 
-    <div id="deleteSuccessful" class="alert alert-success text-center" ng-if="accountDeleted">
+    <div id="deleteSuccessful" class="ng-cloak alert alert-success text-center" ng-if="accountDeleted">
         <strong>Schade, dass du uns verlässt!</strong> Dein Account wurde gelöscht.
     </div>
 
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="form-bottom">
-                    <div style="display: none" id="errorLogin" class="alert alert-danger text-center">
+                    <div style="display: none" id="errorLogin" class="ng-cloak alert alert-danger text-center">
                         Falsche E-Mail-Adresse oder Passwort.
                     </div>
                     <form id="loginForm" role="form" name="loginForm" method="post" class="login-form">
