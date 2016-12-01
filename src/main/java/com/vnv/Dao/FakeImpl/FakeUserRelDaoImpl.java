@@ -90,4 +90,10 @@ public class FakeUserRelDaoImpl implements UserRelDao {
     public Collection<User> getRequestsSent(User user) {
         return relations.get(user.getUid().intValue()).getSentRequests();
     }
+
+    @Override
+    public Collection<User> getNonRelatedUsers(User user) {
+        //TODO
+        return null;
+    }
 }

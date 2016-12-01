@@ -48,6 +48,10 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     private String getFriendsQuery = "MATCH (a:User)-[r:ARE_FRIENDS]-(b:User) " +
             "WHERE a.uid = '%d' " +
             "return b.uid";
+    private String getNonRelatedUsersQuery = "MATCH (a:User) " +
+            "OPTIONAL MATCH (a)-[r]-(b:User) " +
+            "WHERE r IS null AND b.uid='%d' " +
+            "return a.uid as uid, a.name as name";
 
     @Override
     public void addUser(User user) {
@@ -128,5 +132,37 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     public Collection<User> getRequestsSent(User user) {
         //TODO
         return null;
+    }
+
+    @Override
+    public Collection<User> getNonRelatedUsers(User user) {
+        log.debug("getting non related users for user with uid {} from neo4j", user.getUid());
+        String query = String.format(getNonRelatedUsersQuery, user.getUid());
+        log.debug("Query is {}", query);
+        StatementResult res = Database.neo4j.run(query);
+        /*
+        List<Record> list = res.list();
+        log.debug(list.toString());
+        JSONArray array = new JSONArray();
+        log.debug(array.toString());
+        */
+        List<User> users = new ArrayList<>();
+        while (res.hasNext()) {
+            Record record = res.next();
+            //log.debug(record.toString());
+            //for (String key:record.keys())System.out.println(key);
+            if (record.containsKey("uid")) {
+                String uidString = record.get("uid").asString();
+                //TODO
+                long uid = Long.valueOf(uidString);
+                User u = new User();
+                u.setUid(uid);
+                //TODO
+                users.add(u);
+                //users.add(userDao.getUserById(uid));
+            } else
+                log.warn(record.toString());
+        }
+        return users;
     }
 }

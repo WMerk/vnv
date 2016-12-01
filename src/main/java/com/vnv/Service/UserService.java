@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class UserService {
@@ -34,14 +32,16 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
+
     public JSONObject getAllUser(long uid, String sessionId){
         log.debug("getting all users");
-
+/*
         if (userDao.getUserBySessionId(sessionId)==null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
-            
+*/
+/*
         User user = userDao.getUserById(uid);
         Collection<User> friendsC = userRelDao.getFriends(user);
         Collection<User> requestsRecC = userRelDao.getRequestsRecv(user);
@@ -78,6 +78,52 @@ public class UserService {
             array.put(json);
         }
         //JSONArray json = new JSONArray(users);
+        return new JSONObject().put("users", array);
+        */
+
+        User user = userDao.getUserById(uid);
+        Collection<User> friendsC = userRelDao.getFriends(user);
+        Collection<User> requestsRecC = userRelDao.getRequestsRecv(user);
+        Collection<User> requestsSentC = userRelDao.getRequestsSent(user);
+        Collection<User> rest = userRelDao.getNonRelatedUsers(user);
+
+        JSONArray array = new JSONArray();
+if(rest!=null)
+        for (User u:rest) {
+            //System.out.println(u);
+            JSONObject data = u.toJSON();
+            JSONObject json = new JSONObject();
+            json.put("data", data);
+            json.put("request", "none");
+            array.put(json);
+        }
+        if (requestsRecC!=null)
+        for (User u:requestsRecC) {
+            //System.out.println(u);
+            JSONObject data = u.toJSON();
+            JSONObject json = new JSONObject();
+            json.put("data", data);
+            json.put("request", "received");
+            array.put(json);
+        }
+        if (requestsSentC!=null)
+        for (User u:requestsSentC) {
+            //System.out.println(u);
+            JSONObject data = u.toJSON();
+            JSONObject json = new JSONObject();
+            json.put("data", data);
+            json.put("request", "sent");
+            array.put(json);
+        }
+        if (friendsC!=null)
+        for (User u:friendsC) {
+            //System.out.println(u);
+            JSONObject data = u.toJSON();
+            JSONObject json = new JSONObject();
+            json.put("data", data);
+            json.put("request", "accepted");
+            array.put(json);
+        }
         return new JSONObject().put("users", array);
     }
 
@@ -234,5 +280,7 @@ public class UserService {
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
+
+
 
 }
