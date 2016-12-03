@@ -3,7 +3,7 @@ package com.vnv.Service;
 import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
-import com.vnv.Fake;
+import com.vnv.Model.Fake;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
 import org.json.JSONObject;
@@ -13,14 +13,16 @@ import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.vnv.Fake.faker;
+import static com.vnv.Model.Fake.faker;
 import static org.junit.Assert.*;
 
 //@SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Main.class)
+@WebIntegrationTest
 public class UserServiceTest {
 
     @Autowired
@@ -171,6 +173,11 @@ public class UserServiceTest {
     @Test
     public void getFriends() throws Exception {
         System.out.println(usRelDao.getFriends(usDao.getUserById(2)));
+    }
+
+    @Test
+    public void getNonRelatedUsers() throws Exception {
+        System.out.println(usRelDao.getNonRelatedUsers(usDao.getUserById(2)));
     }
 
     @After
