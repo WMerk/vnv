@@ -52,11 +52,21 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     private String getFriendsQuery = "MATCH (a:User)-[r:ARE_FRIENDS]-(b:User) " +
             "WHERE a.uid = '%d' " +
             "return b.uid as uid, b.firstName as firstName, b.lastName as lastName, b.mail as mail, b.pic as pic";
-    private String getNonRelatedUsersQuery = "MATCH (a:User) " +
+    private String getRequestsSentQuery = "MATCH (a:User)-[r:REQUEST]->(b:User) " +
+            "WHERE a.uid = '%d' " +
+            "return b.uid as uid, b.firstName as firstName, b.lastName as lastName, b.mail as mail, b.pic as pic";
+    private String getRequestsReceivedQuery = "MATCH (a:User)<-[r:REQUEST]-(b:User) " +
+            "WHERE a.uid = '%d' " +
+            "return b.uid as uid, b.firstName as firstName, b.lastName as lastName, b.mail as mail, b.pic as pic";
+    private String getNonRelatedUsersQuery = "MATCH (a:User) MATCH (b:User) " +
+            "WHERE b.uid='1' AND NOT (a)-[]-(b) " +
+            "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
+         /*
+            "MATCH (a:User) " +
             "OPTIONAL MATCH (a)-[r]-(b:User) " +
             "WHERE r IS null AND b.uid='%d' " +
             "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
-
+*/
     @Override
     public void addUser(User user) {
         log.debug("Adding user {} to neo4j", user);
@@ -127,8 +137,8 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
             Record record = res.next();
             //log.debug(record.toString());
             //for (String key:record.keys())System.out.println(key);
-            if (record.containsKey("b.uid")) {
-                String uidString = record.get("b.uid").asString();
+            if (record.containsKey("uid")) {
+                String uidString = record.get("uid").asString();
                 long uid = Long.valueOf(uidString);
                 User u = new User();
                 u.setUid(uid);
@@ -145,14 +155,52 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
 
     @Override
     public Collection<User> getRequestsRecv(User user) {
-        //TODO
-        return null;
+        log.debug("getting requests received for user with uid {} from neo4j", user.getUid());
+        String query = String.format(getRequestsReceivedQuery, user.getUid());
+        log.debug("Query is {}", query);
+        StatementResult res = Database.neo4j.run(query);
+        List<User> requests = new ArrayList<>();
+        while (res.hasNext()) {
+            Record record = res.next();
+            if (record.containsKey("uid")) {
+                String uidString = record.get("uid").asString();
+                long uid = Long.valueOf(uidString);
+                User u = new User();
+                u.setUid(uid);
+                u.setFirstName(record.get("firstName").asString());
+                u.setLastName(record.get("lastName").asString());
+                u.setMail(record.get("mail").asString());
+                u.setPicPath(record.get("pic").asString());
+                requests.add(u);
+            } else
+                log.error(record.toString());
+        }
+        return requests;
     }
 
     @Override
     public Collection<User> getRequestsSent(User user) {
-        //TODO
-        return null;
+        log.debug("getting requests received for user with uid {} from neo4j", user.getUid());
+        String query = String.format(getRequestsSentQuery, user.getUid());
+        log.debug("Query is {}", query);
+        StatementResult res = Database.neo4j.run(query);
+        List<User> requests = new ArrayList<>();
+        while (res.hasNext()) {
+            Record record = res.next();
+            if (record.containsKey("uid")) {
+                String uidString = record.get("uid").asString();
+                long uid = Long.valueOf(uidString);
+                User u = new User();
+                u.setUid(uid);
+                u.setFirstName(record.get("firstName").asString());
+                u.setLastName(record.get("lastName").asString());
+                u.setMail(record.get("mail").asString());
+                u.setPicPath(record.get("pic").asString());
+                requests.add(u);
+            } else
+                log.error(record.toString());
+        }
+        return requests;
     }
 
     @Override

@@ -88,42 +88,42 @@ public class UserService {
         Collection<User> rest = userRelDao.getNonRelatedUsers(user);
 
         JSONArray array = new JSONArray();
-if(rest!=null)
-        for (User u:rest) {
-            //System.out.println(u);
-            JSONObject data = u.toJSON();
-            JSONObject json = new JSONObject();
-            json.put("data", data);
-            json.put("request", "none");
-            array.put(json);
-        }
-        if (requestsRecC!=null)
-        for (User u:requestsRecC) {
-            //System.out.println(u);
-            JSONObject data = u.toJSON();
-            JSONObject json = new JSONObject();
-            json.put("data", data);
-            json.put("request", "received");
-            array.put(json);
-        }
-        if (requestsSentC!=null)
-        for (User u:requestsSentC) {
-            //System.out.println(u);
-            JSONObject data = u.toJSON();
-            JSONObject json = new JSONObject();
-            json.put("data", data);
-            json.put("request", "sent");
-            array.put(json);
-        }
         if (friendsC!=null)
-        for (User u:friendsC) {
-            //System.out.println(u);
-            JSONObject data = u.toJSON();
-            JSONObject json = new JSONObject();
-            json.put("data", data);
-            json.put("request", "accepted");
-            array.put(json);
-        }
+            for (User u:friendsC) {
+                //System.out.println(u);
+                JSONObject data = u.toJSON();
+                JSONObject json = new JSONObject();
+                json.put("data", data);
+                json.put("request", "accepted");
+                array.put(json);
+            }
+        if (requestsSentC!=null)
+            for (User u:requestsSentC) {
+                //System.out.println(u);
+                JSONObject data = u.toJSON();
+                JSONObject json = new JSONObject();
+                json.put("data", data);
+                json.put("request", "sent");
+                array.put(json);
+            }
+        if (requestsRecC!=null)
+            for (User u:requestsRecC) {
+                //System.out.println(u);
+                JSONObject data = u.toJSON();
+                JSONObject json = new JSONObject();
+                json.put("data", data);
+                json.put("request", "received");
+                array.put(json);
+            }
+        if(rest!=null)
+            for (User u:rest) {
+                //System.out.println(u);
+                JSONObject data = u.toJSON();
+                JSONObject json = new JSONObject();
+                json.put("data", data);
+                json.put("request", "none");
+                array.put(json);
+            }
         return new JSONObject().put("users", array);
     }
 
