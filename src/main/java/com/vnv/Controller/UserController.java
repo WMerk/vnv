@@ -1,11 +1,13 @@
 package com.vnv.Controller;
 
 import com.vnv.Entity.User;
+import com.vnv.Model.Fake;
 import com.vnv.Service.UserService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,6 +75,14 @@ public class UserController {
         JSONObject res = userService.getAllUser(uid, session.getId());
         log.debug(res.toString());
         return res.toString();
+    }
+
+    @Profile("debug")
+    @RequestMapping(value = "/fake", method = RequestMethod.POST)
+    public String addFakeUsers(@RequestParam int number) {
+        Fake f = new Fake();
+        f.makeFakeDbEntries(number);
+        return "ok";
     }
 
 }

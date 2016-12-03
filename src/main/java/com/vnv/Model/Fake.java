@@ -1,9 +1,14 @@
-package com.vnv;
+package com.vnv.Model;
 
 import com.github.javafaker.Faker;
+import com.vnv.Dao.FakeImpl.FakeUserDaoImp;
+import com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl;
+import com.vnv.Dao.UserDao;
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.Category;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Locale;
 import java.util.Random;
@@ -14,6 +19,9 @@ public class Fake {
 
     private static String[] flavours = {"verschenken", "Dienstleistung", "verleihen"};
     private static Random random = new Random();
+
+
+
 
 
     public static User getFakeUser() {
@@ -49,6 +57,29 @@ public class Fake {
         Post p = getFakePost(user);
         p.setType("request");
         return p;
+    }
+
+    @Profile("debug")
+    public void makeFakeDbEntries(int number) {
+        UserRelDao userRelDao = new FakeUserRelDaoImpl();
+        UserDao userDao = new FakeUserDaoImp();
+
+        User tester = userDao.getUserByMail("test@test.de");
+        for (int i=0; i<number; i++) {
+            User u = getFakeUser();
+            userDao.insertUserToDb(u);
+            userRelDao.addUser(u);
+            if (random.nextBoolean()) {
+                // a random relationship will be inserted
+                int rand = random.nextInt(4);
+                if (rand==1)
+                    userRelDao.addFriend(u, tester);
+                if (rand==2)
+                    userRelDao.addRequest(u, tester);
+                if (rand==3)
+                    userRelDao.addRequest(tester, u);
+            }
+        }
     }
 
 }

@@ -7,7 +7,7 @@ import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
-import com.vnv.Fake;
+import com.vnv.Model.Fake;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.*;
