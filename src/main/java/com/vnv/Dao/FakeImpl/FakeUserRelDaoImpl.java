@@ -15,12 +15,12 @@ import java.util.HashMap;
 @Profile("debug")
 public class FakeUserRelDaoImpl implements UserRelDao {
 
-    public static HashMap<Integer, UserRelations> relations;
+    public static HashMap<Long, UserRelations> relations;
 
     static {
-        relations = new HashMap<Integer, UserRelations>() {
+        relations = new HashMap<Long, UserRelations>() {
             {
-                put(1, new UserRelations() {
+                put(1L, new UserRelations() {
                     {
                         setUid(1L);
 
@@ -32,48 +32,48 @@ public class FakeUserRelDaoImpl implements UserRelDao {
 
     @Override
     public void addUser(User user) {
-        relations.put(user.getUid().intValue(), new UserRelations(){{setUid(user.getUid());}});
+        relations.put(user.getUid(), new UserRelations(){{setUid(user.getUid());}});
     }
 
     @Override
     public boolean updateUser(User updated, long uid) {
-        return false;
+        return true;
     }
 
     @Override
     public void addFriend(User user, User friend) {
-        UserRelations relation = relations.get(user.getUid().intValue());
+        UserRelations relation = relations.get(user.getUid());
         relation.getFriends().add(friend);
-        relations.put(user.getUid().intValue(), relation);
+        relations.put(user.getUid(), relation);
     }
 
     @Override
     public void removeFriend(User user, User friend) {
-        UserRelations relation = relations.get(user.getUid().intValue());
+        UserRelations relation = relations.get(user.getUid());
         relation.getFriends().remove(friend);
-        relations.put(user.getUid().intValue(), relation);
+        relations.put(user.getUid(), relation);
     }
 
     @Override
     public void addRequest(User requestFrom, User requestTo) {
-        UserRelations relation = relations.get(requestTo.getUid().intValue());
+        UserRelations relation = relations.get(requestTo.getUid());
         relation.getReceivedRequests().add(requestFrom);
-        relations.put(requestTo.getUid().intValue(), relation);
+        relations.put(requestTo.getUid(), relation);
 
-        relation = relations.get(requestFrom.getUid().intValue());
+        relation = relations.get(requestFrom.getUid());
         relation.getSentRequests().add(requestTo);
-        relations.put(requestFrom.getUid().intValue(), relation);
+        relations.put(requestFrom.getUid(), relation);
     }
 
     @Override
     public void removeRequest(User requestFrom, User requestTo) {
-        UserRelations relation = relations.get(requestTo.getUid().intValue());
+        UserRelations relation = relations.get(requestTo.getUid());
         relation.getReceivedRequests().remove(requestFrom);
-        relations.put(requestTo.getUid().intValue(), relation);
+        relations.put(requestTo.getUid(), relation);
 
-        relation = relations.get(requestFrom.getUid().intValue());
+        relation = relations.get(requestFrom.getUid());
         relation.getSentRequests().remove(requestTo);
-        relations.put(requestFrom.getUid().intValue(), relation);
+        relations.put(requestFrom.getUid(), relation);
     }
 
     @Override
@@ -83,17 +83,17 @@ public class FakeUserRelDaoImpl implements UserRelDao {
 
     @Override
     public Collection<User> getFriends(User user) {
-        return relations.get(user.getUid().intValue()).getFriends();
+        return relations.get(user.getUid()).getFriends();
     }
 
     @Override
     public Collection<User> getRequestsRecv(User user) {
-        return relations.get(user.getUid().intValue()).getReceivedRequests();
+        return relations.get(user.getUid()).getReceivedRequests();
     }
 
     @Override
     public Collection<User> getRequestsSent(User user) {
-        return relations.get(user.getUid().intValue()).getSentRequests();
+        return relations.get(user.getUid()).getSentRequests();
     }
 
     @Override

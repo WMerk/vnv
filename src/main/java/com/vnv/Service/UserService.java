@@ -35,51 +35,11 @@ public class UserService {
 
     public JSONObject getAllUser(long uid, String sessionId){
         log.debug("getting all users");
-/*
+
         if (userDao.getUserBySessionId(sessionId)==null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
-*/
-/*
-        User user = userDao.getUserById(uid);
-        Collection<User> friendsC = userRelDao.getFriends(user);
-        Collection<User> requestsRecC = userRelDao.getRequestsRecv(user);
-        Collection<User> requestsSentC = userRelDao.getRequestsSent(user);
-        Set<User> friends = null;
-        Set<User> requestsRec = null;
-        Set<User> requestsSent = null;
-        if (friendsC!=null)
-           friends = new HashSet<>(friendsC);
-        if (requestsRecC!=null)
-            requestsRec = new HashSet<>(requestsRecC);
-        if (requestsSentC!=null)
-            requestsSent = new HashSet<>(requestsSentC);
-        //Collection<User> users = userDao.getAllUserCensored();
-        Collection<User> users = userDao.getAllUser();
-        JSONArray array = new JSONArray();
-        //log.debug(users.toString());
-        System.out.println(friendsC);
-        System.out.println(friends);
-        for (User u:users) {
-            //System.out.println(u);
-            JSONObject data = u.toJSON();
-            JSONObject json = new JSONObject();
-            json.put("data", data);
-            if (friends != null && friends.contains(u))
-                json.put("request", "accepted");
-            else if (requestsRec != null && requestsRec.contains(u))
-                json.put("request", "received");
-            else if (requestsSent != null && requestsSent.contains(u))
-                json.put("request", "sent");
-            else
-                json.put("request", "none");
-            //log.debug(json.toString());
-            array.put(json);
-        }
-        //JSONArray json = new JSONArray(users);
-        return new JSONObject().put("users", array);
-        */
 
         User user = userDao.getUserById(uid);
         Collection<User> friendsC = userRelDao.getFriends(user);

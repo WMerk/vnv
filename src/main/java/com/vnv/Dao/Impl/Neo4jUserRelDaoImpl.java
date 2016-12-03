@@ -61,12 +61,7 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     private String getNonRelatedUsersQuery = "MATCH (a:User) MATCH (b:User) " +
             "WHERE b.uid='1' AND NOT (a)-[]-(b) " +
             "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
-         /*
-            "MATCH (a:User) " +
-            "OPTIONAL MATCH (a)-[r]-(b:User) " +
-            "WHERE r IS null AND b.uid='%d' " +
-            "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
-*/
+
     @Override
     public void addUser(User user) {
         log.debug("Adding user {} to neo4j", user);
@@ -132,25 +127,7 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
         String query = String.format(getFriendsQuery, user.getUid());
         log.debug("Query is {}", query);
         StatementResult res = Database.neo4j.run(query);
-        List<User> friends = new ArrayList<>();
-        while (res.hasNext()) {
-            Record record = res.next();
-            //log.debug(record.toString());
-            //for (String key:record.keys())System.out.println(key);
-            if (record.containsKey("uid")) {
-                String uidString = record.get("uid").asString();
-                long uid = Long.valueOf(uidString);
-                User u = new User();
-                u.setUid(uid);
-                u.setFirstName(record.get("firstName").asString());
-                u.setLastName(record.get("lastName").asString());
-                u.setMail(record.get("mail").asString());
-                u.setPicPath(record.get("pic").asString());
-                friends.add(u);
-            } else
-                log.error(record.toString());
-        }
-        return friends;
+        return resultToCollection(res);
     }
 
     @Override
@@ -159,48 +136,16 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
         String query = String.format(getRequestsReceivedQuery, user.getUid());
         log.debug("Query is {}", query);
         StatementResult res = Database.neo4j.run(query);
-        List<User> requests = new ArrayList<>();
-        while (res.hasNext()) {
-            Record record = res.next();
-            if (record.containsKey("uid")) {
-                String uidString = record.get("uid").asString();
-                long uid = Long.valueOf(uidString);
-                User u = new User();
-                u.setUid(uid);
-                u.setFirstName(record.get("firstName").asString());
-                u.setLastName(record.get("lastName").asString());
-                u.setMail(record.get("mail").asString());
-                u.setPicPath(record.get("pic").asString());
-                requests.add(u);
-            } else
-                log.error(record.toString());
-        }
-        return requests;
+        return resultToCollection(res);
     }
 
     @Override
     public Collection<User> getRequestsSent(User user) {
-        log.debug("getting requests received for user with uid {} from neo4j", user.getUid());
+        log.debug("getting requests sent for user with uid {} from neo4j", user.getUid());
         String query = String.format(getRequestsSentQuery, user.getUid());
         log.debug("Query is {}", query);
         StatementResult res = Database.neo4j.run(query);
-        List<User> requests = new ArrayList<>();
-        while (res.hasNext()) {
-            Record record = res.next();
-            if (record.containsKey("uid")) {
-                String uidString = record.get("uid").asString();
-                long uid = Long.valueOf(uidString);
-                User u = new User();
-                u.setUid(uid);
-                u.setFirstName(record.get("firstName").asString());
-                u.setLastName(record.get("lastName").asString());
-                u.setMail(record.get("mail").asString());
-                u.setPicPath(record.get("pic").asString());
-                requests.add(u);
-            } else
-                log.error(record.toString());
-        }
-        return requests;
+        return resultToCollection(res);
     }
 
     @Override
@@ -209,12 +154,10 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
         String query = String.format(getNonRelatedUsersQuery, user.getUid());
         log.debug("Query is {}", query);
         StatementResult res = Database.neo4j.run(query);
-        /*
-        List<Record> list = res.list();
-        log.debug(list.toString());
-        JSONArray array = new JSONArray();
-        log.debug(array.toString());
-        */
+        return resultToCollection(res);
+    }
+
+    private Collection<User> resultToCollection( StatementResult res) {
         List<User> users = new ArrayList<>();
         while (res.hasNext()) {
             Record record = res.next();
