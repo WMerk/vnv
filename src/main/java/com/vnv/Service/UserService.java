@@ -172,6 +172,7 @@ if(rest!=null)
                 log.error(e.getLocalizedMessage());
                 return new JSONObject(ErrorMessage.DefaultError);
             }
+            userRelDao.updateUser(user, user.getUid());
             return userDao.updateUser(user).toJSON();
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);

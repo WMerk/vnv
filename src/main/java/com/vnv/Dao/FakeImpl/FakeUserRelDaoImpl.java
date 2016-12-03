@@ -36,6 +36,11 @@ public class FakeUserRelDaoImpl implements UserRelDao {
     }
 
     @Override
+    public boolean updateUser(User updated, long uid) {
+        return false;
+    }
+
+    @Override
     public void addFriend(User user, User friend) {
         UserRelations relation = relations.get(user.getUid().intValue());
         relation.getFriends().add(friend);

@@ -27,7 +27,11 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
     @Autowired
     UserDao userDao;
 
-    private String addQuery = "CREATE (a:User {name:'%s', uid:'%d'})";
+    private String addQuery = "CREATE (a:User {firstName:'%s', lastName:'%s', mail:'%s', pic:'%s', uid:'%d'})";
+    private String updateUserQuery = "MATCH (a:User) " +
+            "WHERE a.uid='%s' " +
+            "SET a.firstName='%s', a.lastName='%s', a.mail='%s', a.pic='%s' " +
+            "return a";
     private String addFriendQuery = "MATCH (a:User),(b:User)" +
             "WHERE a.uid = '%d' AND b.uid = '%d'" +
             "CREATE (a)-[r:ARE_FRIENDS]->(b)" +
@@ -47,18 +51,29 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
             "DETACH DELETE a";
     private String getFriendsQuery = "MATCH (a:User)-[r:ARE_FRIENDS]-(b:User) " +
             "WHERE a.uid = '%d' " +
-            "return b.uid";
+            "return b.uid as uid, b.firstName as firstName, b.lastName as lastName, b.mail as mail, b.pic as pic";
     private String getNonRelatedUsersQuery = "MATCH (a:User) " +
             "OPTIONAL MATCH (a)-[r]-(b:User) " +
             "WHERE r IS null AND b.uid='%d' " +
-            "return a.uid as uid, a.name as name";
+            "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
 
     @Override
     public void addUser(User user) {
         log.debug("Adding user {} to neo4j", user);
-        String query = String.format(addQuery, user.getFirstName()+" "+user.getLastName(), user.getUid());
+        String query = String.format(addQuery,
+                user.getFirstName(), user.getLastName(), user.getMail(), user.getPicPath(), user.getUid());
         log.debug("Query is {}", query);
         Database.neo4j.run(query);
+    }
+
+    @Override
+    public boolean updateUser(User updated, long uid) {
+        log.debug("updating user with uid {} to {}", uid, updated);
+        String query = String.format(updateUserQuery,
+                updated.getUid(), updated.getFirstName(), updated.getLastName(), updated.getMail(), updated.getPicPath());
+        log.debug("Query is {}", query);
+        Database.neo4j.run(query);
+        return true;
     }
 
     @Override
@@ -115,9 +130,15 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
             if (record.containsKey("b.uid")) {
                 String uidString = record.get("b.uid").asString();
                 long uid = Long.valueOf(uidString);
-                friends.add(userDao.getUserById(uid));
+                User u = new User();
+                u.setUid(uid);
+                u.setFirstName(record.get("firstName").asString());
+                u.setLastName(record.get("lastName").asString());
+                u.setMail(record.get("mail").asString());
+                u.setPicPath(record.get("pic").asString());
+                friends.add(u);
             } else
-                log.warn(record.toString());
+                log.error(record.toString());
         }
         return friends;
     }
@@ -153,15 +174,17 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
             //for (String key:record.keys())System.out.println(key);
             if (record.containsKey("uid")) {
                 String uidString = record.get("uid").asString();
-                //TODO
                 long uid = Long.valueOf(uidString);
                 User u = new User();
                 u.setUid(uid);
-                //TODO
+                u.setFirstName(record.get("firstName").asString());
+                u.setLastName(record.get("lastName").asString());
+                u.setMail(record.get("mail").asString());
+                u.setPicPath(record.get("pic").asString());
                 users.add(u);
                 //users.add(userDao.getUserById(uid));
             } else
-                log.warn(record.toString());
+                log.error(record.toString());
         }
         return users;
     }
