@@ -242,6 +242,17 @@ public class UserService {
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
+    public JSONObject sentRequest(String sessionId, User user, User friend) {
+        log.debug("Saving request from user {} to {}.", user, friend);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            userRelDao.addRequest(user, friend);
+            return new JSONObject("{201:created}");
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
 
 
 }
