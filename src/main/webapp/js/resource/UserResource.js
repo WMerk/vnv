@@ -75,3 +75,18 @@ vnvApp.factory('doChangePassword', function ($resource) {
         }
     );
 });
+
+vnvApp.factory('doLoadAllUsers', function ($resource) {
+    return $resource('/users/all?uid=:uid',
+        {},
+        {
+            query: {
+                method: "GET",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                params: {uid : '@uid'}
+            }
+        }
+    );
+});
+

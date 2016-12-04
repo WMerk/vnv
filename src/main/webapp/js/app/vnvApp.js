@@ -27,6 +27,9 @@ vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
     }).when('/CreateOffer', {
         templateUrl: '/html/createoffer.html',
         controller: 'CreateOfferCtl'
+    }).when('/AddFriends', {
+        templateUrl: '/html/searchuser.html',
+        controller: 'SearchUserCtl'
     }).otherwise({
         redirectTo: '/'
     });

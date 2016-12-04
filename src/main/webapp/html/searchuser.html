@@ -1,0 +1,28 @@
+<div data-ng-init="init()">
+
+    <div ng-include="templateNavigation"></div>
+
+    <div style="margin-top: 50px">
+        <h2>Finde deine Freunde</h2>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 50px;">
+        <input type="text" ng-model="search.name">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in users.users">
+                    <td>{{user.data.firstName}} {{user.data.lastName}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
