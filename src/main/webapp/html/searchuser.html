@@ -7,17 +7,26 @@
     </div>
 
     <div class="container-fluid" style="margin-top: 50px;">
-        <input type="text" ng-model="search.name">
+        <div class="inner-addon left-addon" style="margin-bottom:50px">
+            <input placeholder="Suche nach.." type="text" ng-model="search" class="form-control"/>
+        </div>
         <div class="table-responsive">
             <table class="table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-                </thead>
                 <tbody>
-                <tr ng-repeat="user in users.users">
-                    <td>{{user.data.firstName}} {{user.data.lastName}}</td>
+                <tr ng-repeat="user in users.users | filter:search | orderBy:'data.lastName'">
+                    <td><img src="/img/avatar.png" style="max-width: 50%; max-height: 50%" class="img-circle img-responsive"></td>
+                    <td class="vert-align">{{user.data.firstName}} {{user.data.lastName}}</td>
+                    <td class="vert-align" ng-show="(user.request == 'accepted')">
+                        <button disabled="disabled" class="btn btn-sm">
+                            <i class="glyphicon glyphicon-ok"></i> Freunde
+                        </button>
+                    </td>
+                    <td class="vert-align" ng-show="(user.request == 'sent' || user.request == 'received')">
+                        <button disabled="disabled" class="btn btn-sm">Anfrage versendet</button>
+                    </td>
+                    <td class="vert-align" ng-show="(user.request == 'none')">
+                        <button style="" class="btn btn-primary btn-sm">Freund hinzufügen</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
