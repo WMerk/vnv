@@ -248,7 +248,11 @@ public class UserService {
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (checkLogin(sessionId, user.getUid())) {
             userRelDao.addRequest(user, friend);
-            return new JSONObject("{201:created}");
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "sent");
+            return res;
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
