@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -83,6 +85,19 @@ public class UserController {
         Fake f = new Fake();
         f.makeFakeDbEntries(number);
         return "ok";
+    }
+
+    @RequestMapping(value = "/friend/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String sentFriendRequest(@RequestBody Map<String, User> map, HttpSession session) {
+        User user = map.get("user");
+        User friend = map.get("friend");
+        if (user==null || friend==null)
+            throw new HttpMessageNotReadableException("Could not read document: Can not construct instance of com.vnv.Entity.User");
+        log.debug(user.toString());
+        log.debug(friend.toString());
+        JSONObject res = userService.sentRequest(session.getId(), user, friend);
+        log.debug(res.toString());
+        return res.toString();
     }
 
 }
