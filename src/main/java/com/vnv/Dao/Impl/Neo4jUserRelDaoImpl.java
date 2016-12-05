@@ -59,7 +59,7 @@ public class Neo4jUserRelDaoImpl implements UserRelDao {
             "WHERE a.uid = '%d' " +
             "return b.uid as uid, b.firstName as firstName, b.lastName as lastName, b.mail as mail, b.pic as pic";
     private String getNonRelatedUsersQuery = "MATCH (a:User) MATCH (b:User) " +
-            "WHERE b.uid='1' AND NOT (a)-[]-(b) " +
+            "WHERE b.uid='%d' AND NOT (a)-[]-(b) " +
             "return a.uid as uid, a.firstName as firstName, a.lastName as lastName, a.mail as mail, a.pic as pic";
 
     @Override
