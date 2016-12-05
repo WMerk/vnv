@@ -77,12 +77,14 @@ public class UserService {
             }
         if(rest!=null)
             for (User u:rest) {
-                //System.out.println(u);
-                JSONObject data = u.toJSON();
-                JSONObject json = new JSONObject();
-                json.put("data", data);
-                json.put("request", "none");
-                array.put(json);
+                if (u.getUid()!= uid) {
+                    //System.out.println(u);
+                    JSONObject data = u.toJSON();
+                    JSONObject json = new JSONObject();
+                    json.put("data", data);
+                    json.put("request", "none");
+                    array.put(json);
+                }
             }
         return new JSONObject().put("users", array);
     }
