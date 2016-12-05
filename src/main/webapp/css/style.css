@@ -1,3 +1,7 @@
+html {
+    overflow-y: scroll;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
@@ -21,6 +25,10 @@ h3 {
     font-weight: 300;
     color: #000;
     line-height: 30px;
+    text-align: center;
+}
+
+h4 {
     text-align: center;
 }
 
@@ -245,6 +253,10 @@ h3 {
     -ms-animation: fadein 2.5s; /* Internet Explorer */
     -o-animation: fadein 2.5s; /* Opera */
     animation: fadein 2.5s;
+}
+
+.centered-pills {
+    font-size: 20px;
 }
 
 @keyframes fadein {

@@ -6,26 +6,29 @@
         <h2>Finde deine Freunde</h2>
     </div>
 
-    <div class="container-fluid" style="margin-top: 50px;">
+    <div class="container-fluid" style="margin-top: 50px; margin-left:20px; margin-right: 20px">
         <div class="inner-addon left-addon" style="margin-bottom:50px">
-            <input placeholder="Suche nach.." type="text" ng-model="search" class="form-control"/>
+            <input id="inputShowFriendsFilter" placeholder="Suche nach.." type="text" ng-model="search" class="form-control"/>
         </div>
         <div class="table-responsive">
-            <table class="table">
+            <table id="tableShowFriends" class="table">
                 <tbody>
-                <tr ng-repeat="user in users.users | filter:search | orderBy:'data.lastName'">
+                <tr ng-repeat="user in users | filter:search | orderBy:'data.lastName'">
                     <td><img src="/img/avatar.png" style="max-width: 50%; max-height: 50%" class="img-circle img-responsive"></td>
                     <td class="vert-align">{{user.data.firstName}} {{user.data.lastName}}</td>
                     <td class="vert-align" ng-show="(user.request == 'accepted')">
-                        <button disabled="disabled" class="btn btn-sm">
+                        <button id="buttonSearchUserReqAccepted" disabled="disabled" class="btn btn-sm">
                             <i class="glyphicon glyphicon-ok"></i> Freunde
                         </button>
                     </td>
-                    <td class="vert-align" ng-show="(user.request == 'sent' || user.request == 'received')">
-                        <button disabled="disabled" class="btn btn-sm">Anfrage versendet</button>
+                    <td class="vert-align" ng-show="(user.request == 'sent')">
+                        <button id="buttonSearchUserReqSent" disabled="disabled" class="btn btn-sm">Anfrage versendet</button>
+                    </td>
+                    <td class="vert-align" ng-show="(user.request == 'received')">
+                        <button id="buttonSearchUserReqReceived" class="btn btn-success btn-sm">Anfrage erhalten</button>
                     </td>
                     <td class="vert-align" ng-show="(user.request == 'none')">
-                        <button style="" class="btn btn-primary btn-sm">Freund hinzufügen</button>
+                        <button id="buttonSearchUserAddFriend" ng-click="addFriend(user)" class="btn btn-primary btn-sm">Freund hinzufügen</button>
                     </td>
                 </tr>
                 </tbody>

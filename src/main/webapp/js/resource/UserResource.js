@@ -90,3 +90,16 @@ vnvApp.factory('doLoadAllUsers', function ($resource) {
     );
 });
 
+vnvApp.factory('doSendFriendRequest', function ($resource) {
+    return $resource('/users/friend/request',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+

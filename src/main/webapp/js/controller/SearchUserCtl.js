@@ -5,7 +5,8 @@ vnvApp.controller(
         '$location',
         'userService',
         'doLoadAllUsers',
-        function ($scope, $location, userService, doLoadAllUsers) {
+        'doSendFriendRequest',
+        function ($scope, $location, userService, doLoadAllUsers, doSendFriendRequest) {
 
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
@@ -21,16 +22,36 @@ vnvApp.controller(
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, query successful
-                        $scope.users = response;
+                        $scope.users = response.users;
+
                         console.log($scope.users);
+
                     } else {
                         // error, query failed
                     }
 
                 });
-
-
             };
+
+            $scope.addFriend = function (user) {
+                var index = $scope.users.indexOf(user);
+
+                var params = {};
+                params['user'] = $scope.user;
+                params['friend'] = user.data;
+
+                var response = doSendFriendRequest.query(params);
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        $scope.users[index].request = response.request;
+                    } else {
+                        // error, query failed
+                    }
+
+                });
+            }
+
 
 
         }]);
