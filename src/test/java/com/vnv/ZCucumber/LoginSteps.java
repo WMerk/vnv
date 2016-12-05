@@ -25,17 +25,13 @@ public class LoginSteps extends BasedriverConfiguration {
         browser = webDriver();
 
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
-
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
     }
 
     @When("^the login button is clicked$")
     public void theLoginButtonIsClicked() throws Throwable {
         WebElement registerForm = browser.findElement(tagName("button"));
         registerForm.click();
-        Thread.sleep(3000);
     }
 
     @Then("^the main page is shown$")

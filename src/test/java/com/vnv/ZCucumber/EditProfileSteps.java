@@ -22,18 +22,13 @@ public class EditProfileSteps extends BasedriverConfiguration{
     public void loginToEditProfileWithTheEmailAndThePassword(String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
     }
     @And("^navigated to profile settings$")
     public void navigatedToProfileSettings() throws Throwable {
         browser.findElement(By.linkText("Profil")).click();
-        Thread.sleep(100);
         browser.findElement(By.linkText("Profil bearbeiten")).click();
-        Thread.sleep(100);
     }
 
     @And("^Vorname changed to \"([^\"]*)\"$")
@@ -46,7 +41,6 @@ public class EditProfileSteps extends BasedriverConfiguration{
     @When("^save profile button is clicked$")
     public void saveProfileButtonIsClicked() throws Throwable {
         browser.findElement(id("updateUserButtonUpdate")).click();
-        Thread.sleep(300);
     }
 
     @Then("^the success message \"([^\"]*)\" in the field with id \"([^\"]*)\" is shown$")

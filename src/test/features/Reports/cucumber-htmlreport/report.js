@@ -62,7 +62,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 21485687905,
+  "duration": 5703131124,
   "status": "passed"
 });
 formatter.match({
@@ -79,14 +79,14 @@ formatter.match({
   "location": "ChangePasswordSteps.loginToChangeThePasswordWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 10475866824,
+  "duration": 3880709071,
   "status": "passed"
 });
 formatter.match({
   "location": "ChangePasswordSteps.navigateToPasswordSettings()"
 });
 formatter.result({
-  "duration": 1301684915,
+  "duration": 660961728,
   "status": "passed"
 });
 formatter.match({
@@ -107,14 +107,14 @@ formatter.match({
   "location": "ChangePasswordSteps.theActualPasswordNewPasswordAndConfirmPasswordIsEntered(String,String,String)"
 });
 formatter.result({
-  "duration": 1186808830,
+  "duration": 250469054,
   "status": "passed"
 });
 formatter.match({
   "location": "ChangePasswordSteps.theChangePasswordButtonIsClicked()"
 });
 formatter.result({
-  "duration": 3160128759,
+  "duration": 67635342,
   "status": "passed"
 });
 formatter.match({
@@ -131,35 +131,39 @@ formatter.match({
   "location": "ChangePasswordSteps.theMessageFormElementWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 182765786,
+  "duration": 829600061,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1415288728,
+  "duration": 799463968,
   "status": "passed"
 });
 formatter.after({
-  "duration": 836065,
+  "duration": 430712,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1510048,
+  "duration": 239555,
   "status": "passed"
 });
 formatter.after({
-  "duration": 953241,
+  "duration": 271822,
   "status": "passed"
 });
 formatter.after({
-  "duration": 619671,
+  "duration": 167201,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1058017,
+  "duration": 250801,
   "status": "passed"
 });
 formatter.after({
-  "duration": 981894,
+  "duration": 241023,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 253244,
   "status": "passed"
 });
 formatter.scenario({
@@ -209,14 +213,14 @@ formatter.match({
   "location": "ChangePasswordSteps.loginToChangeThePasswordWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 10066686282,
+  "duration": 3798930172,
   "status": "passed"
 });
 formatter.match({
   "location": "ChangePasswordSteps.navigateToPasswordSettings()"
 });
 formatter.result({
-  "duration": 1051662357,
+  "duration": 677085775,
   "status": "passed"
 });
 formatter.match({
@@ -237,14 +241,14 @@ formatter.match({
   "location": "ChangePasswordSteps.theActualPasswordNewPasswordAndConfirmPasswordIsEntered(String,String,String)"
 });
 formatter.result({
-  "duration": 1257714350,
+  "duration": 252069677,
   "status": "passed"
 });
 formatter.match({
   "location": "ChangePasswordSteps.theChangePasswordButtonIsClicked()"
 });
 formatter.result({
-  "duration": 3245118646,
+  "duration": 74148321,
   "status": "passed"
 });
 formatter.match({
@@ -261,35 +265,39 @@ formatter.match({
   "location": "ChangePasswordSteps.theMessageFormElementWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 142886162,
+  "duration": 430654943,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1735816950,
+  "duration": 745405073,
   "status": "passed"
 });
 formatter.after({
-  "duration": 677832,
+  "duration": 362267,
   "status": "passed"
 });
 formatter.after({
-  "duration": 567069,
+  "duration": 161822,
   "status": "passed"
 });
 formatter.after({
-  "duration": 416107,
+  "duration": 186755,
   "status": "passed"
 });
 formatter.after({
-  "duration": 536706,
+  "duration": 157422,
   "status": "passed"
 });
 formatter.after({
-  "duration": 445616,
+  "duration": 130534,
   "status": "passed"
 });
 formatter.after({
-  "duration": 431075,
+  "duration": 175022,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 136400,
   "status": "passed"
 });
 formatter.scenario({
@@ -319,36 +327,39 @@ formatter.match({
   "location": "BackgroundSteps.loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String,String)"
 });
 formatter.result({
-  "duration": 6008119874,
-  "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"id\",\"selector\":\"form-email\"}\n  (Session info: chrome\u003d54.0.2840.99)\n  (Driver info: chromedriver\u003d2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform\u003dWindows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 83 milliseconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00272.53.1\u0027, revision: \u0027a36b8b1cd5757287168e54b817830adce9b0158d\u0027, time: \u00272016-06-30 19:26:09\u0027\nSystem info: host: \u0027WaldemarLaptop\u0027, ip: \u0027169.254.178.50\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_111\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, mobileEmulationEnabled\u003dfalse, networkConnectionEnabled\u003dfalse, chrome\u003d{chromedriverVersion\u003d2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir\u003dC:\\Users\\Waldemar\\AppData\\Local\\Temp\\scoped_dir7344_32542}, takesHeapSnapshot\u003dtrue, pageLoadStrategy\u003dnormal, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, hasTouchScreen\u003dfalse, version\u003d54.0.2840.99, platform\u003dXP, browserConnectionEnabled\u003dfalse, nativeEvents\u003dtrue, acceptSslCerts\u003dtrue, locationContextEnabled\u003dtrue, webStorageEnabled\u003dtrue, browserName\u003dchrome, takesScreenshot\u003dtrue, javascriptEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue}]\nSession ID: c6fbc2e1fa1fecf913c1e1c582091970\n*** Element info: {Using\u003did, value\u003dform-email}\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\r\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)\r\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:413)\r\n\tat org.openqa.selenium.By$ById.findElement(By.java:218)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)\r\n\tat com.vnv.ZCucumber.BackgroundSteps.loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(BackgroundSteps.java:70)\r\n\tat ✽.Then login and delete the registered user with the email \"change@password.de\" and the password \"test\" from database again(changePassword.feature:22)\r\n",
-  "status": "failed"
-});
-formatter.after({
-  "duration": 851887,
+  "duration": 4810247810,
   "status": "passed"
 });
 formatter.after({
-  "duration": 543976,
+  "duration": 429244,
   "status": "passed"
 });
 formatter.after({
-  "duration": 499500,
+  "duration": 166712,
   "status": "passed"
 });
 formatter.after({
-  "duration": 504205,
+  "duration": 136889,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1590452959,
+  "duration": 264000,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2511186,
+  "duration": 751421829,
   "status": "passed"
 });
 formatter.after({
-  "duration": 334426,
+  "duration": 203867,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 106578,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 121244,
   "status": "passed"
 });
 formatter.uri("deleteAccount.feature");
@@ -420,7 +431,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14485238441,
+  "duration": 4943624539,
   "status": "passed"
 });
 formatter.match({
@@ -437,28 +448,28 @@ formatter.match({
   "location": "DeleteAccountSteps.loginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9697711665,
+  "duration": 3820357196,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theSettingsAreSelected()"
 });
 formatter.result({
-  "duration": 863502138,
+  "duration": 635486214,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theDeleteAccountSettingsIsSelected()"
 });
 formatter.result({
-  "duration": 234298991,
+  "duration": 90259656,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theDeleteAccountButtonIsClicked()"
 });
 formatter.result({
-  "duration": 653786858,
+  "duration": 94521790,
   "status": "passed"
 });
 formatter.match({
@@ -471,7 +482,7 @@ formatter.match({
   "location": "DeleteAccountSteps.theConfirmationWithThePasswordIsDone(String)"
 });
 formatter.result({
-  "duration": 3440170087,
+  "duration": 245712165,
   "status": "passed"
 });
 formatter.match({
@@ -484,35 +495,39 @@ formatter.match({
   "location": "DeleteAccountSteps.theMainpageWithTheMessageIsShown(String)"
 });
 formatter.result({
-  "duration": 144220872,
+  "duration": 444737878,
   "status": "passed"
 });
 formatter.after({
-  "duration": 542693,
+  "duration": 275733,
   "status": "passed"
 });
 formatter.after({
-  "duration": 383606,
+  "duration": 203867,
   "status": "passed"
 });
 formatter.after({
-  "duration": 398146,
+  "duration": 149111,
   "status": "passed"
 });
 formatter.after({
-  "duration": 5532564,
+  "duration": 135422,
   "status": "passed"
 });
 formatter.after({
-  "duration": 455880,
+  "duration": 166222,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1666338086,
+  "duration": 770717298,
   "status": "passed"
 });
 formatter.after({
-  "duration": 506343,
+  "duration": 277689,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 198489,
   "status": "passed"
 });
 formatter.scenario({
@@ -576,7 +591,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14890888696,
+  "duration": 4929011649,
   "status": "passed"
 });
 formatter.match({
@@ -593,28 +608,28 @@ formatter.match({
   "location": "DeleteAccountSteps.loginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 10092460582,
+  "duration": 3839420933,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theSettingsAreSelected()"
 });
 formatter.result({
-  "duration": 822465282,
+  "duration": 565269538,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theDeleteAccountSettingsIsSelected()"
 });
 formatter.result({
-  "duration": 237567554,
+  "duration": 92420056,
   "status": "passed"
 });
 formatter.match({
   "location": "DeleteAccountSteps.theDeleteAccountButtonIsClicked()"
 });
 formatter.result({
-  "duration": 662363894,
+  "duration": 87482278,
   "status": "passed"
 });
 formatter.match({
@@ -627,7 +642,7 @@ formatter.match({
   "location": "DeleteAccountSteps.theConfirmationWithThePasswordIsDone(String)"
 });
 formatter.result({
-  "duration": 3673288325,
+  "duration": 257702167,
   "status": "passed"
 });
 formatter.match({
@@ -640,35 +655,39 @@ formatter.match({
   "location": "DeleteAccountSteps.anErrorMessageIsShown(String)"
 });
 formatter.result({
-  "duration": 496605494,
+  "duration": 502767041,
   "status": "passed"
 });
 formatter.after({
-  "duration": 539273,
+  "duration": 191155,
   "status": "passed"
 });
 formatter.after({
-  "duration": 505060,
+  "duration": 109022,
   "status": "passed"
 });
 formatter.after({
-  "duration": 421240,
+  "duration": 107555,
   "status": "passed"
 });
 formatter.after({
-  "duration": 19192272,
+  "duration": 4838045,
   "status": "passed"
 });
 formatter.after({
-  "duration": 756948,
+  "duration": 193111,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1492982406,
+  "duration": 892507846,
   "status": "passed"
 });
 formatter.after({
-  "duration": 342551,
+  "duration": 343689,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 130044,
   "status": "passed"
 });
 formatter.uri("editProfile.feature");
@@ -735,7 +754,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 13991932301,
+  "duration": 4915584802,
   "status": "passed"
 });
 formatter.match({
@@ -752,14 +771,14 @@ formatter.match({
   "location": "EditProfileSteps.loginToEditProfileWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 10039887750,
+  "duration": 3844446222,
   "status": "passed"
 });
 formatter.match({
   "location": "EditProfileSteps.navigatedToProfileSettings()"
 });
 formatter.result({
-  "duration": 755116563,
+  "duration": 569821584,
   "status": "passed"
 });
 formatter.match({
@@ -772,14 +791,14 @@ formatter.match({
   "location": "EditProfileSteps.vornameChangedTo(String)"
 });
 formatter.result({
-  "duration": 647167624,
+  "duration": 249087942,
   "status": "passed"
 });
 formatter.match({
   "location": "EditProfileSteps.saveProfileButtonIsClicked()"
 });
 formatter.result({
-  "duration": 552047032,
+  "duration": 67830898,
   "status": "passed"
 });
 formatter.match({
@@ -796,35 +815,39 @@ formatter.match({
   "location": "EditProfileSteps.theSuccessMessageInTheFieldWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 1676144200,
+  "duration": 595272653,
   "status": "passed"
 });
 formatter.after({
-  "duration": 279686,
+  "duration": 221955,
   "status": "passed"
 });
 formatter.after({
-  "duration": 204847,
+  "duration": 116845,
   "status": "passed"
 });
 formatter.after({
-  "duration": 171062,
+  "duration": 87511,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1165222121,
+  "duration": 798155701,
   "status": "passed"
 });
 formatter.after({
-  "duration": 212545,
+  "duration": 125156,
   "status": "passed"
 });
 formatter.after({
-  "duration": 218959,
+  "duration": 131511,
   "status": "passed"
 });
 formatter.after({
-  "duration": 201853,
+  "duration": 75289,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 82622,
   "status": "passed"
 });
 formatter.uri("login.feature");
@@ -886,7 +909,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14324563568,
+  "duration": 4934839693,
   "status": "passed"
 });
 formatter.match({
@@ -903,56 +926,60 @@ formatter.match({
   "location": "LoginSteps.theEmailIsAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 6740549374,
+  "duration": 3736058074,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.theLoginButtonIsClicked()"
 });
 formatter.result({
-  "duration": 3241800904,
+  "duration": 69150409,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.theMainPageIsShown()"
 });
 formatter.result({
-  "duration": 79631379,
+  "duration": 472262816,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.theLoggedInUserIsDeletedFromDatabaseAgain()"
 });
 formatter.result({
-  "duration": 2024614074,
+  "duration": 579400874,
   "status": "passed"
 });
 formatter.after({
-  "duration": 348538,
+  "duration": 174533,
   "status": "passed"
 });
 formatter.after({
-  "duration": 280969,
+  "duration": 91422,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1205860832,
+  "duration": 756184585,
   "status": "passed"
 });
 formatter.after({
-  "duration": 221952,
+  "duration": 173067,
   "status": "passed"
 });
 formatter.after({
-  "duration": 136849,
+  "duration": 91422,
   "status": "passed"
 });
 formatter.after({
-  "duration": 108625,
+  "duration": 106088,
   "status": "passed"
 });
 formatter.after({
-  "duration": 98789,
+  "duration": 114400,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 104134,
   "status": "passed"
 });
 formatter.scenario({
@@ -992,14 +1019,14 @@ formatter.match({
   "location": "LoginSteps.theEmailIsAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 6981706657,
+  "duration": 3740896119,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.theLoginButtonIsClicked()"
 });
 formatter.result({
-  "duration": 3194870970,
+  "duration": 71708764,
   "status": "passed"
 });
 formatter.match({
@@ -1012,35 +1039,39 @@ formatter.match({
   "location": "LoginSteps.anLoginErrorWithTheMessageIsShown(String)"
 });
 formatter.result({
-  "duration": 144025006,
+  "duration": 45919872,
   "status": "passed"
 });
 formatter.after({
-  "duration": 496079,
+  "duration": 197511,
   "status": "passed"
 });
 formatter.after({
-  "duration": 383606,
+  "duration": 110001,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1841292338,
+  "duration": 738384139,
   "status": "passed"
 });
 formatter.after({
-  "duration": 514040,
+  "duration": 221956,
   "status": "passed"
 });
 formatter.after({
-  "duration": 353670,
+  "duration": 104622,
   "status": "passed"
 });
 formatter.after({
-  "duration": 311332,
+  "duration": 82622,
   "status": "passed"
 });
 formatter.after({
-  "duration": 623948,
+  "duration": 70889,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 76267,
   "status": "passed"
 });
 formatter.scenario({
@@ -1080,14 +1111,14 @@ formatter.match({
   "location": "LoginSteps.theEmailIsAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 7374160782,
+  "duration": 3723094696,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.theLoginButtonIsClicked()"
 });
 formatter.result({
-  "duration": 3156152001,
+  "duration": 73779210,
   "status": "passed"
 });
 formatter.match({
@@ -1100,35 +1131,39 @@ formatter.match({
   "location": "LoginSteps.anLoginErrorWithTheMessageIsShown(String)"
 });
 formatter.result({
-  "duration": 173374069,
+  "duration": 46065561,
   "status": "passed"
 });
 formatter.after({
-  "duration": 464433,
+  "duration": 194089,
   "status": "passed"
 });
 formatter.after({
-  "duration": 316464,
+  "duration": 88001,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1542722884,
+  "duration": 750201073,
   "status": "passed"
 });
 formatter.after({
-  "duration": 445616,
+  "duration": 175511,
   "status": "passed"
 });
 formatter.after({
-  "duration": 387455,
+  "duration": 115377,
   "status": "passed"
 });
 formatter.after({
-  "duration": 381895,
+  "duration": 110489,
   "status": "passed"
 });
 formatter.after({
-  "duration": 521738,
+  "duration": 92401,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 107067,
   "status": "passed"
 });
 formatter.uri("offerDienstleistungen.feature");
@@ -1200,7 +1235,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14318868067,
+  "duration": 4921883647,
   "status": "passed"
 });
 formatter.match({
@@ -1217,7 +1252,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9953992944,
+  "duration": 4032522779,
   "status": "passed"
 });
 formatter.match({
@@ -1230,7 +1265,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 617575226,
+  "duration": 788812056,
   "status": "passed"
 });
 formatter.match({
@@ -1243,7 +1278,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 452186747,
+  "duration": 65637252,
   "status": "passed"
 });
 formatter.match({
@@ -1268,14 +1303,14 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 2016356496,
+  "duration": 525144467,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1198538106,
+  "duration": 1074275292,
   "status": "passed"
 });
 formatter.match({
@@ -1292,35 +1327,39 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theMainpageWithTheMessageInTheElementWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 160089842,
+  "duration": 42314317,
   "status": "passed"
 });
 formatter.after({
-  "duration": 425088,
+  "duration": 183822,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1324174402,
+  "duration": 790281167,
   "status": "passed"
 });
 formatter.after({
-  "duration": 450748,
+  "duration": 164266,
   "status": "passed"
 });
 formatter.after({
-  "duration": 452886,
+  "duration": 96311,
   "status": "passed"
 });
 formatter.after({
-  "duration": 380612,
+  "duration": 102178,
   "status": "passed"
 });
 formatter.after({
-  "duration": 717604,
+  "duration": 138355,
   "status": "passed"
 });
 formatter.after({
-  "duration": 322879,
+  "duration": 81155,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 95333,
   "status": "passed"
 });
 formatter.scenario({
@@ -1380,7 +1419,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9837213370,
+  "duration": 3822888175,
   "status": "passed"
 });
 formatter.match({
@@ -1393,7 +1432,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 559174319,
+  "duration": 786319211,
   "status": "passed"
 });
 formatter.match({
@@ -1406,7 +1445,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 598897421,
+  "duration": 64609119,
   "status": "passed"
 });
 formatter.match({
@@ -1431,56 +1470,60 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 1806234088,
+  "duration": 471948460,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1155126485,
+  "duration": 1070768980,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferFormIsStillShownAndAnWarningToFillOutTheOffernameIsShown()"
 });
 formatter.result({
-  "duration": 68659051,
+  "duration": 22196535,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.cleanupOfferDienstleistungen()"
 });
 formatter.result({
-  "duration": 1985260037,
+  "duration": 554850826,
   "status": "passed"
 });
 formatter.after({
-  "duration": 676977,
+  "duration": 140800,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1427368682,
+  "duration": 803701657,
   "status": "passed"
 });
 formatter.after({
-  "duration": 313471,
+  "duration": 165245,
   "status": "passed"
 });
 formatter.after({
-  "duration": 127868,
+  "duration": 117334,
   "status": "passed"
 });
 formatter.after({
-  "duration": 109052,
+  "duration": 81156,
   "status": "passed"
 });
 formatter.after({
-  "duration": 156094,
+  "duration": 84577,
   "status": "passed"
 });
 formatter.after({
-  "duration": 106914,
+  "duration": 71866,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 67467,
   "status": "passed"
 });
 formatter.uri("offerVerleihen.feature");
@@ -1552,7 +1595,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14735693786,
+  "duration": 4995905346,
   "status": "passed"
 });
 formatter.match({
@@ -1569,7 +1612,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9940429459,
+  "duration": 3824507863,
   "status": "passed"
 });
 formatter.match({
@@ -1582,7 +1625,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 523516499,
+  "duration": 791005212,
   "status": "passed"
 });
 formatter.match({
@@ -1595,7 +1638,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 475495619,
+  "duration": 67100986,
   "status": "passed"
 });
 formatter.match({
@@ -1620,14 +1663,14 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 2197078949,
+  "duration": 494770285,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1240103971,
+  "duration": 1075554226,
   "status": "passed"
 });
 formatter.match({
@@ -1644,35 +1687,39 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theMainpageWithTheMessageInTheElementWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 149582802,
+  "duration": 45522895,
   "status": "passed"
 });
 formatter.after({
-  "duration": 389165,
+  "duration": 222445,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1425221001,
+  "duration": 748384361,
   "status": "passed"
 });
 formatter.after({
-  "duration": 416107,
+  "duration": 169155,
   "status": "passed"
 });
 formatter.after({
-  "duration": 272416,
+  "duration": 96800,
   "status": "passed"
 });
 formatter.after({
-  "duration": 241197,
+  "duration": 88977,
   "status": "passed"
 });
 formatter.after({
-  "duration": 300213,
+  "duration": 74312,
   "status": "passed"
 });
 formatter.after({
-  "duration": 254026,
+  "duration": 78222,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 122711,
   "status": "passed"
 });
 formatter.scenario({
@@ -1732,7 +1779,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9643226361,
+  "duration": 3932049255,
   "status": "passed"
 });
 formatter.match({
@@ -1745,7 +1792,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 503612182,
+  "duration": 812489926,
   "status": "passed"
 });
 formatter.match({
@@ -1758,7 +1805,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 562298334,
+  "duration": 77170632,
   "status": "passed"
 });
 formatter.match({
@@ -1783,56 +1830,60 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 1983112358,
+  "duration": 486726595,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1168892679,
+  "duration": 1081886804,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferFormIsStillShownAndAnWarningToFillOutTheOffernameIsShown()"
 });
 formatter.result({
-  "duration": 80269440,
+  "duration": 19816625,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.cleanupOfferDienstleistungen()"
 });
 formatter.result({
-  "duration": 2048290302,
+  "duration": 548259626,
   "status": "passed"
 });
 formatter.after({
-  "duration": 405844,
+  "duration": 170133,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1306874928,
+  "duration": 748810183,
   "status": "passed"
 });
 formatter.after({
-  "duration": 256592,
+  "duration": 168178,
   "status": "passed"
 });
 formatter.after({
-  "duration": 159943,
+  "duration": 73822,
   "status": "passed"
 });
 formatter.after({
-  "duration": 141126,
+  "duration": 67956,
   "status": "passed"
 });
 formatter.after({
-  "duration": 162937,
+  "duration": 112445,
   "status": "passed"
 });
 formatter.after({
-  "duration": 162509,
+  "duration": 86534,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 88978,
   "status": "passed"
 });
 formatter.uri("offerVerschenken.feature");
@@ -1904,7 +1955,7 @@ formatter.match({
   "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
 });
 formatter.result({
-  "duration": 14682201924,
+  "duration": 4915970536,
   "status": "passed"
 });
 formatter.match({
@@ -1921,7 +1972,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 10050214319,
+  "duration": 3839974354,
   "status": "passed"
 });
 formatter.match({
@@ -1934,7 +1985,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 551188729,
+  "duration": 795476101,
   "status": "passed"
 });
 formatter.match({
@@ -1947,7 +1998,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 480933672,
+  "duration": 72849343,
   "status": "passed"
 });
 formatter.match({
@@ -1972,15 +2023,15 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 2342652492,
-  "status": "passed"
+  "duration": 74075965,
+  "error_message": "org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document\n  (Session info: chrome\u003d54.0.2840.99)\n  (Driver info: chromedriver\u003d2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform\u003dWindows NT 10.0.14393 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 23 milliseconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html\nBuild info: version: \u00272.53.1\u0027, revision: \u0027a36b8b1cd5757287168e54b817830adce9b0158d\u0027, time: \u00272016-06-30 19:26:09\u0027\nSystem info: host: \u0027MerkWaldemar-PC\u0027, ip: \u0027192.168.178.48\u0027, os.name: \u0027Windows 10\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u00271.8.0_111\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{applicationCacheEnabled\u003dfalse, rotatable\u003dfalse, mobileEmulationEnabled\u003dfalse, networkConnectionEnabled\u003dfalse, chrome\u003d{chromedriverVersion\u003d2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir\u003dC:\\Users\\MERKWA~1\\AppData\\Local\\Temp\\scoped_dir12672_29008}, takesHeapSnapshot\u003dtrue, pageLoadStrategy\u003dnormal, databaseEnabled\u003dfalse, handlesAlerts\u003dtrue, hasTouchScreen\u003dfalse, version\u003d54.0.2840.99, platform\u003dXP, browserConnectionEnabled\u003dfalse, nativeEvents\u003dtrue, acceptSslCerts\u003dtrue, locationContextEnabled\u003dtrue, webStorageEnabled\u003dtrue, browserName\u003dchrome, takesScreenshot\u003dtrue, javascriptEnabled\u003dtrue, cssSelectorsEnabled\u003dtrue}]\nSession ID: 592c6d9d42437528df6a134ec016b743\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\r\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)\r\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)\r\n\tat org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:327)\r\n\tat org.openqa.selenium.remote.RemoteWebElement.sendKeys(RemoteWebElement.java:122)\r\n\tat com.vnv.ZCucumber.OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(OfferDienstleistungenSteps.java:45)\r\n\tat ✽.And the offer with offername \"Verschenkentest\" and the category \"Haustiere\" and the endtime \"01.01.9999\" and the description \"little description\" is created(offerVerschenken.feature:10)\r\n",
+  "status": "failed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1170040504,
-  "status": "passed"
+  "status": "skipped"
 });
 formatter.match({
   "arguments": [
@@ -1996,35 +2047,38 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theMainpageWithTheMessageInTheElementWithIdIsShown(String,String)"
 });
 formatter.result({
-  "duration": 154409737,
+  "status": "skipped"
+});
+formatter.after({
+  "duration": 3067778,
   "status": "passed"
 });
 formatter.after({
-  "duration": 402850,
+  "duration": 779492366,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1451101787,
+  "duration": 220001,
   "status": "passed"
 });
 formatter.after({
-  "duration": 395581,
+  "duration": 131511,
   "status": "passed"
 });
 formatter.after({
-  "duration": 186458,
+  "duration": 98756,
   "status": "passed"
 });
 formatter.after({
-  "duration": 176194,
+  "duration": 96311,
   "status": "passed"
 });
 formatter.after({
-  "duration": 197577,
+  "duration": 82622,
   "status": "passed"
 });
 formatter.after({
-  "duration": 203991,
+  "duration": 228800,
   "status": "passed"
 });
 formatter.scenario({
@@ -2084,7 +2138,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.offerLoginWithTheEmailAndThePassword(String,String)"
 });
 formatter.result({
-  "duration": 9776401349,
+  "duration": 3823652796,
   "status": "passed"
 });
 formatter.match({
@@ -2097,7 +2151,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theLinkIsClicked(String)"
 });
 formatter.result({
-  "duration": 544507913,
+  "duration": 793232101,
   "status": "passed"
 });
 formatter.match({
@@ -2110,7 +2164,7 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theFlaviorIsSelected(String)"
 });
 formatter.result({
-  "duration": 454603849,
+  "duration": 68826764,
   "status": "passed"
 });
 formatter.match({
@@ -2135,56 +2189,60 @@ formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String,String,String,String)"
 });
 formatter.result({
-  "duration": 2060731195,
+  "duration": 490402063,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theCreateOfferButtonIsClicked()"
 });
 formatter.result({
-  "duration": 1172578204,
+  "duration": 1080752093,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.theOfferFormIsStillShownAndAnWarningToFillOutTheOffernameIsShown()"
 });
 formatter.result({
-  "duration": 62459773,
+  "duration": 20827647,
   "status": "passed"
 });
 formatter.match({
   "location": "OfferDienstleistungenSteps.cleanupOfferDienstleistungen()"
 });
 formatter.result({
-  "duration": 1975558271,
+  "duration": 575260962,
   "status": "passed"
 });
 formatter.after({
-  "duration": 503349,
+  "duration": 143244,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1436297677,
+  "duration": 736786449,
   "status": "passed"
 });
 formatter.after({
-  "duration": 276693,
+  "duration": 160355,
   "status": "passed"
 });
 formatter.after({
-  "duration": 170207,
+  "duration": 106577,
   "status": "passed"
 });
 formatter.after({
-  "duration": 172772,
+  "duration": 75778,
   "status": "passed"
 });
 formatter.after({
-  "duration": 169351,
+  "duration": 87022,
   "status": "passed"
 });
 formatter.after({
-  "duration": 171489,
+  "duration": 95822,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 73823,
   "status": "passed"
 });
 formatter.uri("register.feature");
@@ -2236,14 +2294,14 @@ formatter.match({
   "location": "RegisterSteps.the_username_is_something_and_the_email_is_something_and_the_password_something(String,String,String)"
 });
 formatter.result({
-  "duration": 9215368016,
+  "duration": 4125355457,
   "status": "passed"
 });
 formatter.match({
   "location": "RegisterSteps.the_register_button_is_clicked()"
 });
 formatter.result({
-  "duration": 3253475013,
+  "duration": 69376275,
   "status": "passed"
 });
 formatter.match({
@@ -2260,35 +2318,39 @@ formatter.match({
   "location": "RegisterSteps.theRegisterPageIsShownAndTheCssSelectorIsAndTheMessageIs(String,String)"
 });
 formatter.result({
-  "duration": 156189206,
+  "duration": 884384957,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2498357,
+  "duration": 1005645,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2512897,
+  "duration": 738711,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2447893,
+  "duration": 659510,
   "status": "passed"
 });
 formatter.after({
-  "duration": 4691796,
+  "duration": 579334,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2232356,
+  "duration": 554889,
   "status": "passed"
 });
 formatter.after({
-  "duration": 2166925,
+  "duration": 563689,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1331935046,
+  "duration": 738147028,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 846756,
   "status": "passed"
 });
 formatter.scenario({
@@ -2332,49 +2394,53 @@ formatter.match({
   "location": "RegisterSteps.the_username_is_something_and_the_email_is_something_and_the_password_something(String,String,String)"
 });
 formatter.result({
-  "duration": 8620937017,
+  "duration": 3880519870,
   "status": "passed"
 });
 formatter.match({
   "location": "RegisterSteps.the_register_button_is_clicked()"
 });
 formatter.result({
-  "duration": 3301226898,
+  "duration": 76299920,
   "status": "passed"
 });
 formatter.match({
   "location": "RegisterSteps.theRegisterPageIsShown()"
 });
 formatter.result({
-  "duration": 172712059,
+  "duration": 60442808,
   "status": "passed"
 });
 formatter.after({
-  "duration": 491375,
+  "duration": 174044,
   "status": "passed"
 });
 formatter.after({
-  "duration": 231361,
+  "duration": 86533,
   "status": "passed"
 });
 formatter.after({
-  "duration": 293371,
+  "duration": 132978,
   "status": "passed"
 });
 formatter.after({
-  "duration": 313898,
+  "duration": 94844,
   "status": "passed"
 });
 formatter.after({
-  "duration": 266856,
+  "duration": 92401,
   "status": "passed"
 });
 formatter.after({
-  "duration": 296365,
+  "duration": 81155,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1595811040,
+  "duration": 738553294,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 188223,
   "status": "passed"
 });
 formatter.scenario({
@@ -2418,14 +2484,14 @@ formatter.match({
   "location": "RegisterSteps.the_username_is_something_and_the_email_is_something_and_the_password_something(String,String,String)"
 });
 formatter.result({
-  "duration": 9413113251,
+  "duration": 4082171896,
   "status": "passed"
 });
 formatter.match({
   "location": "RegisterSteps.the_register_button_is_clicked()"
 });
 formatter.result({
-  "duration": 3371860429,
+  "duration": 89412900,
   "status": "passed"
 });
 formatter.match({
@@ -2438,35 +2504,40 @@ formatter.match({
   "location": "RegisterSteps.anRegistrationerrorWithTheMessageIsShown(String)"
 });
 formatter.result({
-  "duration": 127710420,
+  "duration": 47558629,
+  "error_message": "java.lang.AssertionError: \nExpected: is \"\"\n     but: was \"Es existiert bereits ein Account mit dieser Mailadresse.\"\r\n\tat org.hamcrest.MatcherAssert.assertThat(MatcherAssert.java:20)\r\n\tat org.junit.Assert.assertThat(Assert.java:956)\r\n\tat org.junit.Assert.assertThat(Assert.java:923)\r\n\tat com.vnv.ZCucumber.RegisterSteps.anRegistrationerrorWithTheMessageIsShown(RegisterSteps.java:73)\r\n\tat ✽.Then an Registrationerror with the message \"Es existiert bereits ein Account mit dieser Mailadresse.\" is shown(register.feature:18)\r\n",
+  "status": "failed"
+});
+formatter.after({
+  "duration": 156444,
   "status": "passed"
 });
 formatter.after({
-  "duration": 387027,
+  "duration": 78222,
   "status": "passed"
 });
 formatter.after({
-  "duration": 265146,
+  "duration": 74800,
   "status": "passed"
 });
 formatter.after({
-  "duration": 227512,
+  "duration": 80667,
   "status": "passed"
 });
 formatter.after({
-  "duration": 10330847,
+  "duration": 70400,
   "status": "passed"
 });
 formatter.after({
-  "duration": 444760,
+  "duration": 68934,
   "status": "passed"
 });
 formatter.after({
-  "duration": 319030,
+  "duration": 759334008,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1338476875,
+  "duration": 151067,
   "status": "passed"
 });
 formatter.scenario({
@@ -2496,35 +2567,287 @@ formatter.match({
   "location": "BackgroundSteps.loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String,String)"
 });
 formatter.result({
-  "duration": 11763024320,
+  "duration": 4859320040,
   "status": "passed"
 });
 formatter.after({
-  "duration": 769778,
+  "duration": 203867,
   "status": "passed"
 });
 formatter.after({
-  "duration": 316037,
+  "duration": 78711,
   "status": "passed"
 });
 formatter.after({
-  "duration": 274554,
+  "duration": 70889,
   "status": "passed"
 });
 formatter.after({
-  "duration": 23228902,
+  "duration": 727956,
   "status": "passed"
 });
 formatter.after({
-  "duration": 1561744094,
+  "duration": 757112985,
   "status": "passed"
 });
 formatter.after({
-  "duration": 301924,
+  "duration": 154489,
   "status": "passed"
 });
 formatter.after({
-  "duration": 187312,
+  "duration": 80666,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 61600,
+  "status": "passed"
+});
+formatter.uri("searchFriend.feature");
+formatter.feature({
+  "line": 1,
+  "name": "Search friend",
+  "description": "As a logged in user\r\nI want to search for a friend",
+  "id": "search-friend",
+  "keyword": "Feature"
+});
+formatter.scenario({
+  "line": 5,
+  "name": "search friend successful",
+  "description": "",
+  "id": "search-friend;search-friend-successful",
+  "type": "scenario",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "line": 6,
+  "name": "a registerd user named \"search friend\" with email \"search@friend.de\" and password \"test\"",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 7,
+  "name": "login to search a friend with the email \"search@friend.de\" and the password \"test\"",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 8,
+  "name": "I am on the add friends page",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 9,
+  "name": "I type \"test\" in the searchfield",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 10,
+  "name": "I find my friend \"test user\"",
+  "keyword": "Then "
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "search friend",
+      "offset": 24
+    },
+    {
+      "val": "search@friend.de",
+      "offset": 51
+    },
+    {
+      "val": "test",
+      "offset": 83
+    }
+  ],
+  "location": "BackgroundSteps.aRegisterdUserWithNamedWithEmailAndPassword(String,String,String)"
+});
+formatter.result({
+  "duration": 4883019420,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "search@friend.de",
+      "offset": 41
+    },
+    {
+      "val": "test",
+      "offset": 77
+    }
+  ],
+  "location": "SearchFriendSteps.loginToSearchAFriendWithTheEmailAndThePassword(String,String)"
+});
+formatter.result({
+  "duration": 3757667455,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SearchFriendSteps.iAmOnTheAddFriendsPage()"
+});
+formatter.result({
+  "duration": 490628907,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "test",
+      "offset": 8
+    }
+  ],
+  "location": "SearchFriendSteps.iTypeInTheSearchfield(String)"
+});
+formatter.result({
+  "duration": 131113172,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "test user",
+      "offset": 18
+    }
+  ],
+  "location": "SearchFriendSteps.iFindMyFriend(String)"
+});
+formatter.result({
+  "duration": 189623402,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 149600,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 85067,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 89955,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 77245,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 100221,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 99244,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 73822,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 747834851,
+  "status": "passed"
+});
+formatter.scenario({
+  "line": 12,
+  "name": "search friend failed",
+  "description": "",
+  "id": "search-friend;search-friend-failed",
+  "type": "scenario",
+  "keyword": "Scenario"
+});
+formatter.step({
+  "line": 13,
+  "name": "login to search a friend with the email \"search@friend.de\" and the password \"test\"",
+  "keyword": "Given "
+});
+formatter.step({
+  "line": 14,
+  "name": "I am on the add friends page",
+  "keyword": "And "
+});
+formatter.step({
+  "line": 15,
+  "name": "I type \"not_a_Friend\" in the searchfield",
+  "keyword": "When "
+});
+formatter.step({
+  "line": 16,
+  "name": "I find no entry in list",
+  "keyword": "Then "
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "search@friend.de",
+      "offset": 41
+    },
+    {
+      "val": "test",
+      "offset": 77
+    }
+  ],
+  "location": "SearchFriendSteps.loginToSearchAFriendWithTheEmailAndThePassword(String,String)"
+});
+formatter.result({
+  "duration": 3852175555,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SearchFriendSteps.iAmOnTheAddFriendsPage()"
+});
+formatter.result({
+  "duration": 503953086,
+  "status": "passed"
+});
+formatter.match({
+  "arguments": [
+    {
+      "val": "not_a_Friend",
+      "offset": 8
+    }
+  ],
+  "location": "SearchFriendSteps.iTypeInTheSearchfield(String)"
+});
+formatter.result({
+  "duration": 147436197,
+  "status": "passed"
+});
+formatter.match({
+  "location": "SearchFriendSteps.iFindNoEntryInList()"
+});
+formatter.result({
+  "duration": 10653152775,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 193600,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 79689,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 71867,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 85556,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 597422,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 101200,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 69911,
+  "status": "passed"
+});
+formatter.after({
+  "duration": 726648359,
   "status": "passed"
 });
 });

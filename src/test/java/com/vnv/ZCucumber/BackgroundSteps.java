@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.tagName;
 
@@ -20,26 +22,18 @@ public class BackgroundSteps extends BasedriverConfiguration {
     @Given("^a registerd user named \"([^\"]*)\" with email \"([^\"]*)\" and password \"([^\"]*)\"$")
     public void aRegisterdUserWithNamedWithEmailAndPassword(String name, String email, String password) throws Throwable {
         browser = webDriver();
-        Thread.sleep(300);
         browser.findElement(id("anchorLoginShowRegister")).click();
-        Thread.sleep(1000);
 
         if(!name.isEmpty()) {
             browser.findElement(id("form-firstname")).sendKeys(name.split(" ")[0]);
-            Thread.sleep(100);
             browser.findElement(id("form-lastname")).sendKeys(name.split(" ")[1]);
-            Thread.sleep(100);
         }
 
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(300);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(id("form-confirmPassword")).sendKeys(password);
 
         browser.findElement(id("signUp")).click();
-        Thread.sleep(3000);
-
         closeBrowser();
     }
 
@@ -68,11 +62,8 @@ public class BackgroundSteps extends BasedriverConfiguration {
     public void loginAndDeleteTheRegisteredUserWithTheEmailAndThePasswordFromDatabaseAgain(String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
 
         cleanUp(browser);
     }

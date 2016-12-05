@@ -28,19 +28,14 @@ public class RegisterSteps extends BasedriverConfiguration {
     public void the_username_is_something_and_the_email_is_something_and_the_password_something(String username, String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("anchorLoginShowRegister")).click();
-        Thread.sleep(1000);
 
         if(!username.isEmpty()) {
             browser.findElement(id("form-firstname")).sendKeys(username.split(" ")[0]);
-            Thread.sleep(100);
             browser.findElement(id("form-lastname")).sendKeys(username.split(" ")[1]);
-            Thread.sleep(100);
         }
 
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(300);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(id("form-confirmPassword")).sendKeys(password);
 
     }
@@ -49,7 +44,7 @@ public class RegisterSteps extends BasedriverConfiguration {
     public void the_register_button_is_clicked() throws Throwable {
         WebElement registerForm = browser.findElement(id("signUp"));
         registerForm.click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
     }
 
     @Then("^the register page is shown and the cssSelector is \"([^\"]*)\" and the message is \"([^\"]*)\"$")
@@ -76,7 +71,7 @@ public class RegisterSteps extends BasedriverConfiguration {
     public void anRegistrationerrorWithTheMessageIsShown(String message) throws Throwable {
         WebElement registerError = browser.findElement(id("errorAlreadyRegistered"));
         String text = registerError.getText();
-        assertThat(message,Matchers.is(text));
+        assertThat(text,Matchers.is(message));
     }
 
 

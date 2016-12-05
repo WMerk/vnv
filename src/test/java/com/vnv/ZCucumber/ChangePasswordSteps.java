@@ -21,37 +21,27 @@ public class ChangePasswordSteps extends BasedriverConfiguration {
     public void loginToChangeThePasswordWithTheEmailAndThePassword(String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
     }
 
     @And("^navigate to password settings$")
     public void navigateToPasswordSettings() throws Throwable {
         browser.findElement(By.linkText("Profil")).click();
-        Thread.sleep(100);
         browser.findElement(By.linkText("Einstellungen")).click();
-        Thread.sleep(100);
         browser.findElement(By.linkText("Passwort ändern")).click();
-        Thread.sleep(100);
     }
 
     @And("^the actual password \"([^\"]*)\" new password \"([^\"]*)\" and confirm password \"([^\"]*)\" is entered$")
     public void theActualPasswordNewPasswordAndConfirmPasswordIsEntered(String actualPassword, String newPassword, String confirmPassword) throws Throwable {
         browser.findElement(id("passwordInputCurrentPw")).sendKeys(actualPassword);
-        Thread.sleep(100);
         browser.findElement(id("passwordInputNewPw")).sendKeys(newPassword);
-        Thread.sleep(100);
         browser.findElement(id("passwordInputConfirmPw")).sendKeys(confirmPassword);
-        Thread.sleep(100);
     }
 
     @When("^the change password button is clicked$")
     public void theChangePasswordButtonIsClicked() throws Throwable {
         browser.findElement(id("passwordButtonChangePw")).click();
-        Thread.sleep(3000);
     }
 
     @Then("^the message \"([^\"]*)\" form element with id \"([^\"]*)\" is shown$")
