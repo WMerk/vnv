@@ -223,8 +223,8 @@ public class User {
             return false;
         if (getFacebookId() != null ? !getFacebookId().equals(user.getFacebookId()) : user.getFacebookId() != null)
             return false;
-        if (getSessionId() != null ? !getSessionId().equals(user.getSessionId()) : user.getSessionId() != null)
-            return false;
+        //if (getSessionId() != null ? !getSessionId().equals(user.getSessionId()) : user.getSessionId() != null)
+        //    return false;
         return getConfirmationLink() != null ? getConfirmationLink().equals(user.getConfirmationLink()) : user.getConfirmationLink() == null;
     }
 
