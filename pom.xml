@@ -6,7 +6,7 @@
 
     <groupId>com.vnv</groupId>
     <artifactId>dhbwMVC</artifactId>
-    <version>0.4-SNAPSHOT</version>
+    <version>0.5</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
