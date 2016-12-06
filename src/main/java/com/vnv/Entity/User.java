@@ -15,6 +15,7 @@ public class User {
     @Indexed
     @Attribute
     private String lastName;
+    private String name;
     @Indexed
     @Attribute
     private String mail;
@@ -67,6 +68,7 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        setName(firstName + " " + getLastName());
     }
 
     public String getLastName() {
@@ -75,6 +77,15 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        setName(getFirstName() + " "+ lastName);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMail() {
