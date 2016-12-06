@@ -25,11 +25,8 @@ public class OfferDienstleistungenSteps extends BasedriverConfiguration{
     public void offerLoginWithTheEmailAndThePassword(String email, String password) throws Throwable {
         browser = webDriver();
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
     }
 
     @And("^the Link \"([^\"]*)\" is clicked$")
@@ -40,23 +37,16 @@ public class OfferDienstleistungenSteps extends BasedriverConfiguration{
 
     @And("^the flavior \"([^\"]*)\" is selected$")
     public void theFlaviorIsSelected(String flavior) throws Throwable {
-
         browser.findElement(By.linkText(flavior)).click();
-        Thread.sleep(100);
     }
 
     @And("^the offer with offername \"([^\"]*)\" and the category \"([^\"]*)\" and the endtime \"([^\"]*)\" and the description \"([^\"]*)\" is created$")
     public void theOfferWithOffernameAndTheCategoryAndTheEndtimeAndTheDescriptionIsCreated(String offername, String category, String endtime, String description) throws Throwable {
         browser.findElement(id("insertOfferName")).sendKeys(offername);
-        Thread.sleep(100);
         browser.findElement(id("dropdownMenu1")).click();
-        Thread.sleep(100);
         browser.findElement(By.linkText(category)).click();
-        Thread.sleep(100);
         browser.findElement(id("insertOfferDate")).sendKeys(endtime);
-        Thread.sleep(100);
         browser.findElement(id("insertOfferDescription")).sendKeys(description);
-        Thread.sleep(100);
 
     }
 

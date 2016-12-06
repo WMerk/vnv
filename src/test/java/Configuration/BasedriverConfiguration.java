@@ -11,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.By.id;
 
@@ -29,8 +30,8 @@ public class BasedriverConfiguration {
             return browser;
         }
         browser = chromeDriver();
+        browser.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         browser.get(server + url);
-        Thread.sleep(200);
         return browser;
     }
 
@@ -88,7 +89,6 @@ public class BasedriverConfiguration {
         brow.findElement(By.linkText("Einstellungen")).click();
         brow.findElement(By.linkText("Account löschen")).click();
         brow.findElement(By.id("deleteAccountButton")).click();
-        Thread.sleep(300);
         brow.findElement(id("deletAccountInputPw")).sendKeys("test");
         brow.findElement(id("confirmDeleteAccount")).click();
     }
