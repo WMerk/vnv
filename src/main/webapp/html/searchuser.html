@@ -14,8 +14,8 @@
             <table id="tableShowFriends" class="table">
                 <tbody>
                 <tr ng-repeat="user in users | filter:search | orderBy:'data.lastName'">
-                    <td><img src="/img/avatar.png" style="max-width: 50%; max-height: 50%" class="img-circle img-responsive"></td>
-                    <td class="vert-align">{{user.data.firstName}} {{user.data.lastName}}</td>
+                    <td><img src="/img/avatar.png" style="max-width:40%; max-height: 40%" class="img-circle img-responsive"></td>
+                    <td class="vert-align">{{user.data.name}}</td>
                     <td class="vert-align" ng-show="(user.request == 'accepted')">
                         <button id="buttonSearchUserReqAccepted" disabled="disabled" class="btn btn-sm">
                             <i class="glyphicon glyphicon-ok"></i> Freunde
