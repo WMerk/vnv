@@ -3,16 +3,20 @@ package com.vnv.Service;
 import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
+import com.vnv.Model.Fake;
 import com.vnv.Main;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Main.class)
+@WebIntegrationTest
 public class PerformanceTest {
 
     @Autowired
@@ -24,26 +28,31 @@ public class PerformanceTest {
     @Autowired
     UserDao userDao;
 
- //   User theUser = userDao.getUserById(1);
-/*
+    User theUser;// = userDao.getUserById(1);
+
     @Before
     public void setUp() throws Exception {
         theUser = Fake.getFakeUser();
         userService.registerUser(theUser);
-        for (int i=0; i<250; i++) {
+        System.out.println(theUser);
+        for (int i=0; i<50; i++) {
             User user = Fake.getFakeUser();
             userService.registerUser(user);
-            if (i%3==0)
+            if (i%4==0)
                 userRelDao.addFriend(theUser, user);
+            if (i%4==1)
+                userRelDao.addRequest(theUser, user);
+            if (i%4==2)
+                userRelDao.addRequest(user, theUser);
         }
     }
-*/
+
     @Test
     public void getUser() throws Exception {
-        User theUser = userDao.getUserById(1);
+        //User theUser = userDao.getUserById(2);
         System.out.println(theUser.toJSON());
         userService.loginUser(theUser.getMail(), theUser.getPassword(), theUser.getSessionId());
-        System.out.println(userService.getAllUser(1, theUser.getSessionId()));
+        System.out.println(userService.getAllUser(theUser.getUid(), theUser.getSessionId()));
     }
 
     @After

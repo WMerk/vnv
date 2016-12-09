@@ -172,12 +172,14 @@ public class UserServiceTest {
 
     @Test
     public void getFriends() throws Exception {
-        System.out.println(usRelDao.getFriends(usDao.getUserById(2)));
+        //System.out.println(usRelDao.getFriends(usDao.getUserById(2)));
+        //TODO
     }
 
     @Test
     public void getNonRelatedUsers() throws Exception {
-        System.out.println(usRelDao.getNonRelatedUsers(usDao.getUserById(2)));
+       // System.out.println(usRelDao.getNonRelatedUsers(usDao.getUserById(2)));
+        //TODO
     }
 
     @After
