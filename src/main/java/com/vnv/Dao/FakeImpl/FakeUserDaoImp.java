@@ -102,6 +102,18 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
+    public User getUserByGoogleId(String id) {
+        for (int i=1; i<this.id; i++) {
+            User u = getUserById(i);
+            if (u!=null) {
+                if (id.equals(u.getGoogleId()))
+                    return u;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean removeUserById(long id) {
         users.remove(id);
         return true;

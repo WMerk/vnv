@@ -29,6 +29,7 @@ public class Http {
 
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
+        log.debug(httppost.getURI().toString());
         HttpResponse response = httpclient.execute(httppost);
         HttpEntity entity = response.getEntity();
 
@@ -51,6 +52,19 @@ public class Http {
         get.setHeader(header);
 
         HttpResponse response = httpclient.execute(get);
+        return responseToString(response);
+    }
+
+    public static String get(String url) throws IOException {
+        log.debug(url);
+        HttpClient httpclient = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+
+        HttpResponse response = httpclient.execute(get);
+        return responseToString(response);
+    }
+
+    private static String responseToString(HttpResponse response) throws IOException {
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             InputStream instream = entity.getContent();

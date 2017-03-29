@@ -12,6 +12,8 @@ public class ErrorMessage {
     public static String WrongPassword = String.format(Error, "wrong password");
     public static String AlreadyRegistered = String.format(Error, "mail already registered");
 
+    public static String NotImplemented = String.format(Error, "not implemented");
+
     public static String NoCategoriesAvailable = String.format(Error, "no categories available");
     public static String NoCategory = String.format(Error, "the given category is not a category");
 
