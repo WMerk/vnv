@@ -51,7 +51,7 @@ public class GoogleService extends SocialService {
     private String configuration_endpoint;
 
     public String redirect_uri = "https://dhbw-projekt.data.kit.edu/gconnect";
-    public String debug_redirect_uri = "http://localhost:8080/gconnect";
+    public String debug_redirect_uri = "http://localhost:8080/";
 
     private String grant_type = "authorization_code";
     public String scope = "openid email profile https://www.googleapis.com/auth/contacts.readonly";
@@ -87,9 +87,8 @@ public class GoogleService extends SocialService {
     }
 
     @Override
-    public JSONObject login(String code, String state, HttpSession session) {
+    public JSONObject login(String code, String state, String redirect_uri, HttpSession session) {
         if (!state.equals(session.getAttribute("state"))) {
-            log.debug(session.getAttribute("state").toString());
             return new JSONObject(ErrorMessage.DefaultError);
         }
         JSONObject tokenJson = getTokens(code, state);
@@ -127,12 +126,23 @@ public class GoogleService extends SocialService {
             userRelDao.addUser(user);
 
             JSONObject json = addSocialFriends(user, access_token);
+
+            /*
+            try {
+                MailService.sendEmail(user.getMail(), "Willkommen zu vnv", MailMessage.getGwelcome(user.getName()));
+            } catch (MessagingException e) {
+                log.error(e.getMessage());
+            }
+            */
+
             if (json.has("error"))
                 return json;
         }
 
         return user.toJSON();
     }
+
+
 
     @Override
     protected boolean validate(String iss, String aud, long exp) {

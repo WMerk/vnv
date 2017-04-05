@@ -13,7 +13,7 @@ import java.util.List;
 public abstract class SocialService {
 
     public abstract JSONObject getConfig();
-    public abstract JSONObject login(String code, String state, HttpSession session);
+    public abstract JSONObject login(String code, String state, String redirectUri, HttpSession session);
     protected abstract boolean validate(String iss, String aud, long exp);
     protected abstract JSONObject getTokens(String code, String state);
     protected abstract User getUserInfo(String access_token);

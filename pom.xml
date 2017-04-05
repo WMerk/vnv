@@ -6,7 +6,7 @@
 
     <groupId>com.vnv</groupId>
     <artifactId>dhbwMVC</artifactId>
-    <version>0.5</version>
+    <version>0.6.0</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -97,6 +97,19 @@
             <version>0.11</version>
         </dependency>
         <!-- end::Faker[] -->
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
 
     </dependencies>
 
