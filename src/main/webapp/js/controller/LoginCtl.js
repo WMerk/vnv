@@ -3,9 +3,11 @@ vnvApp.controller(
     [
         '$scope',
         '$location',
+        '$auth',
         'userService',
         'doLogin',
-        function ($scope, $location, userService, doLogin) {
+        'doGoogleLogin',
+        function ($scope, $location, $auth, userService, doLogin, doGoogleLogin) {
 
             $scope.init = function () {
                 $scope.accountDeleted = userService.getAccountDeleted();
@@ -38,6 +40,36 @@ vnvApp.controller(
                 userService.setAccountDeleted(false);
 
             };
+
+            $scope.authenticate = function (provider) {
+
+                var params = {};
+                var response = doGoogleLogin.query(params);
+
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, registration successful
+                        var userData = {
+                            state: response.state
+                        };
+                        $auth.authenticate(provider, userData);
+                    } else {
+                        // error, login failed
+                    }
+
+                });
+
+            };
+
+            $auth.authenticate('google')
+                .then(function (response) {
+                    console.log("success: " + response);
+                    // Signed in with Google.
+                })
+                .catch(function (response) {
+                    console.log("error: " + response);
+                    // Something went wrong.
+                });
 
         }]);
 

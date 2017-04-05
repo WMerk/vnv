@@ -18,6 +18,8 @@ public interface UserDao {
 
     User getUserByFacebookId(String id);
 
+    User getUserByGoogleId(String id);
+
     boolean removeUserById(long id);
 
     User updateUser(User user);

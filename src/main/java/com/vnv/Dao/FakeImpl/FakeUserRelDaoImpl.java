@@ -79,6 +79,10 @@ public class FakeUserRelDaoImpl implements UserRelDao {
     @Override
     public void addRequest(User requestFrom, User requestTo) {
         UserRelations relation = relations.get(requestTo.getUid());
+        if (relation==null) {
+            //throw UserDoesNotExistException;
+            return;
+        }
         Collection<User> recs = relation.getReceivedRequests();
         if (recs==null)
             recs = new ArrayList<>();
@@ -87,6 +91,10 @@ public class FakeUserRelDaoImpl implements UserRelDao {
         relations.put(requestTo.getUid(), relation);
 
         relation = relations.get(requestFrom.getUid());
+        if (relation==null) {
+            //throw UserDoesNotExistException;
+            return;
+        }
         Collection<User> sents = relation.getSentRequests();
         if (sents==null)
             sents = new ArrayList<>();

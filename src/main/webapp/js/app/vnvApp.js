@@ -1,7 +1,7 @@
 var vnvApp = angular.module('vnvApp', [
-    'ngResource', 'ngRoute', 'ngCookies']);
+    'ngResource', 'ngRoute', 'ngCookies', 'satellizer']);
 
-vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function ($routeProvider, $locationProvider, $authProvider) {
 
     $routeProvider.when('/', {
         templateUrl: '/html/login.html',
@@ -34,9 +34,21 @@ vnvApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
         redirectTo: '/'
     });
 
+    $authProvider.google({
+        clientId: '707063193538-lcm9405hr187ncpl3rcv4q5ts2po42tc.apps.googleusercontent.com',
+        scope:"openid email profile https://www.googleapis.com/auth/contacts.readonly"
+    });
+
+    $authProvider.oauth2({
+        name: 'foursquare',
+        url: '/auth/foursquare',
+        clientId: 'Foursquare Client ID',
+        redirectUri: window.location.origin,
+        authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
+    });
 
     //check browser support for html 5 mode (removes # from url)
-    if(window.history && window.history.pushState){
+    if (window.history && window.history.pushState) {
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
