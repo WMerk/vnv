@@ -22,12 +22,12 @@ public class GoogleController {
 
     @Autowired
     GoogleService gService;
-    
+
 
     @RequestMapping(value="/auth/google", method= RequestMethod.POST)
     String gconnect(@RequestBody GoogleCode googleCode, HttpSession session) {
         log.debug(googleCode.toString());
-        JSONObject json = gService.login(googleCode.getCode(), googleCode.getState(), googleCode.getRedirect_uri(), session);
+        JSONObject json = gService.login(googleCode.getCode(), googleCode.getState(), googleCode.getRedirectUri(), session);
         log.debug(json.toString());
         return json.toString();
     }

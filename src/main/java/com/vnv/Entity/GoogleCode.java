@@ -3,7 +3,7 @@ package com.vnv.Entity;
 public class GoogleCode {
 
     private String code;
-    private String redirect_uri;
+    private String redirectUri;
     private String client_id;
     private String state;
 
@@ -15,12 +15,12 @@ public class GoogleCode {
         this.code = code;
     }
 
-    public String getRedirect_uri() {
-        return redirect_uri;
+    public String getRedirectUri() {
+        return redirectUri;
     }
 
-    public void setRedirect_uri(String redirect_uri) {
-        this.redirect_uri = redirect_uri;
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
     }
 
     public String getClient_id() {
@@ -37,5 +37,15 @@ public class GoogleCode {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "GoogleCode{" +
+                "code='" + code + '\'' +
+                ", redirectUri='" + redirectUri + '\'' +
+                ", client_id='" + client_id + '\'' +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

@@ -88,14 +88,20 @@ public class GoogleService extends SocialService {
 
     @Override
     public JSONObject login(String code, String state, String redirect_uri, HttpSession session) {
+        log.debug("State: {}", state);
+        log.debug("State Session: {}", session.getId());
+        log.debug("code: {}", code);
+        log.debug("redirect_uri: {}", redirect_uri);
         if (!state.equals(session.getAttribute("state"))) {
-            return new JSONObject(ErrorMessage.DefaultError);
+           // return new JSONObject(ErrorMessage.DefaultError);
         }
-        JSONObject tokenJson = getTokens(code, state);
+        log.debug("State comparison done");
+        JSONObject tokenJson = getTokens(code, state, redirect_uri);
         if (tokenJson.has("error")) {
             log.error(tokenJson.toString());
             return tokenJson;
         }
+        log.debug("Token retrieved");
         String access_token = tokenJson.getString("access_token");
         String id_token = tokenJson.getString("id_token");
         log.debug("Access token: {}",access_token);
@@ -105,6 +111,7 @@ public class GoogleService extends SocialService {
             log.debug("Could not validate token");
             return new JSONObject(ErrorMessage.DefaultError);
         }
+        log.debug("Token validated");
 
         User user = getUserInfo(access_token);
         if (user==null)
@@ -162,7 +169,7 @@ public class GoogleService extends SocialService {
     }
 
     @Override
-    protected JSONObject getTokens(String code, String state) {
+    protected JSONObject getTokens(String code, String state, String redirect_uri) {
         List<NameValuePair> params = new ArrayList<>(2);
         params.add(new BasicNameValuePair("code", code));
         params.add(new BasicNameValuePair("client_id", client_id));
