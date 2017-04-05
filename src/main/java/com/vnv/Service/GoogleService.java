@@ -116,10 +116,11 @@ public class GoogleService extends SocialService {
         User user = getUserInfo(access_token);
         if (user==null)
             return new JSONObject(ErrorMessage.DefaultError);
-        if (userDao.getUserByGoogleId(user.getGoogleId())!=null) {
+        User savedUser = userDao.getUserByGoogleId(user.getGoogleId());
+        if (savedUser!=null) {
             //login
-            user.setSessionId(session.getId());
-            userDao.updateUser(user);
+            savedUser.setSessionId(session.getId());
+            userDao.updateUser(savedUser);
         } else {
             //register
             log.debug("Registering google user {}", user);
