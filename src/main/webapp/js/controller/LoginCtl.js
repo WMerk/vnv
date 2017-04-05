@@ -6,8 +6,7 @@ vnvApp.controller(
         '$auth',
         'userService',
         'doLogin',
-        'doGoogleLogin',
-        function ($scope, $location, $auth, userService, doLogin, doGoogleLogin) {
+        function ($scope, $location, $auth, userService, doLogin) {
 
             $scope.init = function () {
                 $scope.accountDeleted = userService.getAccountDeleted();
@@ -36,40 +35,27 @@ vnvApp.controller(
                     }
 
                 });
-
                 userService.setAccountDeleted(false);
-
             };
 
             $scope.authenticate = function (provider) {
-
-                var params = {};
-                var response = doGoogleLogin.query(params);
-
-                response.$promise.then(function (data) {
-                    if (data.error === undefined) {
-                        // no error, registration successful
-                        var userData = {
-                            state: response.state
-                        };
-                        $auth.authenticate(provider, userData);
-                    } else {
-                        // error, login failed
+                $auth.authenticate(provider).then(function (response) {
+                    if (response.error === undefined) {
+                        // no error, login successful
+                        console.log(response);
+                        userService.setCurrentUser(response.data);
+                        userService.setNewUser(false);
+                        userService.setAccountDeleted(false);
+                        $scope.login = '';
+                        $('#errorLogin').css("display", "none");
+                        $location.path('/Main');
                     }
-
+                }).catch(function (response) {
+                    // error, login failed
+                    $('#errorLogin').css("display", "block");
                 });
-
             };
 
-            $auth.authenticate('google')
-                .then(function (response) {
-                    console.log("success: " + response);
-                    // Signed in with Google.
-                })
-                .catch(function (response) {
-                    console.log("error: " + response);
-                    // Something went wrong.
-                });
 
         }]);
 
