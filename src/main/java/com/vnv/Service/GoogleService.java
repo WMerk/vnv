@@ -127,7 +127,7 @@ public class GoogleService extends SocialService {
             userDao.insertUserToDb(user);
             user = userDao.getUserByMail(user.getMail());
             if (user==null) {
-                return new JSONObject(String.format(ErrorMessage.Error, "could not register user"));
+                return new JSONObject(String.format(ErrorMessage.getError("could not register user", 404)));
             }
             log.debug("User {} successfully added to DB", user);
             log.debug("Adding user to graphDB");
@@ -251,10 +251,10 @@ public class GoogleService extends SocialService {
             return json;
         } catch (IOException e) {
             e.printStackTrace();
-            return new JSONObject(String.format(ErrorMessage.Error, "error while retrieving friend list"));
+            return new JSONObject(String.format(ErrorMessage.getError("error while retrieving friend list", 500)));
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
-            return new JSONObject(String.format(ErrorMessage.Error, "error while parsing friend list"));
+            return new JSONObject(String.format(ErrorMessage.getError("error while parsing friend list", 500)));
         }
     }
 

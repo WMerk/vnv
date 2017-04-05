@@ -159,7 +159,7 @@ public class UserService {
         this.insertUser(user);
         user = userDao.getUserByMail(user.getMail());
         if (user==null) {
-            return new JSONObject(String.format(ErrorMessage.Error, "could not register user"));
+            return new JSONObject(String.format(ErrorMessage.getError("could not register user", 404)));
         }
         log.debug("User {} successfully added to DB", user);
         log.debug("Adding user to graphDB");
