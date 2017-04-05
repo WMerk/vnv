@@ -35,7 +35,8 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
     });
 
     $authProvider.google({
-        clientId: '707063193538-lcm9405hr187ncpl3rcv4q5ts2po42tc.apps.googleusercontent.com'
+        clientId: '707063193538-lcm9405hr187ncpl3rcv4q5ts2po42tc.apps.googleusercontent.com',
+        scope:"openid email profile https://www.googleapis.com/auth/contacts.readonly"
     });
 
     $authProvider.oauth2({

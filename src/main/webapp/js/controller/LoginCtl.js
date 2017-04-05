@@ -42,13 +42,17 @@ vnvApp.controller(
             };
 
             $scope.authenticate = function (provider) {
+
                 var params = {};
                 var response = doGoogleLogin.query(params);
 
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, registration successful
-                        $auth.authenticate(provider, response);
+                        var userData = {
+                            state: response.state
+                        };
+                        $auth.authenticate(provider, userData);
                     } else {
                         // error, login failed
                     }
