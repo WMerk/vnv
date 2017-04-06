@@ -97,7 +97,7 @@ public class GoogleService extends SocialService {
         log.debug("code: {}", code);
         log.debug("redirect_uri: {}", redirect_uri);
         if (!state.equals(session.getAttribute("state"))) {
-           // return new JSONObject(ErrorMessage.DefaultError);
+           return new JSONObject(ErrorMessage.getError("states not equal", 401));
         }
         log.debug("State comparison done");
         JSONObject tokenJson = getTokens(code, state, redirect_uri);

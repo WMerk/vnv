@@ -6,10 +6,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
@@ -25,15 +23,19 @@ public class GoogleController {
 
 
     @RequestMapping(value="/auth/google", method= RequestMethod.POST)
-    String gconnect(@RequestBody GoogleCode googleCode, HttpSession session) {
+    public ResponseEntity gconnect(@RequestBody GoogleCode googleCode, HttpSession session) {
         log.debug(googleCode.toString());
         JSONObject json = gService.login(googleCode.getCode(), googleCode.getState(), googleCode.getRedirectUri(), session);
         log.debug(json.toString());
-        return json.toString();
+        int status = 200;
+        if (json.has("status")) {
+            status = json.getInt("status");
+        }
+        return ResponseEntity.status(status).body(json.toString());
     }
 
     @RequestMapping("/gconfig")
-    public String getGoogleConfig(HttpSession session) {
+    public ResponseEntity getGoogleConfig(HttpSession session) {
         String state = new BigInteger(130, new SecureRandom()).toString(32);
         session.setAttribute("state", state);
         log.debug(state);
@@ -41,7 +43,11 @@ public class GoogleController {
 
         JSONObject config = gService.getConfig();
         config.put("state", state);
-        return config.toString();
+        int status = 200;
+        if (config.has("status")) {
+            status = config.getInt("status");
+        }
+        return ResponseEntity.status(status).body(config.toString());
     }
 }
 
