@@ -6,6 +6,7 @@ import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
 import com.vnv.Model.ErrorMessage;
 import com.vnv.Model.Http;
+import com.vnv.Model.MailMessage;
 import org.apache.http.Header;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicHeader;
@@ -24,6 +25,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.annotation.PostConstruct;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -42,6 +44,8 @@ public class GoogleService extends SocialService {
     private UserDao userDao;
     @Autowired
     private UserRelDao userRelDao;
+    @Autowired
+    private MailService mailService;
 
     @Value("${social.google.client_id}")
     private String client_id;
@@ -123,6 +127,7 @@ public class GoogleService extends SocialService {
             userDao.updateUser(savedUser);
         } else {
             //register
+            user.setSessionId(session.getId());
             log.debug("Registering google user {}", user);
             userDao.insertUserToDb(user);
             user = userDao.getUserByMail(user.getMail());
@@ -135,13 +140,14 @@ public class GoogleService extends SocialService {
 
             JSONObject json = addSocialFriends(user, access_token);
 
-            /*
-            try {
-                MailService.sendEmail(user.getMail(), "Willkommen zu vnv", MailMessage.getGwelcome(user.getName()));
-            } catch (MessagingException e) {
-                log.error(e.getMessage());
-            }
-            */
+            final User finalUser = user;
+            new Thread(() -> {
+                try {
+                mailService.sendEmail(finalUser.getMail(),"Willkommen zu vnv",MailMessage.getGwelcome(finalUser.getName()));
+                } catch (MessagingException e) {
+                    log.error(e.getMessage());
+                }
+            }).start();
 
             if (json.has("error"))
                 return json;
