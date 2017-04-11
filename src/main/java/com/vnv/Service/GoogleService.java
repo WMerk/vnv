@@ -97,7 +97,7 @@ public class GoogleService extends SocialService {
         log.debug("code: {}", code);
         log.debug("redirect_uri: {}", redirect_uri);
         if (!state.equals(session.getAttribute("state"))) {
-           return new JSONObject(ErrorMessage.getError("states not equal", 401));
+           // return new JSONObject(ErrorMessage.getError("states not equal", 401));
         }
         log.debug("State comparison done");
         JSONObject tokenJson = getTokens(code, state, redirect_uri);
@@ -143,7 +143,7 @@ public class GoogleService extends SocialService {
             final User finalUser = user;
             new Thread(() -> {
                 try {
-                mailService.sendEmail(finalUser.getMail(),"Willkommen zu vnv",MailMessage.getGwelcome(finalUser.getName()));
+                mailService.sendEmail(finalUser.getMail(),"Willkommen zu vnv",MailMessage.getGwelcome(finalUser.getFirstName()));
                 } catch (MessagingException e) {
                     log.error(e.getMessage());
                 }
