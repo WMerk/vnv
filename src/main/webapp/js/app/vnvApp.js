@@ -27,6 +27,9 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
     }).when('/CreateOffer', {
         templateUrl: '/html/createoffer.html',
         controller: 'CreateOfferCtl'
+    }).when('/CreateRequest', {
+        templateUrl: '/html/createrequest.html',
+        controller: 'CreateRequestCtl'
     }).when('/AddFriends', {
         templateUrl: '/html/searchuser.html',
         controller: 'SearchUserCtl'

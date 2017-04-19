@@ -5,6 +5,7 @@ vnvApp.service('userService',
             var currentUser = null;
             var newUser = false;
             var offerCreated = false;
+            var requestCreated = false;
             var accountDeleted = false;
 
             var navigationTemplate = 'html/templates/navigation.html';
@@ -26,12 +27,17 @@ vnvApp.service('userService',
                 setNewUser: function (value) {
                     newUser = value;
                 },
-
                 getOfferCreated: function () {
                     return offerCreated;
                 },
                 setOfferCreated: function (value) {
                     offerCreated = value;
+                },
+                getRequestCreated: function () {
+                    return requestCreated;
+                },
+                setRequestCreated: function (value) {
+                    requestCreated = value;
                 },
                 getNavigationTemplate: function () {
                     return navigationTemplate;

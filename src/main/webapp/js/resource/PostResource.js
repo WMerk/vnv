@@ -1,4 +1,4 @@
-vnvApp.factory('doCreateNewOffer', function ($resource) {
+vnvApp.factory('doCreateNewPost', function ($resource) {
     return $resource('/posts/insert',
         {},
         {
