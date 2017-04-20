@@ -23,13 +23,9 @@ vnvApp.controller(
                     if (data.error === undefined) {
                         // no error, query successful
                         $scope.users = response.users;
-
-                        console.log($scope.users);
-
                     } else {
                         // error, query failed
                     }
-
                 });
             };
 

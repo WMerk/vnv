@@ -20,7 +20,6 @@ vnvApp.controller(
 
                 var response = doLogin.query(params);
                 response.$promise.then(function (data) {
-                    alert(data.error);
                     if (data.error === undefined) {
                         // no error, registration successful
                         userService.setCurrentUser(data);

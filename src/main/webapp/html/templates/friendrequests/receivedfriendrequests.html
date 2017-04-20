@@ -1,0 +1,29 @@
+<div style="margin-top: 50px">
+    <h2>Verwalte Deine Freundschaftsanfragen</h2>
+</div>
+
+<div style="margin-top: 50px">
+    <div style="width: 50%; margin:auto" class="btn-group btn-group-justified" role="group">
+        <a ng-click="showTemplateReceivedRequests()" type="submit" class="btn btn-primary">Erhaltene Anfragen</a>
+        <a ng-click="showTemplateSentRequests()" type="submit" class="btn btn-default">Gesendete Anfragen</a>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 50px; margin-left:20px; margin-right: 20px">
+    <div class="table-responsive">
+        <table id="tableShowReceivedRequests" class="table">
+            <tbody>
+            <tr ng-repeat="user in receivedRequests | orderBy:'data.lastName'">
+                <td><img src="/img/avatar.png" style="max-width:40%; max-height: 40%" class="img-circle img-responsive"></td>
+                <td class="vert-align">{{user.data.name}}</td>
+                <td class="vert-align">
+                    <button id="buttonAcceptRequest" ng-click="acceptRequest(user)" class="btn btn-primary">Bestätigen</button>
+                </td>
+                <td class="vert-align">
+                    <button id="buttonDeleteRequest" ng-click="deleteRequest(user)" class="btn btn-default">Anfrage löschen</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

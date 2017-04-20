@@ -90,6 +90,34 @@ vnvApp.factory('doLoadAllUsers', function ($resource) {
     );
 });
 
+vnvApp.factory('doLoadReceivedFriendRequests', function ($resource) {
+    return $resource('/users/friends/received?uid=:uid',
+        {},
+        {
+            query: {
+                method: "GET",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                params: {uid : '@uid'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doLoadSentFriendRequests', function ($resource) {
+    return $resource('/users/friends/sent?uid=:uid',
+        {},
+        {
+            query: {
+                method: "GET",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                params: {uid : '@uid'}
+            }
+        }
+    );
+});
+
 vnvApp.factory('doSendFriendRequest', function ($resource) {
     return $resource('/users/friend/request',
         {},
