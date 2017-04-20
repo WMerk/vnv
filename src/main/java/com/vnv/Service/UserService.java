@@ -32,6 +32,59 @@ public class UserService {
     //@Qualifier("fakeData")
     private UserRelDao userRelDao;
 
+    public JSONObject getReceivedFriendRequest(long uid, String sessionId) {
+        log.debug("Getting Received friend requests");
+
+        if (userDao.getUserBySessionId(sessionId)==null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (!checkLogin(sessionId, uid))
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+
+        User user = userDao.getUserById(uid);
+        Collection<User> requestsRec = userRelDao.getRequestsRecv(user);
+        JSONArray jsonArray = new JSONArray(requestsRec);
+        JSONObject json = new JSONObject();
+        json.put("data", jsonArray);
+        json.put("user", user.toJSON());
+        json.put("status", 200);
+        return json;
+    }
+
+    public JSONObject getSentFriendRequest(long uid, String sessionId) {
+        log.debug("Getting Sent friend requests");
+
+        if (userDao.getUserBySessionId(sessionId)==null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (!checkLogin(sessionId, uid))
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+
+        User user = userDao.getUserById(uid);
+        Collection<User> requestsSent = userRelDao.getRequestsSent(user);
+        JSONArray jsonArray = new JSONArray(requestsSent);
+        JSONObject json = new JSONObject();
+        json.put("data", jsonArray);
+        json.put("user", user.toJSON());
+        json.put("status", 200);
+        return json;
+    }
+
+    public JSONObject getFriends(long uid, String sessionId) {
+        log.debug("Getting friends");
+
+        if (userDao.getUserBySessionId(sessionId)==null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (!checkLogin(sessionId, uid))
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+
+        User user = userDao.getUserById(uid);
+        Collection<User> friends = userRelDao.getFriends(user);
+        JSONArray jsonArray = new JSONArray(friends);
+        JSONObject json = new JSONObject();
+        json.put("data", jsonArray);
+        json.put("user", user.toJSON());
+        json.put("status", 200);
+        return json;
+    }
 
     public JSONObject getAllUser(long uid, String sessionId){
         log.debug("getting all users");

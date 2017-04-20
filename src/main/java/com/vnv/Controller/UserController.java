@@ -106,6 +106,39 @@ public class UserController {
         return ResponseEntity.status(status).body(res.toString());
     }
 
+    @RequestMapping(value = "/friends/sent", method = RequestMethod.GET)
+    public ResponseEntity getSentFriendRequests(@RequestParam long uid, HttpSession session) {
+        JSONObject res = userService.getSentFriendRequest(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friends/received", method = RequestMethod.GET)
+    public ResponseEntity getReceivedFriendRequests(@RequestParam long uid, HttpSession session) {
+        JSONObject res = userService.getReceivedFriendRequest(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friends", method = RequestMethod.GET)
+    public ResponseEntity getFriends(@RequestParam long uid, HttpSession session) {
+        JSONObject res = userService.getFriends(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
     @Profile("debug")
     @RequestMapping(value = "/fake", method = RequestMethod.POST)
     public String addFakeUsers(@RequestParam int number) {
