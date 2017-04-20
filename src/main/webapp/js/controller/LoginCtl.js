@@ -14,14 +14,13 @@ vnvApp.controller(
             };
 
             $scope.doLogin = function () {
-
                 var params = {};
                 params['mail'] = $scope.login.mail;
                 params['password'] = $scope.login.password;
 
                 var response = doLogin.query(params);
-
                 response.$promise.then(function (data) {
+                    alert(data.error);
                     if (data.error === undefined) {
                         // no error, registration successful
                         userService.setCurrentUser(data);
@@ -33,7 +32,9 @@ vnvApp.controller(
                         // error, login failed
                         $('#errorLogin').css("display", "block");
                     }
-
+                }).catch(function (response) {
+                    // error, login failed with 400/401
+                    $('#errorLogin').css("display", "block");
                 });
                 userService.setAccountDeleted(false);
             };

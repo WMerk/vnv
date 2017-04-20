@@ -13,7 +13,6 @@ vnvApp.controller(
             };
 
             $scope.doRegister = function () {
-
                 var params = {};
                 params['firstName'] = $scope.registration.firstName;
                 params['lastName'] = $scope.registration.lastName;
@@ -21,7 +20,6 @@ vnvApp.controller(
                 params['password'] = $scope.registration.confirmPw;
 
                 var response = doRegister.query(params);
-
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error, registration successful
@@ -35,8 +33,13 @@ vnvApp.controller(
                         $('#form-email').css("background-color", "rgba(206,132,131,0.58)");
                         $('#form-email').css("color", "#fff");
                     }
-
+                }).catch(function (response) {
+                    // error, registration failed with 400/401
+                    $('#errorAlreadyRegistered').css("display", "block");
+                    $('#form-email').css("background-color", "rgba(206,132,131,0.58)");
+                    $('#form-email').css("color", "#fff");
                 });
+                ;
             };
 
         }]);
