@@ -1,6 +1,7 @@
 package com.vnv;
 
 import com.vnv.Model.Database;
+import com.vnv.Model.Fake;
 import com.vnv.Service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Profile;
 
-import javax.annotation.PostConstruct;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class Main {
@@ -19,13 +20,26 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Main.class,args);
         ctx.getBean(PostService.class).initCategories();
+        String[] profiles = ctx.getEnvironment().getActiveProfiles();
+        if(Arrays.asList(profiles).contains("prod")) {
+            initDB();
+        }
+        if(Arrays.asList(profiles).contains("fake")) {
+            addFakeUser();
+        }
     }
 
     @Profile("prod")
-    @PostConstruct
     private static void initDB() {
         log.debug("Init DB");
         Database db = new Database();
+    }
+
+    @Profile("fake")
+    private static void addFakeUser() {
+        log.debug("Adding fake users");
+        Fake f = new Fake();
+        f.makeFakeDbEntries(100);
     }
 
 }
