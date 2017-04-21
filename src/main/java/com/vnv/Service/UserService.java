@@ -43,8 +43,10 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> requestsRec = userRelDao.getRequestsRecv(user);
         JSONArray jsonArray = new JSONArray();
-        for (User u:requestsRec) {
-            jsonArray.put(u.toJSON());
+        if (requestsRec!=null) {
+            for (User u : requestsRec) {
+                jsonArray.put(u.toJSON());
+            }
         }
         // Have to do is in the above ay and can't use the following, because the toJSON methode has to be called to hide certain fields
         // JSONArray jsonArray = new JSONArray(requestsRec);
@@ -66,8 +68,10 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> requestsSent = userRelDao.getRequestsSent(user);
         JSONArray jsonArray = new JSONArray();
-        for (User u:requestsSent) {
-            jsonArray.put(u.toJSON());
+        if (requestsSent!=null) {
+            for (User u : requestsSent) {
+                jsonArray.put(u.toJSON());
+            }
         }
         // Have to do is in the above ay and can't use the following, because the toJSON methode has to be called to hide certain fields
         // JSONArray jsonArray = new JSONArray(requestsSent);
@@ -89,8 +93,10 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> friends = userRelDao.getFriends(user);
         JSONArray jsonArray = new JSONArray();
-        for (User u:friends) {
-            jsonArray.put(u.toJSON());
+        if (friends!=null) {
+            for (User u : friends) {
+                jsonArray.put(u.toJSON());
+            }
         }
         // Have to do is in the above ay and can't use the following, because the toJSON methode has to be called to hide certain fields
         // JSONArray jsonArray = new JSONArray(friends);
