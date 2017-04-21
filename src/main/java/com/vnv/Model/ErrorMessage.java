@@ -2,7 +2,7 @@ package com.vnv.Model;
 
 public class ErrorMessage {
 
-    private static String Error = "{\"error\":\"%s\", \"status\":\"%d\"}";
+    private static String Error = "{\"error\":\"%s\",\"status\":\"%d\"}";
 
     public static String DefaultError = String.format(Error, "an error occurred", 500);
 

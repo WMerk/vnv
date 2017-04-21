@@ -39,6 +39,8 @@ public class UserServiceTest {
     String pw = testUser.getPassword();
     String sessionId = testUser.getSessionId();
 
+    long friendUid;
+
     @Test
     public void registerUser() throws Exception {
 
@@ -182,12 +184,37 @@ public class UserServiceTest {
         //TODO
     }
 
+    @Test
+    public void sendFriendRequest() throws Exception {
+        registerUser();
+
+        User user = usDao.getUserById(this.user.getLong("uid"));
+        User friend = usDao.insertUserToDb(Fake.getFakeUser());
+        friendUid = friend.getUid();
+
+        JSONObject res = us.sendRequest("wrongSessionId", user, friend);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = us.sendRequest(sessionId, user, friend);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("sent", res.getString("request"));
+        JSONAssert.assertEquals(friend.toJSON(), res.getJSONObject("data"), false);
+    }
+
     @After
     public void tearDown() {
         if (user != null) {
             System.out.println("DELETE USER " + user.getLong("uid"));
             usDao.removeUserById(user.getLong("uid"));
             usRelDao.deleteUser(user.getLong("uid"));
+        }
+        if(friendUid!=0) {
+            System.out.println("DELETE USER "+friendUid);
+            usDao.removeUserById(friendUid);
+            usRelDao.deleteUser(friendUid);
         }
     }
 
