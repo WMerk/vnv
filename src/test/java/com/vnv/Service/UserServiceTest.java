@@ -190,6 +190,7 @@ public class UserServiceTest {
 
         User user = usDao.getUserById(this.user.getLong("uid"));
         User friend = usDao.insertUserToDb(Fake.getFakeUser());
+        usRelDao.addUser(friend);
         friendUid = friend.getUid();
 
         JSONObject res = us.sendRequest("wrongSessionId", user, friend);
@@ -202,6 +203,30 @@ public class UserServiceTest {
         assertTrue(res.has("request"));
         assertEquals("sent", res.getString("request"));
         JSONAssert.assertEquals(friend.toJSON(), res.getJSONObject("data"), false);
+    }
+
+    @Test
+    public void acceptFriendRequest() throws Exception {
+        sendFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+
+        //Wrong session id
+        JSONObject res = us.acceptRequest("wrongSessionId", userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        //wrong direction
+        res = us.acceptRequest(userSentRequest.getSessionId(), userSentRequest, userReceivedRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NoFriendRequestReceived, res.toString());
+
+        res = us.acceptRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("accepted", res.getString("request"));
+        JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
     @After
