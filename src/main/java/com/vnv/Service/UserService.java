@@ -318,7 +318,7 @@ public class UserService {
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
-    public JSONObject sentRequest(String sessionId, User user, User friend) {
+    public JSONObject sendRequest(String sessionId, User user, User friend) {
         log.debug("Saving request from user {} to {}.", user, friend);
         if (user.getUid() == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -328,6 +328,26 @@ public class UserService {
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "sent");
+            return res;
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    public JSONObject acceptRequest(String sessionId, User user, User friend) {
+        log.debug("Accepting request from user {} to {}.", friend, user);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            Collection received = userRelDao.getRequestsRecv(user);
+            if (received==null||!received.contains(friend)) {
+                return new JSONObject(ErrorMessage.NoFriendRequestReceived);
+            }
+            userRelDao.addFriend(user, friend);
+            userRelDao.removeRequest(friend, user);
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "accepted");
             return res;
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);

@@ -148,14 +148,32 @@ public class UserController {
     }
 
     @RequestMapping(value = "/friend/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity sentFriendRequest(@RequestBody Map<String, User> map, HttpSession session) {
+    public ResponseEntity sendFriendRequest(@RequestBody Map<String, User> map, HttpSession session) {
         User user = map.get("user");
         User friend = map.get("friend");
         if (user==null || friend==null)
             throw new HttpMessageNotReadableException("Could not read document: Can not construct instance of com.vnv.Entity.User");
         log.debug(user.toString());
         log.debug(friend.toString());
-        JSONObject res = userService.sentRequest(session.getId(), user, friend);
+        JSONObject res = userService.sendRequest(session.getId(), user, friend);
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friend/accept", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity acceptFriendRequest(@RequestBody Map<String, User> map, HttpSession session) {
+        User user = map.get("user");
+        User friend = map.get("friend");
+        if (user==null || friend==null)
+            throw new HttpMessageNotReadableException("Could not read document: Can not construct instance of com.vnv.Entity.User");
+        log.debug("Accepting friend request");
+        log.debug(user.toString());
+        log.debug(friend.toString());
+        JSONObject res = userService.acceptRequest(session.getId(), user, friend);
         log.debug(res.toString());
         int status = 200;
         if (res.has("status")) {
