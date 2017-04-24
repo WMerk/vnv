@@ -12,6 +12,7 @@ public class ErrorMessage {
     public static String WrongPassword = String.format(Error, "wrong password", 401);
     public static String AlreadyRegistered = String.format(Error, "mail already registered", 409);
     public static String NoFriendRequestReceived = String.format(Error, "no friend request received for this user", 404);
+    public static String NotFriendly = String.format(Error, "no friendship found between users", 404);
 
     public static String NotImplemented = String.format(Error, "not implemented", 500);
 

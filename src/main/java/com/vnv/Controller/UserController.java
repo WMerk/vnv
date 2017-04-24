@@ -182,4 +182,38 @@ public class UserController {
         return ResponseEntity.status(status).body(res.toString());
     }
 
+    @RequestMapping(value = "/friend/decline", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity declineFriendRequest(@RequestBody Map<String, User> map, HttpSession session) {
+        User user = map.get("user");
+        User friend = map.get("friend");
+        if (user==null || friend==null)
+            throw new HttpMessageNotReadableException("Could not read document: Can not construct instance of com.vnv.Entity.User");
+        log.debug(user.toString());
+        log.debug(friend.toString());
+        JSONObject res = userService.declineRequest(session.getId(), user, friend);
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friend/delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity deleteFriendship(@RequestBody Map<String, User> map, HttpSession session) {
+        User user = map.get("user");
+        User friend = map.get("friend");
+        if (user==null || friend==null)
+            throw new HttpMessageNotReadableException("Could not read document: Can not construct instance of com.vnv.Entity.User");
+        log.debug(user.toString());
+        log.debug(friend.toString());
+        JSONObject res = userService.deleteFriendship(session.getId(), user, friend);
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
 }
