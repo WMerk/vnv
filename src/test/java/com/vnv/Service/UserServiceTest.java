@@ -229,6 +229,32 @@ public class UserServiceTest {
         JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
+    @Test
+    public void declineFriendRequest() throws Exception {
+        sendFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+
+        //Wrong session id
+        JSONObject res = us.declineRequest("wrongSessionId", userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        //wrong direction
+        res = us.declineRequest(userSentRequest.getSessionId(), userSentRequest, userReceivedRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NoFriendRequestReceived, res.toString());
+
+        res = us.declineRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("declined", res.getString("request"));
+        JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
+    }
+
+    //TODO decline and delete
+
     @After
     public void tearDown() {
         if (user != null) {
