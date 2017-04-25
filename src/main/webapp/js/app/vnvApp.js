@@ -36,6 +36,9 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
     }).when('/FriendRequests', {
         templateUrl: '/html/friendrequests.html',
         controller: 'FriendRequestCtl'
+    }).when('/Friends', {
+        templateUrl: '/html/friends.html',
+        controller: 'FriendsCtl'
     }).otherwise({
         redirectTo: '/'
     });

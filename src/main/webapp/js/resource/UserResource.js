@@ -118,8 +118,61 @@ vnvApp.factory('doLoadSentFriendRequests', function ($resource) {
     );
 });
 
+vnvApp.factory('doLoadFriends', function ($resource) {
+    return $resource('/users/friends?uid=:uid',
+        {},
+        {
+            query: {
+                method: "GET",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                params: {uid : '@uid'}
+            }
+        }
+    );
+});
+
 vnvApp.factory('doSendFriendRequest', function ($resource) {
     return $resource('/users/friend/request',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doDeleteFriend', function ($resource) {
+    return $resource('/users/friend/delete',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doCancelRequest', function ($resource) {
+    return $resource('/users/friend/revoke',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doDeclineRequest', function ($resource) {
+    return $resource('/users/friend/decline',
         {},
         {
             query: {

@@ -318,7 +318,7 @@ public class UserService {
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 
-    public JSONObject sentRequest(String sessionId, User user, User friend) {
+    public JSONObject sendRequest(String sessionId, User user, User friend) {
         log.debug("Saving request from user {} to {}.", user, friend);
         if (user.getUid() == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -328,6 +328,83 @@ public class UserService {
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "sent");
+            return res;
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    public JSONObject acceptRequest(String sessionId, User user, User friend) {
+        log.debug("Accepting request from user {} to {}.", friend, user);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+                            Collection received = userRelDao.getRequestsRecv(user);
+            if (received==null||!received.contains(friend)) {
+                return new JSONObject(ErrorMessage.NoFriendRequestReceived);
+            }
+            userRelDao.addFriend(user, friend);
+            userRelDao.removeRequest(friend, user);
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "accepted");
+            return res;
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    public JSONObject declineRequest(String sessionId, User user, User friend) {
+        log.debug("Decline request from user {} to {}.", friend, user);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            Collection received = userRelDao.getRequestsRecv(user);
+            if (received==null||!received.contains(friend)) {
+                return new JSONObject(ErrorMessage.NoFriendRequestReceived);
+            }
+            userRelDao.removeRequest(friend, user);
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "declined");
+            return res;
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    public JSONObject deleteRequest(String sessionId, User user, User friend) {
+        log.debug("Delete request from user {} to {}.", friend, user);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            Collection sent = userRelDao.getRequestsSent(user);
+            if (sent==null||!sent.contains(friend)) {
+                return new JSONObject(ErrorMessage.NoFriendRequestSent);
+            }
+            userRelDao.removeRequest(user, friend);
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "deleted");
+            return res;
+        }
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    public JSONObject deleteFriendship(String sessionId, User user, User friend) {
+        log.debug("Delete friendship from user {} to {}.", friend, user);
+        if (user.getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (checkLogin(sessionId, user.getUid())) {
+            Collection friends = userRelDao.getFriends(user);
+            if (friends==null||!friends.contains(friend)) {
+                return new JSONObject(ErrorMessage.NotFriendly);
+            }
+            userRelDao.removeFriend(user, friend);
+            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject res = new JSONObject();
+            res.put("data", jsonFriend);
+            res.put("request", "terminated");
             return res;
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);

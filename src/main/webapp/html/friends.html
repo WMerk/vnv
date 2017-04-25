@@ -1,0 +1,28 @@
+<div data-ng-init="init()">
+
+    <div ng-include="templateNavigation"></div>
+
+    <div style="margin-top: 50px">
+        <h2>Interagiere mit Deinen Freunden</h2>
+    </div>
+
+    <div class="container-fluid" style="margin-top: 50px; margin-left:20px; margin-right: 20px">
+        <div class="table-responsive table-layout">
+            <table id="tableShowReceivedRequests" class="table">
+                <tbody>
+                    <tr ng-repeat="user in friends | orderBy:'data.lastName'">
+                        <td><img src="/img/avatar.png" style="max-width:20%; max-height: 20%" class="img-circle img-responsive"></td>
+                        <td class="vert-align">{{user.name}}</td>
+                        <td class="vert-align">
+                            <button id="buttonWriteMessage" class="btn btn-primary">Nachricht senden</button>
+                        </td>
+                        <td class="vert-align">
+                            <button id="buttonDeleteFriend" ng-click="deleteFriend(user)" class="btn btn-default">Freund entfernen</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

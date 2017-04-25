@@ -3,9 +3,10 @@ package com.vnv.Service;
 import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
-import com.vnv.Model.Fake;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
+import com.vnv.Model.Fake;
+import com.vnv.Model.Profiles;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -33,11 +34,22 @@ public class UserServiceTest {
     UserDao usDao;
     @Autowired
     UserRelDao usRelDao;
+    @Autowired
+    Profiles p;
 
     User testUser = Fake.getFakeUser();
     String mail = testUser.getMail();
     String pw = testUser.getPassword();
     String sessionId = testUser.getSessionId();
+
+    long friendUid;
+
+    /*
+    @BeforeClass
+    public static void init() {
+        Profiles p = new Profiles();
+        p.init();
+    }*/
 
     @Test
     public void registerUser() throws Exception {
@@ -180,12 +192,123 @@ public class UserServiceTest {
         //TODO
     }
 
+    @Test
+    public void sendFriendRequest() throws Exception {
+        registerUser();
+
+        User user = usDao.getUserById(this.user.getLong("uid"));
+        User friend = usDao.insertUserToDb(Fake.getFakeUser());
+        usRelDao.addUser(friend);
+        friendUid = friend.getUid();
+
+        JSONObject res = us.sendRequest("wrongSessionId", user, friend);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = us.sendRequest(sessionId, user, friend);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("sent", res.getString("request"));
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(friend.toJSON(), res.getJSONObject("data"), false);
+        user = usDao.getUserById(user.getUid());
+        friend = usDao.getUserById(friendUid);
+        assertNotNull(usRelDao.getRequestsSent(user));
+        assertTrue(usRelDao.getRequestsSent(user).contains(friend));
+        assertNotNull(usRelDao.getRequestsRecv(friend));
+        assertTrue(usRelDao.getRequestsRecv(friend).contains(user));
+    }
+
+    @Test
+    public void acceptFriendRequest() throws Exception {
+        sendFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+
+        //Wrong session id
+        JSONObject res = us.acceptRequest("wrongSessionId", userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        //wrong direction
+        res = us.acceptRequest(userSentRequest.getSessionId(), userSentRequest, userReceivedRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NoFriendRequestReceived, res.toString());
+
+        res = us.acceptRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        System.out.println(res);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("accepted", res.getString("request"));
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
+    }
+
+    @Test
+    public void declineFriendRequest() throws Exception {
+        sendFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+
+        //Wrong session id
+        JSONObject res = us.declineRequest("wrongSessionId", userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        //wrong direction
+        res = us.declineRequest(userSentRequest.getSessionId(), userSentRequest, userReceivedRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NoFriendRequestReceived, res.toString());
+
+        res = us.declineRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("declined", res.getString("request"));
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
+    }
+
+    @Test
+    public void deleteFriendRequest() throws Exception {
+        sendFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+
+        //Wrong session id
+        JSONObject res = us.deleteRequest("wrongSessionId", userSentRequest, userReceivedRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        //wrong direction
+        res = us.deleteRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NoFriendRequestSent, res.toString());
+
+        res = us.deleteRequest(userSentRequest.getSessionId(), userSentRequest, userReceivedRequest);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("data"));
+        assertTrue(res.has("request"));
+        assertEquals("deleted", res.getString("request"));
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userReceivedRequest.toJSON(), res.getJSONObject("data"), false);
+    }
+
+    //TODO delete friendship
+
     @After
     public void tearDown() {
         if (user != null) {
             System.out.println("DELETE USER " + user.getLong("uid"));
             usDao.removeUserById(user.getLong("uid"));
             usRelDao.deleteUser(user.getLong("uid"));
+        }
+        if(friendUid!=0) {
+            System.out.println("DELETE USER "+friendUid);
+            usDao.removeUserById(friendUid);
+            usRelDao.deleteUser(friendUid);
         }
     }
 
