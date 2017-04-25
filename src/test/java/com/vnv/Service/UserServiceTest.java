@@ -3,9 +3,10 @@ package com.vnv.Service;
 import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.User;
-import com.vnv.Model.Fake;
 import com.vnv.Main;
 import com.vnv.Model.ErrorMessage;
+import com.vnv.Model.Fake;
+import com.vnv.Model.Profiles;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Test;
@@ -33,6 +34,8 @@ public class UserServiceTest {
     UserDao usDao;
     @Autowired
     UserRelDao usRelDao;
+    @Autowired
+    Profiles p;
 
     User testUser = Fake.getFakeUser();
     String mail = testUser.getMail();
@@ -40,6 +43,13 @@ public class UserServiceTest {
     String sessionId = testUser.getSessionId();
 
     long friendUid;
+
+    /*
+    @BeforeClass
+    public static void init() {
+        Profiles p = new Profiles();
+        p.init();
+    }*/
 
     @Test
     public void registerUser() throws Exception {
@@ -202,7 +212,14 @@ public class UserServiceTest {
         assertTrue(res.has("data"));
         assertTrue(res.has("request"));
         assertEquals("sent", res.getString("request"));
-        JSONAssert.assertEquals(friend.toJSON(), res.getJSONObject("data"), false);
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(friend.toJSON(), res.getJSONObject("data"), false);
+        user = usDao.getUserById(user.getUid());
+        friend = usDao.getUserById(friendUid);
+        assertNotNull(usRelDao.getRequestsSent(user));
+        assertTrue(usRelDao.getRequestsSent(user).contains(friend));
+        assertNotNull(usRelDao.getRequestsRecv(friend));
+        assertTrue(usRelDao.getRequestsRecv(friend).contains(user));
     }
 
     @Test
@@ -222,11 +239,13 @@ public class UserServiceTest {
         assertEquals(ErrorMessage.NoFriendRequestReceived, res.toString());
 
         res = us.acceptRequest(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        System.out.println(res);
         assertFalse(res.has("error"));
         assertTrue(res.has("data"));
         assertTrue(res.has("request"));
         assertEquals("accepted", res.getString("request"));
-        JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
     @Test
@@ -250,7 +269,8 @@ public class UserServiceTest {
         assertTrue(res.has("data"));
         assertTrue(res.has("request"));
         assertEquals("declined", res.getString("request"));
-        JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userSentRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
     @Test
@@ -274,7 +294,8 @@ public class UserServiceTest {
         assertTrue(res.has("data"));
         assertTrue(res.has("request"));
         assertEquals("deleted", res.getString("request"));
-        JSONAssert.assertEquals(userReceivedRequest.toJSON(), res.getJSONObject("data"), false);
+        if(Profiles.checkDebugActive())
+            JSONAssert.assertEquals(userReceivedRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
     //TODO delete friendship
