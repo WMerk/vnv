@@ -54,7 +54,6 @@ public class UserServiceTest {
     @Test
     public void registerUser() throws Exception {
 
-
         user = us.registerUser(testUser);
         assertNotNull(user);
         assertFalse(user.has("error"));
@@ -62,7 +61,6 @@ public class UserServiceTest {
         assertNotNull(user);
         assertTrue(user.has("error"));
         assertEquals(ErrorMessage.AlreadyRegistered, user.toString());
-
     }
 
     @Test
