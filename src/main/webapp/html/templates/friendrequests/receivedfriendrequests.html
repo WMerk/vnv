@@ -16,10 +16,15 @@
             <tr ng-repeat="user in receivedRequests | orderBy:'data.lastName'">
                 <td><img src="/img/avatar.png" style="max-width:20%; max-height: 20%" class="img-circle img-responsive"></td>
                 <td class="vert-align">{{user.name}}</td>
-                <td class="vert-align">
+                <td class="vert-align" ng-show="(user.accepted != true)">
                     <button id="buttonAcceptRequest" ng-click="acceptRequest(user)" class="btn btn-primary">Bestätigen</button>
                 </td>
-                <td class="vert-align">
+                <td class="vert-align" ng-show="(user.accepted == true)">
+                    <button id="buttonRequestAccepted" disabled="disabled" class="btn btn-success">
+                        <i class="glyphicon glyphicon-ok"></i> Freunde
+                    </button>
+                </td>
+                <td class="vert-align" ng-show="(user.accepted != true)">
                     <button id="buttonDeleteRequest" ng-click="declineRequest(user)" class="btn btn-default">Anfrage löschen</button>
                 </td>
             </tr>

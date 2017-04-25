@@ -184,3 +184,16 @@ vnvApp.factory('doDeclineRequest', function ($resource) {
     );
 });
 
+vnvApp.factory('doAcceptRequest', function ($resource) {
+    return $resource('/users/friend/accept',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+

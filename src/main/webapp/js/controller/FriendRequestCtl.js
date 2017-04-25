@@ -8,7 +8,8 @@ vnvApp.controller(
         'doLoadSentFriendRequests',
         'doCancelRequest',
         'doDeclineRequest',
-        function ($scope, $location, userService, doLoadReceivedFriendRequests, doLoadSentFriendRequests, doCancelRequest, doDeclineRequest) {
+        'doAcceptRequest',
+        function ($scope, $location, userService, doLoadReceivedFriendRequests, doLoadSentFriendRequests, doCancelRequest, doDeclineRequest, doAcceptRequest) {
 
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
@@ -56,10 +57,6 @@ vnvApp.controller(
                 });
             };
 
-            $scope.acceptRequest = function (user) {
-                alert("acceptRequest");
-            };
-
             $scope.declineRequest = function (user) {
                 var params = {};
                 params['user'] = $scope.user;
@@ -91,5 +88,28 @@ vnvApp.controller(
                     }
                 });
             };
+
+            $scope.acceptRequest = function (user) {
+                var index = $scope.receivedRequests.indexOf(user);
+
+                var params = {};
+                params['user'] = $scope.user;
+                params['friend'] = user;
+
+                var response = doAcceptRequest.query(params);
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        if(response.request=="accepted"){
+                            response.data.accepted = true;
+                            $scope.receivedRequests[index] = response.data;
+                        }
+                    } else {
+                        // error, query failed
+                    }
+                });
+            };
+
+
 
         }]);
