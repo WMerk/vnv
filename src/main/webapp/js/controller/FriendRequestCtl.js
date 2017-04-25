@@ -6,7 +6,8 @@ vnvApp.controller(
         'userService',
         'doLoadReceivedFriendRequests',
         'doLoadSentFriendRequests',
-        function ($scope, $location, userService, doLoadReceivedFriendRequests, doLoadSentFriendRequests) {
+        'doCancelRequest',
+        function ($scope, $location, userService, doLoadReceivedFriendRequests, doLoadSentFriendRequests, doCancelRequest) {
 
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
@@ -63,7 +64,19 @@ vnvApp.controller(
             };
 
             $scope.cancelRequest = function (user) {
-                alert("cancelRequest");
+                var params = {};
+                params['user'] = $scope.user;
+                params['friend'] = user;
+
+                var response = doCancelRequest.query(params);
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        $scope.loadSentFriendRequests();
+                    } else {
+                        // error, query failed
+                    }
+                });
             };
 
         }]);
