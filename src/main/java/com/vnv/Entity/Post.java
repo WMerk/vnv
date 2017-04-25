@@ -16,10 +16,10 @@ public class Post {
     private User user;
     @Attribute
     @Indexed
-    private String type; //offer or request
+    private String type;
     @Attribute
     @Indexed
-    private String flavour; //verschenken Dienstleistung or verleihen
+    private String flavour;
     @Attribute
     @Indexed
     private String postName;

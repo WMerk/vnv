@@ -14,3 +14,6 @@ Feature: Search friend
     And I am on the add friends page
     When I type "not_a_Friend" in the searchfield
     Then I find no entry in list
+
+
+
