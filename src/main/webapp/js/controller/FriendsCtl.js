@@ -5,7 +5,8 @@ vnvApp.controller(
         '$location',
         'userService',
         'doLoadFriends',
-        function ($scope, $location, userService, doLoadFriends) {
+        'doDeleteFriend',
+        function ($scope, $location, userService, doLoadFriends, doDeleteFriend) {
 
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
@@ -29,7 +30,19 @@ vnvApp.controller(
             };
 
             $scope.deleteFriend = function (user) {
-                alert("deleteFriend");
+                var params = {};
+                params['user'] = $scope.user;
+                params['friend'] = user;
+
+                var response = doDeleteFriend.query(params);
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        $scope.loadFriends();
+                    } else {
+                        // error, query failed
+                    }
+                });
             };
 
         }]);

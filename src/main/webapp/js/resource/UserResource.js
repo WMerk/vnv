@@ -145,3 +145,16 @@ vnvApp.factory('doSendFriendRequest', function ($resource) {
     );
 });
 
+vnvApp.factory('doDeleteFriend', function ($resource) {
+    return $resource('/users/friend/delete',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
