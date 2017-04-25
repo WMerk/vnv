@@ -171,4 +171,16 @@ vnvApp.factory('doCancelRequest', function ($resource) {
     );
 });
 
+vnvApp.factory('doDeclineRequest', function ($resource) {
+    return $resource('/users/friend/decline',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
 
