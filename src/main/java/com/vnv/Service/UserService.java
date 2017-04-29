@@ -322,6 +322,9 @@ public class UserService {
         log.debug("Saving request from user {} to {}.", user, friend);
         if (user.getUid() == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (user == friend) {
+            return new JSONObject("{status:200}");
+        }
         if (checkLogin(sessionId, user.getUid())) {
             userRelDao.addRequest(user, friend);
             JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();

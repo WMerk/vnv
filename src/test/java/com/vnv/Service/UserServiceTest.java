@@ -205,6 +205,11 @@ public class UserServiceTest {
         assertTrue(res.has("error"));
         assertEquals(ErrorMessage.NotLoggedIn, res.toString());
 
+        res = us.sendRequest(sessionId, user, user);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("status"));
+        assertEquals(200, res.getInt("status"));
+
         res = us.sendRequest(sessionId, user, friend);
         assertFalse(res.has("error"));
         assertTrue(res.has("data"));
