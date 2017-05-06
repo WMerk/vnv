@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Qualifier("fakeData")
@@ -31,7 +28,7 @@ public class FakePostDaoImpl implements PostDao{
                     {
                         setId(1L);
                         setUser(new User(){{
-                            setId(1L);
+                            setUid(1L);
                             setFirstName("test");
                             setLastName("user");
                             setMail("test@test.de");
@@ -44,6 +41,7 @@ public class FakePostDaoImpl implements PostDao{
                         setCategory(new Category(){{setId(0L);setName("TestCategory");}});
                         setPostName("Test");
                         setDescription("This is a test offer");
+                        setStatus("offen");
                     }
                 });
 
@@ -64,11 +62,12 @@ public class FakePostDaoImpl implements PostDao{
 
     @Override
     public Collection<Post> getPostsForUser(User user) {
-        Collection<Post> posts = Collections.EMPTY_LIST;
+        Collection<Post> posts = new ArrayList<>();
         long uid = user.getUid();
         for (int i=1; i<id; i++) {
             Post p = getPostById(i);
-            if (uid != p.getUser().getUid()) {
+            if (uid == p.getUser().getUid()) {
+                p.setUser(p.getUser().toPublic());
                 posts.add(p);
             }
         }
@@ -77,11 +76,12 @@ public class FakePostDaoImpl implements PostDao{
 
     @Override
     public Collection<Post> getOffersForUser(User user) {
-        Collection<Post> posts = Collections.EMPTY_LIST;
+        Collection<Post> posts = new ArrayList<>();
         long uid = user.getUid();
         for (int i=1; i<id; i++) {
             Post p = getPostById(i);
-            if (uid != p.getUser().getUid() && "offer".equals(p.getType())) {
+            if (uid == p.getUser().getUid() && "offer".equals(p.getType())) {
+                p.setUser(p.getUser().toPublic());
                 posts.add(p);
             }
         }
@@ -90,11 +90,12 @@ public class FakePostDaoImpl implements PostDao{
 
     @Override
     public Collection<Post> getRequestsForUser(User user) {
-        Collection<Post> posts = Collections.EMPTY_LIST;
+        Collection<Post> posts = new ArrayList<>();
         long uid = user.getUid();
         for (int i=1; i<id; i++) {
             Post p = getPostById(i);
-            if (uid != p.getUser().getUid() && "request".equals(p.getType())) {
+            if (uid == p.getUser().getUid() && "request".equals(p.getType())) {
+                p.setUser(p.getUser().toPublic());
                 posts.add(p);
             }
         }

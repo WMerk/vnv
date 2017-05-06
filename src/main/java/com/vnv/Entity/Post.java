@@ -28,6 +28,9 @@ public class Post {
     private Category category;
     @Attribute
     @Indexed
+    private String status;
+    @Attribute
+    @Indexed
     private String period;
     @Attribute
     private String picPath;
@@ -90,6 +93,14 @@ public class Post {
 
     public void setPeriod(String period) {
         this.period = period;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getPicPath() {

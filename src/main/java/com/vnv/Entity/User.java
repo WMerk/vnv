@@ -265,5 +265,18 @@ public class User {
         json.remove("facebookId");
         return json;
     }
+
+    public User toPublic() {
+        User u = this;
+        u.setHashedPw(null);
+        u.setSalt(null);
+        u.setPassword(null);
+        u.setNewPassword(null);
+        u.setConfirmationLink(null);
+        u.setSessionId(null);
+        u.setGoogleId(null);
+        u.setFacebookId(null);
+        return u;
+    }
 }
 

@@ -28,17 +28,29 @@ public class RedisPostDaoImpl implements PostDao {
 
     @Override
     public Collection<Post> getPostsForUser(User user) {
-        return JOhm.find(Post.class, "uid", user.getUid());
+        Collection<Post> posts = JOhm.find(Post.class, "uid", user.getUid());
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+        }
+        return posts;
     }
 
     @Override
     public Collection<Post> getOffersForUser(User user) {
-        return JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "offer"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "offer"));
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+        }
+        return posts;
     }
 
     @Override
     public Collection<Post> getRequestsForUser(User user) {
-        return JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "request"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "request"));
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+        }
+        return posts;
     }
 
     @Override

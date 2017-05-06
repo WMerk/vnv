@@ -1,8 +1,10 @@
 package com.vnv.Model;
 
 import com.github.javafaker.Faker;
+import com.vnv.Dao.FakeImpl.FakePostDaoImpl;
 import com.vnv.Dao.FakeImpl.FakeUserDaoImp;
 import com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl;
+import com.vnv.Dao.PostDao;
 import com.vnv.Dao.UserDao;
 import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.Category;
@@ -18,6 +20,7 @@ public class Fake {
     public static Faker faker = new Faker(new Locale("de"));
 
     private static String[] flavours = {"verschenken", "Dienstleistung", "verleihen"};
+    private static String[] status = {"offen", "reserviert", "beendet"};
     private static Random random = new Random();
 
 
@@ -45,6 +48,8 @@ public class Fake {
         p.setCategory(c);
         p.setDescription(faker.lorem().paragraph());
         p.setPostName(faker.lorem().word());
+        p.setType(random.nextBoolean() ? "offer" : "request");
+        p.setStatus(status[random.nextInt(3)]);
         return p;
     }
 
@@ -64,6 +69,7 @@ public class Fake {
     public void makeFakeDbEntries(int number) {
         UserRelDao userRelDao = new FakeUserRelDaoImpl();
         UserDao userDao = new FakeUserDaoImp();
+        PostDao postDao = new FakePostDaoImpl();
 
         User tester = userDao.getUserByMail("test@test.de");
         for (int i=0; i<number; i++) {
@@ -79,6 +85,11 @@ public class Fake {
                     userRelDao.addRequest(u, tester);
                 if (rand==3)
                     userRelDao.addRequest(tester, u);
+            }
+            u = userDao.getUserByMail(u.getMail());
+            for (int j=0; j<3; j++) {
+                Post post = Fake.getFakePost(u);
+                postDao.insertPost(post);
             }
         }
     }
