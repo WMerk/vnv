@@ -68,6 +68,7 @@ public class FakePostDaoImpl implements PostDao{
             Post p = getPostById(i);
             if (uid == p.getUser().getUid()) {
                 p.setUser(p.getUser().toPublic());
+                p.setCreationDate(df.format(new Date(p.getCreationTime())));
                 posts.add(p);
             }
         }
@@ -82,6 +83,7 @@ public class FakePostDaoImpl implements PostDao{
             Post p = getPostById(i);
             if (uid == p.getUser().getUid() && "offer".equals(p.getType())) {
                 p.setUser(p.getUser().toPublic());
+                p.setCreationDate(df.format(new Date(p.getCreationTime())));
                 posts.add(p);
             }
         }
@@ -96,6 +98,7 @@ public class FakePostDaoImpl implements PostDao{
             Post p = getPostById(i);
             if (uid == p.getUser().getUid() && "request".equals(p.getType())) {
                 p.setUser(p.getUser().toPublic());
+                p.setCreationDate(df.format(new Date(p.getCreationTime())));
                 posts.add(p);
             }
         }

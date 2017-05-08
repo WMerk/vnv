@@ -44,12 +44,6 @@ public class UserServiceTest {
 
     long friendUid;
 
-    /*
-    @BeforeClass
-    public static void init() {
-        Profiles p = new Profiles();
-        p.init();
-    }*/
 
     @Test
     public void registerUser() throws Exception {
@@ -178,18 +172,6 @@ public class UserServiceTest {
 
         JSONObject res = us.getAllUser(testUser.getUid(), sessionId);
         System.out.println(res);
-    }
-
-    @Test
-    public void getFriends() throws Exception {
-        //System.out.println(usRelDao.getFriends(usDao.getUserById(2)));
-        //TODO
-    }
-
-    @Test
-    public void getNonRelatedUsers() throws Exception {
-       // System.out.println(usRelDao.getNonRelatedUsers(usDao.getUserById(2)));
-        //TODO
     }
 
     @Test

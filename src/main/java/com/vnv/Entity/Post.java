@@ -38,6 +38,7 @@ public class Post {
     private String description;
     @Attribute
     private long creationTime = new Date().getTime();
+    private String creationDate;
 
     public Long getId() {
         return id;
@@ -127,6 +128,14 @@ public class Post {
         this.creationTime = creationTime;
     }
 
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -136,10 +145,12 @@ public class Post {
                 ", flavour='" + flavour + '\'' +
                 ", postName='" + postName + '\'' +
                 ", category=" + category +
+                ", status='" + status + '\'' +
                 ", period='" + period + '\'' +
                 ", picPath='" + picPath + '\'' +
                 ", description='" + description + '\'' +
                 ", creationTime=" + creationTime +
+                ", creationDate=" + creationDate +
                 '}';
     }
 
