@@ -9,7 +9,7 @@ import java.util.Collection;
 
 public interface PostDao {
 
-    DateFormat df = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
     /**
      * gets the post with th specified id from the database
