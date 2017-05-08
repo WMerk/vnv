@@ -12,8 +12,12 @@ import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 import org.springframework.context.annotation.Profile;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Fake {
 
@@ -39,6 +43,7 @@ public class Fake {
         return u;
     }
 
+    private static DateFormat outputDF = new SimpleDateFormat("d.MM.yyyy");
     private static Post getFakePost(User user) {
         Post p = new Post();
         p.setUser(user);
@@ -50,6 +55,7 @@ public class Fake {
         p.setPostName(faker.lorem().word());
         p.setType(random.nextBoolean() ? "offer" : "request");
         p.setStatus(status[random.nextInt(3)]);
+        p.setPeriod(outputDF.format(faker.date().future(Math.abs(random.nextInt()), TimeUnit.SECONDS, new Date())));
         return p;
     }
 
