@@ -41,7 +41,8 @@ public class FakePostDaoImpl implements PostDao{
                         setCategory(new Category(){{setId(0L);setName("TestCategory");}});
                         setPostName("Test");
                         setDescription("This is a test offer");
-                        setStatus("offen");
+                        setStatus("Verfügbar");
+                        setPeriod("42.13.1970");
                     }
                 });
 
