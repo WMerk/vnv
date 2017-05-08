@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,6 +49,28 @@ public class PostController {
         JSONArray res = postService.getCategories();
         log.debug(res.toString());
         return res.toString();
+    }
+
+    @RequestMapping(value = "/own", method = RequestMethod.GET)
+    public ResponseEntity getOwnPosts(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getOwnPost(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friends", method = RequestMethod.GET)
+    public ResponseEntity getFriendPosts(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getFriendPost(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
     }
 
 }

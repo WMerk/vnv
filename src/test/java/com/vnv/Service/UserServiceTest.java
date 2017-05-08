@@ -205,6 +205,11 @@ public class UserServiceTest {
         assertTrue(res.has("error"));
         assertEquals(ErrorMessage.NotLoggedIn, res.toString());
 
+        res = us.sendRequest(sessionId, user, user);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("status"));
+        assertEquals(200, res.getInt("status"));
+
         res = us.sendRequest(sessionId, user, friend);
         assertFalse(res.has("error"));
         assertTrue(res.has("data"));
@@ -296,7 +301,24 @@ public class UserServiceTest {
             JSONAssert.assertEquals(userReceivedRequest.toJSON(), res.getJSONObject("data"), false);
     }
 
-    //TODO delete friendship
+    @Test
+    public void deleteFriendship() throws Exception {
+        acceptFriendRequest();
+        User userSentRequest = usDao.getUserById(user.getLong("uid"));
+        User userReceivedRequest = usDao.getUserById(friendUid);
+        JSONObject res = us.deleteFriendship("wrongSessionId", userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = us.deleteFriendship(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertFalse(res.has("error"));
+        assertTrue(res.has("request"));
+        assertEquals("terminated", res.getString("request"));
+
+        res = us.deleteFriendship(userReceivedRequest.getSessionId(), userReceivedRequest, userSentRequest);
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotFriendly, res.toString());
+    }
 
     @After
     public void tearDown() {

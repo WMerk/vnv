@@ -2,8 +2,11 @@ package com.vnv.Service;
 
 import com.vnv.Dao.CategoryDao;
 import com.vnv.Dao.PostDao;
+import com.vnv.Dao.UserDao;
+import com.vnv.Dao.UserRelDao;
 import com.vnv.Entity.Category;
 import com.vnv.Entity.Post;
+import com.vnv.Entity.User;
 import com.vnv.Model.ErrorMessage;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Service
@@ -25,6 +29,12 @@ public class PostService {
 
     @Autowired
     private CategoryDao categoryDao;
+
+    @Autowired
+    private UserRelDao userRelDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @Autowired
     private UserService userService;
@@ -52,6 +62,36 @@ public class PostService {
         Collection<Category> categories = categoryDao.getAllCategories();
         JSONArray /*json = new JSONArray(Arrays.asList(categories));*/
         json = new JSONArray(categories);
+        return json;
+    }
+
+    public JSONObject getOwnPost(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = postDao.getPostsForUser(user);
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
+        return json;
+    }
+
+    public JSONObject getFriendPost(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = new ArrayList<>();
+        Collection<User> friends = userRelDao.getFriends(user);
+        for (User friend:friends) {
+            posts.addAll(postDao.getPostsForUser(friend));
+        }
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
         return json;
     }
 
