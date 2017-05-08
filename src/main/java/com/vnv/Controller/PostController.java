@@ -62,9 +62,53 @@ public class PostController {
         return ResponseEntity.status(status).body(res.toString());
     }
 
+    @RequestMapping(value = "/own/offers", method = RequestMethod.GET)
+    public ResponseEntity getOwnOffers(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getOwnOffer(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/own/requests", method = RequestMethod.GET)
+    public ResponseEntity getOwnRequests(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getOwnRequest(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
     @RequestMapping(value = "/friends", method = RequestMethod.GET)
     public ResponseEntity getFriendPosts(@RequestParam long uid, HttpSession session) {
         JSONObject res = postService.getFriendPost(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friends/offers", method = RequestMethod.GET)
+    public ResponseEntity getFriendOffers(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getFriendOffer(uid, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        if (res.has("status")) {
+            status = res.getInt("status");
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value = "/friends/requests", method = RequestMethod.GET)
+    public ResponseEntity getFriendRequests(@RequestParam long uid, HttpSession session) {
+        JSONObject res = postService.getFriendRequest(uid, session.getId());
         log.debug(res.toString());
         int status = 200;
         if (res.has("status")) {
