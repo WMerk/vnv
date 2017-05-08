@@ -247,6 +247,11 @@ h4 {
     color: #fff;
 }
 
+.text-muted {
+    color: #7779;
+    font-weight: bold;
+}
+
 .fadeIn {
     -webkit-animation: fadein 2.5s; /* Safari and Chrome */
     -moz-animation: fadein 2.5s; /* Firefox */

@@ -39,13 +39,16 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
     }).when('/Friends', {
         templateUrl: '/html/friends.html',
         controller: 'FriendsCtl'
+    }).when('/ListOffers', {
+        templateUrl: '/html/listoffers.html',
+        controller: 'ListOffersCtl'
     }).otherwise({
         redirectTo: '/'
     });
 
     $authProvider.google({
         clientId: '707063193538-lcm9405hr187ncpl3rcv4q5ts2po42tc.apps.googleusercontent.com',
-        scope:"openid email profile https://www.googleapis.com/auth/contacts.readonly"
+        scope: "openid email profile https://www.googleapis.com/auth/contacts.readonly"
     });
 
     $authProvider.oauth2({
