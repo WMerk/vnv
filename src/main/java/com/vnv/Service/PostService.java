@@ -78,6 +78,32 @@ public class PostService {
         return json;
     }
 
+    public JSONObject getOwnOffer(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = postDao.getOffersForUser(user);
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
+        return json;
+    }
+
+    public JSONObject getOwnRequest(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = postDao.getRequestsForUser(user);
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
+        return json;
+    }
+
     public JSONObject getFriendPost(long uid, String sessionId) {
         if(!userService.checkLogin(sessionId, uid)) {
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -87,6 +113,40 @@ public class PostService {
         Collection<User> friends = userRelDao.getFriends(user);
         for (User friend:friends) {
             posts.addAll(postDao.getPostsForUser(friend));
+        }
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
+        return json;
+    }
+
+    public JSONObject getFriendOffer(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = new ArrayList<>();
+        Collection<User> friends = userRelDao.getFriends(user);
+        for (User friend:friends) {
+            posts.addAll(postDao.getOffersForUser(friend));
+        }
+        JSONArray jsonArray = new JSONArray(posts);
+        JSONObject json = new JSONObject();
+        json.put("status", 200);
+        json.put("data", jsonArray);
+        return json;
+    }
+
+    public JSONObject getFriendRequest(long uid, String sessionId) {
+        if(!userService.checkLogin(sessionId, uid)) {
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        }
+        User user = userDao.getUserById(uid);
+        Collection<Post> posts = new ArrayList<>();
+        Collection<User> friends = userRelDao.getFriends(user);
+        for (User friend:friends) {
+            posts.addAll(postDao.getRequestsForUser(friend));
         }
         JSONArray jsonArray = new JSONArray(posts);
         JSONObject json = new JSONObject();
