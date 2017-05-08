@@ -40,7 +40,7 @@ public class PostService {
     private UserService userService;
 
     public JSONObject insertPost(Post post, String sessionId) {
-        post.setStatus("verfügbar");
+        post.setStatus("Verfügbar");
         log.debug("Inserting post {} to database", post);
         if (userService.checkLogin(sessionId, post.getUser().getUid())) {
                 return postDao.insertPost(post).toJSON();

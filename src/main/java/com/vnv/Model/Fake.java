@@ -24,7 +24,7 @@ public class Fake {
     public static Faker faker = new Faker(new Locale("de"));
 
     private static String[] flavours = {"verschenken", "Dienstleistung", "verleihen"};
-    private static String[] status = {"offen", "reserviert", "beendet"};
+    private static String[] status = {"Verfügbar", "Reserviert", "Beendet"};
     private static Random random = new Random();
 
 

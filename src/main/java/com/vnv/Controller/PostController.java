@@ -3,6 +3,7 @@ package com.vnv.Controller;
 import com.vnv.Entity.Post;
 import com.vnv.Service.PostService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +28,10 @@ public class PostController {
         JSONObject res =  postService.insertPost(post, session.getId());
         log.debug(res.toString());
         int status = 200;
-        if (res.has("status")) {
+        try {
             status = res.getInt("status");
+        } catch (JSONException e) {
+
         }
         return ResponseEntity.status(status).body(res.toString());
     }
