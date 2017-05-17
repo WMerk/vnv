@@ -156,6 +156,7 @@ public class Post {
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject(this);
+        json.put("user", user.toJSON());
         return json;
     }
 }

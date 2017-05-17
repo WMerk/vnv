@@ -36,6 +36,19 @@ public class PostController {
         return ResponseEntity.status(status).body(res.toString());
     }
 
+    @RequestMapping(value="/update", method= RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity updatePost(@RequestBody Post post, HttpSession session) {
+        JSONObject res =  postService.updatePost(post, session.getId());
+        log.debug(res.toString());
+        int status = 200;
+        try {
+            status = res.getInt("status");
+        } catch (JSONException e) {
+
+        }
+        return ResponseEntity.status(status).body(res.toString());
+    }
+
     @RequestMapping(value = "delete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity deletePost(@RequestBody Post post, HttpSession session) {
         JSONObject res = postService.deletePost(session.getId(), post.getUser().getUid(), post.getId());

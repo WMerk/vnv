@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -46,6 +48,47 @@ public class PostService {
                 return postDao.insertPost(post).toJSON();
         }
         log.debug("Aborting, user not logged in");
+        return new JSONObject(ErrorMessage.NotLoggedIn);
+    }
+
+    private Post combinePosts(Post storedPost, Post updatedPost) throws InvocationTargetException, IllegalAccessException {
+        log.debug(storedPost.toString());
+        log.debug(updatedPost.toString());
+        for (Method method : updatedPost.getClass().getMethods()) {
+            Class returnType = method.getReturnType();
+            String methodName = method.getName();
+            if (!returnType.equals(void.class) && methodName.startsWith("get")) {
+                //System.out.println(method.getName());
+                Object response = method.invoke(updatedPost);
+                if (response!= null) {
+                    try {
+                        Method setMethod = storedPost.getClass().getMethod(methodName.replace("get", "set"), returnType);
+                        setMethod.invoke(storedPost, response);
+                    } catch (NoSuchMethodException e) {
+                        //should only happen for getClass which is ok
+                        log.warn(e.getMessage());
+                    }
+                }
+            }
+        }
+        log.debug(storedPost.toString());
+        return storedPost;
+    }
+
+    public JSONObject updatePost(Post post, String sessionId) {
+        if (post.getUser().getUid() == null)
+            return new JSONObject(ErrorMessage.NotLoggedIn);
+        if (userService.checkLogin(sessionId, post.getUser().getUid())) {
+            log.debug("updating post {}", post);
+            Post storedPost = postDao.getPostById(post.getId());
+            try {
+                post = combinePosts(storedPost, post);
+            } catch (InvocationTargetException | IllegalAccessException e) {
+                log.error(e.getLocalizedMessage());
+                return new JSONObject(ErrorMessage.DefaultError);
+            }
+            return postDao.updatePost(post).toJSON();
+        }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
 

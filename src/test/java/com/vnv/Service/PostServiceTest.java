@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -65,6 +66,28 @@ public class PostServiceTest {
         System.out.println(res);
         assertFalse(res.has("error"));
         pid = res.getLong("id");
+
+    }
+
+    @Test
+    public void updatePostTest() throws Exception {
+        createPost();
+        Post updated = postDao.getPostById(pid);
+        updated.setStatus("other");
+        updated.setDescription("new description");
+        JSONObject res = ps.updatePost(updated, "wrongSession");
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = ps.updatePost(updated, sessionId);
+        assertFalse(res.has("error"));
+        JSONAssert.assertEquals(updated.toJSON(), res, false);
+
+        updated = Fake.getFakeOffer(userDao.getUserById(uid));
+        updated.setId(pid);
+        res = ps.updatePost(updated, sessionId);
+        assertFalse(res.has("error"));
+        JSONAssert.assertEquals(updated.toJSON(), res, false);
 
     }
 
