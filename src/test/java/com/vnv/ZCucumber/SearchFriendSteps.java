@@ -41,7 +41,7 @@ public class SearchFriendSteps extends BasedriverConfiguration {
 
     @And("^I am on the add friends page$")
     public void iAmOnTheAddFriendsPage() throws Throwable {
-        browser.findElement(By.linkText("Freunde hinzufügen")).click();
+        browser.findElement(By.linkText("Deine Freunde")).click();
     }
 
     @When("^I type \"([^\"]*)\" in the searchfield$")
