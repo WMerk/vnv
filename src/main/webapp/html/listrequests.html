@@ -1,0 +1,65 @@
+<div data-ng-init="init()">
+    <div ng-include="templateNavigation"></div>
+</div>
+
+<div style="margin-top: 50px">
+    <h2>Verwalte Deine Gesuche</h2>
+</div>
+
+<div class="container-fluid" style="margin-top: 50px; margin-bottom: 50px">
+
+    <div ng-repeat="request in requests" class="container-fluid" style="padding:0px 50px;">
+        <div class="row">
+            <div class="col-lg-12" style="border: 1px solid rgba(0,0,0,.125);">
+
+                <div class="container-fluid">
+                    <div class="row" style="padding: 5px 5px 0 5px">
+                        <div class="col-lg-6">
+                            <h2 style="color: #155a96; margin-left: 15px; text-align:left">{{request.postName}}</h2>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding: 10px 20px 25px 20px">
+                        <div class="col-lg-3">
+                            <img style="width: 80%" src="../img/item.png" class="img-responsive img-thumbnail">
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Status</p>
+                                <p>{{request.status}}</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Gültig von</p>
+                                <p>{{request.creationDate}} Uhr</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Inseratart</p>
+                                <p ng-if="request.flavour === 'verschenken'">Geschenk</p>
+                                <p ng-if="request.flavour === 'verleihen'">Verleih</p>
+                                <p ng-if="request.flavour === 'Dienstleistung'">Dienstleistung</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Gültig bis</p>
+                                <p>{{request.period}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Kategorie</p>
+                                <p>{{request.category.name}}</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Beschreibung</p>
+                                <p>{{request.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

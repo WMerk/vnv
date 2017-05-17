@@ -42,6 +42,9 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
     }).when('/ListOffers', {
         templateUrl: '/html/listoffers.html',
         controller: 'ListOffersCtl'
+    }).when('/ListRequests', {
+        templateUrl: '/html/listrequests.html',
+        controller: 'ListRequestsCtl'
     }).otherwise({
         redirectTo: '/'
     });

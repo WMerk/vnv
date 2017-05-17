@@ -35,3 +35,15 @@ vnvApp.factory('doLoadOffers', function ($resource) {
         }
     );
 });
+
+vnvApp.factory('doLoadRequests', function ($resource) {
+    return $resource('/posts/own/requests',
+        {},
+        {
+            query: {
+                method: "GET",
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
