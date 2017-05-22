@@ -1,6 +1,10 @@
 language: java
 jdk: oraclejdk8
 sudo: reqired # faster builds
+dist: trusty
+
+before_script:
+ - sudo chmod 755 /home/travis/build/WMerk/vnv/src/test/resources/chromedriver.exe
 
 script: "mvn test"
 
