@@ -3,10 +3,9 @@ Feature: Register
   I want to register an user account
 
   Scenario: Successfully registered
-    Given the username is "vorname nachname" and the email is "email@email.de" and the password "12345678"
+    Given the username is "vorname nachname" and the email is "registeruser@mail.de" and the password "test"
     When the register button is clicked
     Then the register page is shown and the cssSelector is "alert-success" and the message is "Willkommen! Die Registrierung war erfolgreich."
-    Then the registered user is deleted from database again
 
   Scenario: Register failed
     Given the username is "" and the email is "email@email.de" and the password "1"
@@ -14,7 +13,6 @@ Feature: Register
     Then the register page is shown
 
   Scenario: Email is already stored in Database
-    Given a registerd user with named "registered user" with email "registeruser@mail.de" and password "test"
     Given the username is "vorname nachname" and the email is "registeruser@mail.de" and the password "test"
     When the register button is clicked
     Then an Registrationerror with the message "Es existiert bereits ein Account mit dieser Mailadresse." is shown

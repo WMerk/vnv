@@ -11,21 +11,24 @@ public class Post {
 
     @Id
     private Long id;
+    @Reference
+    @Indexed
+    private User user;
     @Attribute
     @Indexed
-    private long uid; //uid for the user who created this post
+    private String type;
     @Attribute
     @Indexed
-    private String type; //offer or request
-    @Attribute
-    @Indexed
-    private String flavour; //verschenken Dienstleistung or verleihen
+    private String flavour;
     @Attribute
     @Indexed
     private String postName;
     @Reference
     @Indexed
     private Category category;
+    @Attribute
+    @Indexed
+    private String status;
     @Attribute
     @Indexed
     private String period;
@@ -35,6 +38,7 @@ public class Post {
     private String description;
     @Attribute
     private long creationTime = new Date().getTime();
+    private String creationDate;
 
     public Long getId() {
         return id;
@@ -44,12 +48,12 @@ public class Post {
         this.id = id;
     }
 
-    public long getUid() {
-        return uid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getType() {
@@ -92,6 +96,14 @@ public class Post {
         this.period = period;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getPicPath() {
         return picPath;
     }
@@ -116,24 +128,35 @@ public class Post {
         this.creationTime = creationTime;
     }
 
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", uid=" + uid +
+                ", user=" + user +
                 ", type='" + type + '\'' +
                 ", flavour='" + flavour + '\'' +
                 ", postName='" + postName + '\'' +
                 ", category=" + category +
+                ", status='" + status + '\'' +
                 ", period='" + period + '\'' +
                 ", picPath='" + picPath + '\'' +
                 ", description='" + description + '\'' +
                 ", creationTime=" + creationTime +
+                ", creationDate=" + creationDate +
                 '}';
     }
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject(this);
+        json.put("user", user.toJSON());
         return json;
     }
 }

@@ -25,17 +25,13 @@ public class LoginSteps extends BasedriverConfiguration {
         browser = webDriver();
 
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
-
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
     }
 
     @When("^the login button is clicked$")
     public void theLoginButtonIsClicked() throws Throwable {
         WebElement registerForm = browser.findElement(tagName("button"));
         registerForm.click();
-        Thread.sleep(3000);
     }
 
     @Then("^the main page is shown$")
@@ -60,13 +56,6 @@ public class LoginSteps extends BasedriverConfiguration {
 
     @Then("^the logged in user is deleted from database again$")
     public void theLoggedInUserIsDeletedFromDatabaseAgain() throws Throwable {
-        browser.findElement(By.linkText("Profil")).click();
-        Thread.sleep(100);
-        browser.findElement(By.linkText("Einstellungen")).click();
-        Thread.sleep(100);
-        browser.findElement(By.linkText("Account löschen")).click();
-        Thread.sleep(100);
-        browser.findElement(By.id("deleteAccountButton")).click();
-        Thread.sleep(100);
+        cleanUp(browser);
     }
 }

@@ -12,6 +12,7 @@ import redis.clients.johm.JOhm;
 import redis.clients.johm.NVField;
 
 import java.util.Collection;
+import java.util.Date;
 
 @Repository
 @Qualifier("redis")
@@ -28,22 +29,42 @@ public class RedisPostDaoImpl implements PostDao {
 
     @Override
     public Collection<Post> getAllPosts() {
-        return JOhm.getAll(Post.class);
+        Collection<Post> posts = JOhm.getAll(Post.class);
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+            p.setCreationDate(df.format(new Date(p.getCreationTime())));
+        }
+        return posts;
     }
 
     @Override
     public Collection<Post> getPostsForUser(User user) {
-        return JOhm.find(Post.class, "uid", user.getUid());
+        Collection<Post> posts = JOhm.find(Post.class, "uid", user.getUid());
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+            p.setCreationDate(df.format(new Date(p.getCreationTime())));
+        }
+        return posts;
     }
 
     @Override
     public Collection<Post> getOffersForUser(User user) {
-        return JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "offer"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "offer"));
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+            p.setCreationDate(df.format(new Date(p.getCreationTime())));
+        }
+        return posts;
     }
 
     @Override
     public Collection<Post> getRequestsForUser(User user) {
-        return JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "request"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "request"));
+        for (Post p : posts) {
+            p.setUser(p.getUser().toPublic());
+            p.setCreationDate(df.format(new Date(p.getCreationTime())));
+        }
+        return posts;
     }
 
     @Override

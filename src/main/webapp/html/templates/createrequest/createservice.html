@@ -1,0 +1,84 @@
+<div style="margin-top: 50px;">
+    <div style="width: 50%; margin:auto" class="btn-group btn-group-justified" role="group">
+
+        <a ng-click="showTemplateLend()" type="submit" class="btn btn-default">Verleihen</a>
+
+        <a ng-click="showTemplateService()" type="submit" class="btn btn-primary">Dienstleistung</a>
+
+        <a ng-click="showTemplateDonate()" type="submit" class="btn btn-default">Verschenken</a>
+    </div>
+</div>
+
+<div style="margin-top: 50px">
+    <h2>Dein neues Gesuch</h2>
+</div>
+
+
+<div class="container-fluid" style="margin-top: 50px;">
+    <div class="form-horizontal">
+
+        <!-- Form code begins -->
+        <form id="formCreateRequest" name="formCreateRequest" method="post">
+
+            <div ng-if="errorSelectCategory" id="errorSelectCategory" class="ng-cloak alert alert-danger text-center">
+                Bitte wählen Sie eine Kategorie aus.
+            </div>
+            <div ng-if="errorCreateRequest" id="errorCreateRequest" class="ng-cloak alert alert-danger text-center">
+                Beim Erstellen des Gesuches ist ein Fehler aufgetreten.
+            </div>
+
+            <!-- NAME -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertRequestName">Gesuchsname:</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" id="insertRequestName" ng-model="request.postName"
+                           ng-required="true">
+                </div>
+            </div>
+
+            <script language="javascript" type="text/javascript" src="/js/components/datepicker.js"></script>
+            <!-- CATEGORY -->
+            <div class="form-group">
+                <label class="col-md-2 control-label">Kategorie:</label>
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="ng-cloak btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{request.category.name}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="insertRequestCategory">
+                            <li ng-click="selectCategory(category)" ng-repeat="category in categories | orderBy : 'id'"><a href="#">{{category.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIME -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertRequestDate">Gültig bis:</label>
+                <div class="col-md-6">
+                    <input class="form-control" ng-model="request.period" ng-required="true" id="insertRequestDate"
+                           name="date" placeholder="DD.MM.YYYY" type="text"/>
+                </div>
+            </div>
+
+            <!-- DESCRIPTIOM -->
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="insertRequestDescription">Beschreibung:</label>
+                <div class="col-md-6">
+                <textarea class="form-control" id="insertRequestDescription" ng-model="request.description"
+                          ng-required="true"
+                          rows="5"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group text-center">
+                <button ng-click="formCreateRequest.$valid && doCreateNewRequest()" type="submit" id="insertRequestSubmitButton" class="btn btn-primary">Gesuch hinzufügen
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>

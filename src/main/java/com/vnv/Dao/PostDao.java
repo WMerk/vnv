@@ -3,9 +3,13 @@ package com.vnv.Dao;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 public interface PostDao {
+
+    DateFormat df = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
     /**
      * gets the post with th specified id from the database

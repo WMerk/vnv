@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 @Qualifier("fakeData")
@@ -45,6 +43,22 @@ public class FakeUserDaoImp implements UserDao {
     @Override
     public Collection<User> getAllUser() {
         return users.values();
+    }
+
+    @Override
+    public Collection<User> getAllUserCensored() {
+        List<User> res = new ArrayList<User>(users.values());
+        /*
+        for (User u:res) {
+            u.setPassword(null);
+            u.setNewPassword(null);
+            u.setSalt(null);
+            u.setHashedPw(null);
+            u.setPhone(null);
+            u.setConfirmationLink(null);
+            u.setSessionId(null);
+        }*/
+        return res;
     }
 
     @Override
@@ -88,6 +102,18 @@ public class FakeUserDaoImp implements UserDao {
     }
 
     @Override
+    public User getUserByGoogleId(String id) {
+        for (int i=1; i<this.id; i++) {
+            User u = getUserById(i);
+            if (u!=null) {
+                if (id.equals(u.getGoogleId()))
+                    return u;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean removeUserById(long id) {
         users.remove(id);
         return true;
@@ -101,15 +127,11 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User insertUserToDb(User user) {
+        user.setTime(new Date().getTime());
         user.setUid(id);
         id++;
         users.put(user.getUid(),user);
         return getUserById(user.getUid());
     }
 
-    @Override
-    public Collection<User> searchUser(String query) {
-        //TODO
-        return null;
-    }
 }

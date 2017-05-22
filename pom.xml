@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.vnv</groupId>
-    <artifactId>dhbwMVC</artifactId>
-    <version>0.3a-SNAPSHOT</version>
+    <groupId>de.dhbw.ka.vnv</groupId>
+    <artifactId>vnvproject</artifactId>
+    <version>1.2.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -72,14 +72,14 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-spring</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
 
@@ -98,12 +98,18 @@
         </dependency>
         <!-- end::Faker[] -->
 
-        <!-- tag::Facebook[] -->
         <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-facebook</artifactId>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
         </dependency>
-        <!-- end:Facebook[] -->
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+
 
     </dependencies>
 

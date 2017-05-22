@@ -5,22 +5,19 @@ vnvApp.controller(
         '$location',
         'userService',
         'doLoadCategories',
-        'doCreateNewOffer',
-        function ($scope, $location, userService, doLoadCategories, doCreateNewOffer) {
+        'doCreateNewPost',
+        function ($scope, $location, userService, doLoadCategories, doCreateNewPost) {
 
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
-                $scope.templateOffer = 'html/templates/createlend.html';
-
-                $scope.resetOffer();
-
+                $scope.showTemplateLend();
                 $scope.loadCategories();
-
             };
 
             $scope.resetOffer = function () {
                 $scope.offer = new Object();
+                $scope.offer.type = 'offer';
 
                 $scope.offer.category = {
                     "name": "Bitte auswählen",
@@ -32,38 +29,43 @@ vnvApp.controller(
             };
 
             $scope.showTemplateLend = function () {
-                $scope.templateOffer = 'html/templates/createlend.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'verleihen';
+                $scope.templateOffer = 'html/templates/createoffer/createlend.html';
             };
 
             $scope.showTemplateService = function () {
-                $scope.templateOffer = 'html/templates/createservice.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'Dienstleistung';
+                $scope.templateOffer = 'html/templates/createoffer/createservice.html';
             };
             $scope.showTemplateDonate = function () {
-                $scope.templateOffer = 'html/templates/createdonate.html';
                 $scope.resetOffer();
                 $scope.offer.flavour = 'verschenken';
+                $scope.templateOffer = 'html/templates/createoffer/createdonate.html';
             };
 
             $scope.loadCategories = function () {
-                $scope.categories = doLoadCategories.query();
+                var response = doLoadCategories.query();
+
+                response.$promise.then(function (data) {
+                    if (data.error === undefined) {
+                        // no error, query successful
+                        $scope.categories = response;
+                    } else {
+                        // error, query failed
+                    }
+                });
             };
 
             $scope.doCreateNewOffer = function () {
-
-                if($scope.offer.category.id == 0){
+                if ($scope.offer.category.id == 0) {
                     $scope.errorSelectCategory = true;
                     return;
                 }
+                $scope.offer.user = userService.getCurrentUser();
 
-                var user = userService.getCurrentUser();
-                $scope.offer.uid = user.uid;
-
-                var response = doCreateNewOffer.query($scope.offer);
-
+                var response = doCreateNewPost.query($scope.offer);
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
                         // no error
@@ -75,9 +77,7 @@ vnvApp.controller(
                         $scope.errorCreateOffer = true;
 
                     }
-
                 });
-
             };
 
             $scope.selectCategory = function (category) {
@@ -85,5 +85,4 @@ vnvApp.controller(
                 $scope.errorSelectCategory = false;
             };
 
-
-        }]);
+    }]);

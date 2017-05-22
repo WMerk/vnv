@@ -22,10 +22,8 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
 
     @And("^the settings are selected$")
     public void theSettingsAreSelected() throws Throwable {
-        WebElement profil = browser.findElement(By.linkText("Profil"));
-        profil.click();
+        browser.findElement(By.linkText("Profil")).click();
         browser.findElement(By.linkText("Einstellungen")).click();
-
     }
 
     @And("^the delete account settings is selected$")
@@ -36,6 +34,12 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
     @When("^the delete Account button is clicked$")
     public void theDeleteAccountButtonIsClicked() throws Throwable {
         browser.findElement(By.id("deleteAccountButton")).click();
+    }
+
+    @And("^the confirmation with the password \"([^\"]*)\" is done$")
+    public void theConfirmationWithThePasswordIsDone(String password) throws Throwable {
+        browser.findElement(id("deletAccountInputPw")).sendKeys(password);
+        browser.findElement(id("confirmDeleteAccount")).click();
     }
 
     @Then("^the mainpage with the message \"([^\"]*)\" is shown$")
@@ -56,12 +60,18 @@ public class DeleteAccountSteps extends BasedriverConfiguration {
         browser = webDriver();
 
         browser.findElement(id("form-email")).sendKeys(email);
-        Thread.sleep(100);
-
         browser.findElement(id("form-password")).sendKeys(password);
-        Thread.sleep(100);
-
         browser.findElement(tagName("button")).click();
-        Thread.sleep(3000);
+    }
+
+    @Then("^an error message \"([^\"]*)\" is shown$")
+    public void anErrorMessageIsShown(String message) throws Throwable {
+        assertThat(browser.findElement(id("errorDeleteAccount")).getText().equals(message), Matchers.is(true));
+        cleanup();
+    }
+
+    private void cleanup() {
+        browser.findElement(id("deletAccountInputPw")).sendKeys("test");
+        browser.findElement(id("confirmDeleteAccount")).click();
     }
 }

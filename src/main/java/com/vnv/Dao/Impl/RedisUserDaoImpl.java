@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import redis.clients.johm.JOhm;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -27,6 +28,12 @@ public class RedisUserDaoImpl implements UserDao {
     @Override
     public Collection<User> getAllUser() {
         return JOhm.getAll(User.class);
+    }
+
+    @Override
+    public Collection<User> getAllUserCensored() {
+        return JOhm.find(User.class, "findable", true,
+                "hashedPw", "salt", "phone", "sessionId", "confirmationLink");
     }
 
     @Override
@@ -90,6 +97,24 @@ public class RedisUserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserByGoogleId(String id) {
+        List<User> users = JOhm.find(User.class, "googleId", id);
+        if (users.isEmpty()) {
+            log.debug("No user found for googleId {}", id);
+            return null;
+        }
+        if (users.size() > 1) {
+            //this shouldn't happen
+            //if this happens, someone screwed up the database
+            //you should look why it's possible to store multiple users with same sessionId
+            //TODO Nevertheless proper exception handling is required here
+            log.error("Multiple users found for googleId {}", id);
+            return null;
+        }
+        return users.get(0);
+    }
+
+    @Override
     public boolean removeUserById(long id) {
         return JOhm.delete(User.class, id, true, true);
     }
@@ -101,12 +126,8 @@ public class RedisUserDaoImpl implements UserDao {
 
     @Override
     public User insertUserToDb(User user) {
+        user.setTime(new Date().getTime());
         return JOhm.save(user);
     }
 
-    @Override
-    public Collection<User> searchUser(String query) {
-        //TODO
-        return null;
-    }
 }

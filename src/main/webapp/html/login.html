@@ -1,6 +1,6 @@
 <div data-ng-init="init()">
 
-    <div id="deleteSuccessful" class="alert alert-success" ng-if="accountDeleted">
+    <div id="deleteSuccessful" class="ng-cloak alert alert-success text-center" ng-if="accountDeleted">
         <strong>Schade, dass du uns verlässt!</strong> Dein Account wurde gelöscht.
     </div>
 
@@ -13,13 +13,12 @@
                             <li role="presentation" class="active"><a id="anchorLoginShowLogin" href="/">Login</a></li>
                             <li role="presentation"><a id="anchorLoginShowRegister" href="Register">Registrierung</a>
                             </li>
-
                         </ul>
                         <hr>
                     </div>
                 </div>
                 <div class="form-bottom">
-                    <div style="display: none" id="errorLogin" class="alert alert-danger text-center">
+                    <div style="display: none" id="errorLogin" class="ng-cloak alert alert-danger text-center">
                         Falsche E-Mail-Adresse oder Passwort.
                     </div>
                     <form id="loginForm" role="form" name="loginForm" method="post" class="login-form">
@@ -28,7 +27,7 @@
                                    oninput="resetLoginError()" id="form-email" ng-required="true">
                         </div>
                         <div class="form-group">
-                            <input ng-model="login.pw" type="password" placeholder="Passwort..." class="form-control"
+                            <input ng-model="login.password" type="password" placeholder="Passwort..." class="form-control"
                                    oninput="resetLoginError()" id="form-password" ng-required="true">
                         </div>
                         <button ng-click="loginForm.$valid && doLogin()" type="submit" class="authenticate">Login
@@ -39,7 +38,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3 social-login">
-                <h3>...oder Einloggen mit:</h3>
+                <h4>...oder Einloggen mit:</h4>
 
                 <div class="text-center social-login-buttons">
                     <a class="btn btn-link-1 btn-link-1-facebook" href="">
@@ -48,20 +47,11 @@
                     <a class="btn btn-link-1 btn-link-1-twitter" href="">
                         <i class="fa fa-twitter"></i> Twitter
                     </a>
-                    <a class="btn btn-link-1 btn-link-1-google-plus" href="">
+                    <a class="btn btn-link-1 btn-link-1-google-plus" ng-click="authenticate('google')" href="">
                         <i class="fa fa-google-plus"></i> Google Plus
                     </a>
                 </div>
-                <form action="/connect/facebook" method="POST">
-
-                    <input type="hidden" name="scope" value="public_profile, email" />
-                    <input type="hidden" name="redirect_uri" value="/login/facebook" />
-                    <p><button type="submit">Connect to Facebook</button></p>
-                </form>
-
             </div>
         </div>
-
-
     </div>
 </div>

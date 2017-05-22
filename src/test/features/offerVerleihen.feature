@@ -2,8 +2,8 @@ Feature: offer Verleihen
   As a logged in user
   I want to create an offer to lend something
 
-  Scenario:
-    Given a registerd user with named "offer Verleihen" with email "offer@Verleihen.de" and password "test"
+  Scenario: create Verleihen successful
+    Given a registerd user named "offer Verleihen" with email "offer@Verleihen.de" and password "test"
     And offer login with the email "offer@Verleihen.de" and the password "test"
     And the Link "Neues Angebot" is clicked
     And the flavior "Verleihen" is selected
@@ -12,7 +12,7 @@ Feature: offer Verleihen
     Then the mainpage with the message "Ihr Angebot wurde erfolgreich erstellt." in the element with id "successfulCreateOffer" is shown
 
 
-  Scenario:
+  Scenario: create Verleihen failed
     Given offer login with the email "offer@Verleihen.de" and the password "test"
     And the Link "Neues Angebot" is clicked
     And the flavior "Verleihen" is selected

@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="form-bottom">
-                    <div style="display: none" id="errorAlreadyRegistered" class="alert alert-danger text-center">
+                    <div style="display: none" id="errorAlreadyRegistered" class="ng-cloak alert alert-danger text-center">
                         Es existiert bereits ein Account mit dieser Mailadresse.
                     </div>
                     <form role="form" name="registerForm" id="registerForm" method="post" class="login-form">
@@ -49,12 +49,5 @@
                 </div>
             </div>
         </div>
-
-        <form action="/connect/facebook" method="POST">
-            <input type="hidden" name="scope" value="public_profile, email, user_friends" />
-            <input type="hidden" name="redirect_uri" value="/Main" />
-            <p><button type="submit">Connect to Facebook</button></p>
-        </form>
-
     </div>
 </div>
