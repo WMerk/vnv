@@ -53,7 +53,7 @@ public class BasedriverConfiguration {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         capabilities.setJavascriptEnabled(true);
         ChromeDriver driver = new ChromeDriver(capabilities);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
 
         return driver;
 
