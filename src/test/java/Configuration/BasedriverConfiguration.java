@@ -37,7 +37,13 @@ public class BasedriverConfiguration {
 
 
     private ChromeDriver chromeDriver() {
-        File file = new File("src/test/resources/chromedriver.exe");
+        File file = null;
+
+        if (SystemUtils.IS_OS_WINDOWS) {
+            file = new File("src/test/resources/chromedriver.exe");
+        }else {
+            file = new File("src/test/resources/chromedriver");
+        }
 
         if (file == null) {
             throw new RuntimeException("ChromeDriver is not supported by your operating system");
