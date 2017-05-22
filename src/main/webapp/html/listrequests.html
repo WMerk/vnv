@@ -6,9 +6,14 @@
     <h2>Verwalte Deine Gesuche</h2>
 </div>
 
-<div class="container-fluid" style="margin-top: 50px; margin-bottom: 50px">
+<div ng-if="update.editPost">
+    <div ng-include="'html/updatepost.html'"></div>
+</div>
 
-    <div ng-repeat="request in requests" class="container-fluid" style="padding:0px 50px;">
+<div ng-if="!update.editPost" class="container-fluid" style="margin-top: 50px; margin-bottom: 50px">
+
+    <div ng-repeat="request in requests" class="container-fluid" style="padding:0px 50px; cursor:pointer"
+         ng-click="editSelectedPost(request)">
         <div class="row">
             <div class="col-lg-12" style="border: 1px solid rgba(0,0,0,.125);">
 
@@ -56,7 +61,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

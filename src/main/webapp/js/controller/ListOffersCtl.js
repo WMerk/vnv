@@ -7,10 +7,15 @@ vnvApp.controller(
         'doLoadOffers',
         function ($scope, $location, userService, doLoadOffers) {
 
+            $scope.update = {
+                editPost : false
+            }
+
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
                 $scope.loadOffers();
+                $scope.update.editPost = false;
             };
 
             $scope.loadOffers = function () {
@@ -26,6 +31,11 @@ vnvApp.controller(
                         // error, query failed
                     }
                 });
+            };
+
+            $scope.editSelectedPost = function (post) {
+                $scope.update.editPost = true;
+                $scope.update.post = angular.copy(post);
             };
 
 

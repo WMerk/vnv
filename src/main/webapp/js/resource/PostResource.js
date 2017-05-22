@@ -11,6 +11,19 @@ vnvApp.factory('doCreateNewPost', function ($resource) {
     );
 });
 
+vnvApp.factory('doUpdatePost', function ($resource) {
+    return $resource('/posts/update',
+        {},
+        {
+            query: {
+                method: "POST",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
 vnvApp.factory('doLoadCategories', function ($resource) {
     return $resource('/posts/categories',
         {},
