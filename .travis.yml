@@ -4,6 +4,7 @@ sudo: reqired # faster builds
 
 before_script:
   - sudo chmod 755 /home/travis/build/WMerk/vnv/src/test/resources/chromedriver.exe
+  - sudo chmod 755 /home/travis/build/WMerk/vnv/src/test/resources/chromedriver
 
 script: "mvn test"
 
