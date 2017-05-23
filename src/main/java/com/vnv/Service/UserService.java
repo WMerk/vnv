@@ -35,7 +35,7 @@ public class UserService {
     public JSONObject getReceivedFriendRequest(long uid, String sessionId) {
         log.debug("Getting Received friend requests");
 
-        if (userDao.getUserBySessionId(sessionId)==null)
+        if (userDao.getUserBySessionId(sessionId) == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -43,7 +43,7 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> requestsRec = userRelDao.getRequestsRecv(user);
         JSONArray jsonArray = new JSONArray();
-        if (requestsRec!=null) {
+        if (requestsRec != null) {
             for (User u : requestsRec) {
                 jsonArray.put(u.toJSON());
             }
@@ -60,7 +60,7 @@ public class UserService {
     public JSONObject getSentFriendRequest(long uid, String sessionId) {
         log.debug("Getting Sent friend requests");
 
-        if (userDao.getUserBySessionId(sessionId)==null)
+        if (userDao.getUserBySessionId(sessionId) == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -68,7 +68,7 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> requestsSent = userRelDao.getRequestsSent(user);
         JSONArray jsonArray = new JSONArray();
-        if (requestsSent!=null) {
+        if (requestsSent != null) {
             for (User u : requestsSent) {
                 jsonArray.put(u.toJSON());
             }
@@ -85,7 +85,7 @@ public class UserService {
     public JSONObject getFriends(long uid, String sessionId) {
         log.debug("Getting friends");
 
-        if (userDao.getUserBySessionId(sessionId)==null)
+        if (userDao.getUserBySessionId(sessionId) == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -93,7 +93,7 @@ public class UserService {
         User user = userDao.getUserById(uid);
         Collection<User> friends = userRelDao.getFriends(user);
         JSONArray jsonArray = new JSONArray();
-        if (friends!=null) {
+        if (friends != null) {
             for (User u : friends) {
                 jsonArray.put(u.toJSON());
             }
@@ -107,10 +107,10 @@ public class UserService {
         return json;
     }
 
-    public JSONObject getAllUser(long uid, String sessionId){
+    public JSONObject getAllUser(long uid, String sessionId) {
         log.debug("getting all users");
 
-        if (userDao.getUserBySessionId(sessionId)==null)
+        if (userDao.getUserBySessionId(sessionId) == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (!checkLogin(sessionId, uid))
             return new JSONObject(ErrorMessage.NotLoggedIn);
@@ -122,8 +122,8 @@ public class UserService {
         Collection<User> rest = userRelDao.getNonRelatedUsers(user);
 
         JSONArray array = new JSONArray();
-        if (friendsC!=null)
-            for (User u:friendsC) {
+        if (friendsC != null)
+            for (User u : friendsC) {
                 //System.out.println(u);
                 JSONObject data = u.toJSON();
                 JSONObject json = new JSONObject();
@@ -131,8 +131,8 @@ public class UserService {
                 json.put("request", "accepted");
                 array.put(json);
             }
-        if (requestsSentC!=null)
-            for (User u:requestsSentC) {
+        if (requestsSentC != null)
+            for (User u : requestsSentC) {
                 //System.out.println(u);
                 JSONObject data = u.toJSON();
                 JSONObject json = new JSONObject();
@@ -140,8 +140,8 @@ public class UserService {
                 json.put("request", "sent");
                 array.put(json);
             }
-        if (requestsRecC!=null)
-            for (User u:requestsRecC) {
+        if (requestsRecC != null)
+            for (User u : requestsRecC) {
                 //System.out.println(u);
                 JSONObject data = u.toJSON();
                 JSONObject json = new JSONObject();
@@ -149,9 +149,9 @@ public class UserService {
                 json.put("request", "received");
                 array.put(json);
             }
-        if(rest!=null)
-            for (User u:rest) {
-                if (u.getUid()!= uid) {
+        if (rest != null)
+            for (User u : rest) {
+                if (u.getUid() != uid) {
                     //System.out.println(u);
                     JSONObject data = u.toJSON();
                     JSONObject json = new JSONObject();
@@ -163,7 +163,7 @@ public class UserService {
         return new JSONObject().put("users", array);
     }
 
-    private User getUserById(long id){
+    private User getUserById(long id) {
         //A exists check should be implemented
         // and a errormessage on failor
         log.debug("getting user by id {}", id);
@@ -179,7 +179,7 @@ public class UserService {
             if (!returnType.equals(void.class) && methodName.startsWith("get")) {
                 //System.out.println(method.getName());
                 Object response = method.invoke(updatedUser);
-                if (response!= null) {
+                if (response != null) {
                     try {
                         Method setMethod = storedUser.getClass().getMethod(methodName.replace("get", "set"), returnType);
                         setMethod.invoke(storedUser, response);
@@ -232,7 +232,7 @@ public class UserService {
 
         this.insertUser(user);
         user = userDao.getUserByMail(user.getMail());
-        if (user==null) {
+        if (user == null) {
             return new JSONObject(String.format(ErrorMessage.getError("could not register user", 404)));
         }
         log.debug("User {} successfully added to DB", user);
@@ -265,14 +265,13 @@ public class UserService {
     public JSONObject loginUser(String mail, String pw, String sessionId) {
         log.debug("Log in for user with mail {}", mail);
         User user = userDao.getUserByMail(mail);
-        if (user==null) {
+        if (user == null) {
             //mail not found
             return new JSONObject(ErrorMessage.WrongMailPassword);
         }
-        log.error(user.toString());
         if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
             User sameSessionId = userDao.getUserBySessionId(sessionId);
-            if (sameSessionId!=null) {
+            if (sameSessionId != null) {
                 logoutUser(sessionId);
             }
             user.setSessionId(sessionId);
@@ -285,7 +284,7 @@ public class UserService {
     public boolean checkLogin(String sessionId, long uid) {
         log.debug("Checking if user with uid {} and sessionId {} is logged in", uid, sessionId);
         User user = userDao.getUserBySessionId(sessionId);
-        if (user!=null && user.getUid().longValue()==uid) {
+        if (user != null && user.getUid().longValue() == uid) {
             return true;
         }
         return false;
@@ -294,7 +293,7 @@ public class UserService {
     public JSONObject logoutUser(String sessionId) {
         log.debug("Log out for sessionId {}", sessionId);
         User user = userDao.getUserBySessionId(sessionId);
-        if (user==null) {
+        if (user == null) {
             return new JSONObject(ErrorMessage.AlreadyLoggedOut);
         }
         user.setSessionId(null);
@@ -328,7 +327,7 @@ public class UserService {
         }
         if (checkLogin(sessionId, user.getUid())) {
             userRelDao.addRequest(user, friend);
-            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject jsonFriend = friend.toJSON();
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "sent");
@@ -342,13 +341,13 @@ public class UserService {
         if (user.getUid() == null)
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (checkLogin(sessionId, user.getUid())) {
-                            Collection received = userRelDao.getRequestsRecv(user);
-            if (received==null||!received.contains(friend)) {
+            Collection received = userRelDao.getRequestsRecv(user);
+            if (received == null || !received.contains(friend)) {
                 return new JSONObject(ErrorMessage.NoFriendRequestReceived);
             }
             userRelDao.addFriend(user, friend);
             userRelDao.removeRequest(friend, user);
-            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject jsonFriend = friend.toJSON();
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "accepted");
@@ -363,11 +362,11 @@ public class UserService {
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (checkLogin(sessionId, user.getUid())) {
             Collection received = userRelDao.getRequestsRecv(user);
-            if (received==null||!received.contains(friend)) {
+            if (received == null || !received.contains(friend)) {
                 return new JSONObject(ErrorMessage.NoFriendRequestReceived);
             }
             userRelDao.removeRequest(friend, user);
-            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject jsonFriend = friend.toJSON();
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "declined");
@@ -382,11 +381,11 @@ public class UserService {
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (checkLogin(sessionId, user.getUid())) {
             Collection sent = userRelDao.getRequestsSent(user);
-            if (sent==null||!sent.contains(friend)) {
+            if (sent == null || !sent.contains(friend)) {
                 return new JSONObject(ErrorMessage.NoFriendRequestSent);
             }
             userRelDao.removeRequest(user, friend);
-            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject jsonFriend = friend.toJSON();
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "deleted");
@@ -401,11 +400,11 @@ public class UserService {
             return new JSONObject(ErrorMessage.NotLoggedIn);
         if (checkLogin(sessionId, user.getUid())) {
             Collection friends = userRelDao.getFriends(user);
-            if (friends==null||!friends.contains(friend)) {
+            if (friends == null || !friends.contains(friend)) {
                 return new JSONObject(ErrorMessage.NotFriendly);
             }
             userRelDao.removeFriend(user, friend);
-            JSONObject jsonFriend = userDao.getUserById(friend.getUid()).toJSON();
+            JSONObject jsonFriend = friend.toJSON();
             JSONObject res = new JSONObject();
             res.put("data", jsonFriend);
             res.put("request", "terminated");
@@ -413,7 +412,6 @@ public class UserService {
         }
         return new JSONObject(ErrorMessage.NotLoggedIn);
     }
-
 
 
 }
