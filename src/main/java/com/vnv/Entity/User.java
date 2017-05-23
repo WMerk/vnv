@@ -267,15 +267,18 @@ public class User {
     }
 
     public User toPublic() {
-        User u = this;
-        u.setHashedPw(null);
-        u.setSalt(null);
-        u.setPassword(null);
-        u.setNewPassword(null);
-        u.setConfirmationLink(null);
-        u.setSessionId(null);
-        u.setGoogleId(null);
-        u.setFacebookId(null);
+        User u = new User();
+        u.setName(this.getName());
+        u.setTime(this.getTime());
+        u.setFirstName(this.getFirstName());
+        u.setLastName(this.getLastName());
+        u.setFindable(this.findable);
+        u.setPicPath(this.getPicPath());
+        u.setMail(this.getMail());
+        u.setMailValid(this.mailValid);
+        u.setUid(this.getUid());
+        u.setPhone(this.getPhone());
+        u.setPhoneValid(this.phoneValid);
         return u;
     }
 }

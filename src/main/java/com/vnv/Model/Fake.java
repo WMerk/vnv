@@ -78,6 +78,10 @@ public class Fake {
         PostDao postDao = new FakePostDaoImpl();
 
         User tester = userDao.getUserByMail("test@test.de");
+        for (int j=0; j<5; j++) {
+            Post post = Fake.getFakePost(tester);
+            postDao.insertPost(post);
+        }
         for (int i=0; i<number; i++) {
             User u = getFakeUser();
             userDao.insertUserToDb(u);

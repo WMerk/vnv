@@ -269,6 +269,7 @@ public class UserService {
             //mail not found
             return new JSONObject(ErrorMessage.WrongMailPassword);
         }
+        log.error(user.toString());
         if (Password.checkPassword(pw, user.getSalt(), user.getHashedPw())) {
             User sameSessionId = userDao.getUserBySessionId(sessionId);
             if (sameSessionId!=null) {
