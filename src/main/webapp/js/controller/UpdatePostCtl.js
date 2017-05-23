@@ -34,9 +34,12 @@ vnvApp.controller(
                 ]
 
                 var secondStatus = {}
+                var reserved = {name: "Reserviert"}
                 if ($scope.update.post.flavour === 'verschenken') {
+                    $scope.statusSelection.push(reserved);
                     secondStatus['name'] = 'Verschenkt';
                 } else if ($scope.update.post.flavour === 'verleihen') {
+                    $scope.statusSelection.push(reserved);
                     secondStatus['name'] = 'Verliehen';
                 } else {
                     secondStatus['name'] = 'Nicht Verfügbar';
