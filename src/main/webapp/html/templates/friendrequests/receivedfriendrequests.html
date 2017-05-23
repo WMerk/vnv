@@ -14,14 +14,14 @@
         <table id="tableShowReceivedRequests" class="table">
             <tbody>
             <tr ng-repeat="user in receivedRequests | orderBy:'data.lastName'">
-                <td><img src="/img/avatar.png" style="max-width:20%; max-height: 20%" class="img-circle img-responsive"></td>
+                <td><img src="/img/avatar.png" style="max-width:20%; max-height: 20%" class="img-circle img-responsive" alt="Profilbild"></td>
                 <td class="vert-align">{{user.name}}</td>
                 <td class="vert-align" ng-show="(user.accepted != true)">
                     <button id="buttonAcceptRequest" ng-click="acceptRequest(user)" class="btn btn-primary">Bestätigen</button>
                 </td>
                 <td class="vert-align" ng-show="(user.accepted == true)">
                     <button id="buttonRequestAccepted" disabled="disabled" class="btn btn-success">
-                        <i class="glyphicon glyphicon-ok"></i> Freunde
+                        <em class="glyphicon glyphicon-ok"></em> Freunde
                     </button>
                 </td>
                 <td class="vert-align" ng-show="(user.accepted != true)">
