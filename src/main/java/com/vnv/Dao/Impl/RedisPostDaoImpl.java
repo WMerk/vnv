@@ -1,8 +1,10 @@
 package com.vnv.Dao.Impl;
 
 import com.vnv.Dao.PostDao;
+import com.vnv.Dao.UserDao;
 import com.vnv.Entity.Post;
 import com.vnv.Entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -16,6 +18,9 @@ import java.util.Date;
 @Qualifier("redis")
 @Profile("prod")
 public class RedisPostDaoImpl implements PostDao {
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Post getPostById(long id) {
@@ -34,7 +39,7 @@ public class RedisPostDaoImpl implements PostDao {
 
     @Override
     public Collection<Post> getPostsForUser(User user) {
-        Collection<Post> posts = JOhm.find(Post.class, "uid", user.getUid());
+        Collection<Post> posts = JOhm.find(Post.class, "user", user.getUid());
         for (Post p : posts) {
             p.setUser(p.getUser().toPublic());
             p.setCreationDate(df.format(new Date(p.getCreationTime())));
@@ -44,7 +49,7 @@ public class RedisPostDaoImpl implements PostDao {
 
     @Override
     public Collection<Post> getOffersForUser(User user) {
-        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "offer"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("user", user.getUid()), new NVField("type", "offer"));
         for (Post p : posts) {
             p.setUser(p.getUser().toPublic());
             p.setCreationDate(df.format(new Date(p.getCreationTime())));
@@ -54,7 +59,7 @@ public class RedisPostDaoImpl implements PostDao {
 
     @Override
     public Collection<Post> getRequestsForUser(User user) {
-        Collection<Post> posts = JOhm.find(Post.class, new NVField("uid", user.getUid()), new NVField("type", "request"));
+        Collection<Post> posts = JOhm.find(Post.class, new NVField("user", user.getUid()), new NVField("type", "request"));
         for (Post p : posts) {
             p.setUser(p.getUser().toPublic());
             p.setCreationDate(df.format(new Date(p.getCreationTime())));
