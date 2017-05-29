@@ -1,6 +1,7 @@
 package com.vnv.controller;
 
 import com.vnv.entity.User;
+import com.vnv.model.ErrorMessage;
 import com.vnv.model.Fake;
 import com.vnv.service.UserService;
 import org.json.JSONObject;
@@ -231,6 +232,20 @@ public class UserController {
             status = res.getInt("status");
         }
         return ResponseEntity.status(status).body(res.toString());
+    }
+
+    @RequestMapping(value= "/login/check", method = RequestMethod.GET)
+    public ResponseEntity checkLogin(@RequestParam long uid, HttpSession session) {
+        JSONObject json = new JSONObject(ErrorMessage.NotLoggedIn);
+        json.put("access", "denied");
+        int status = json.getInt("status");
+        if(userService.checkLogin(session.getId(), uid)) {
+            status = 200;
+            json = new JSONObject();
+            json.put("status", status);
+            json.put("access", "granted");
+        }
+        return ResponseEntity.status(status).body(json.toString());
     }
 
 }
