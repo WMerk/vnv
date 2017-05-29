@@ -29,7 +29,7 @@ public class GoogleServiceTest {
     public void getConfig() {
         JSONObject json = googleService.getConfig();
         assertTrue(json.has("iss"));
-        assertEquals(json.getString("client_id"), client_id);
+        assertEquals(json.getString("clientId"), client_id);
         assertTrue(json.has("auth_endpoint"));
         assertTrue(json.has("response_type"));
         assertTrue(json.has("scope"));

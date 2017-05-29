@@ -30,12 +30,6 @@ public class Main {
         }
     }
 
-    @Profile("prod")
-    private static void initDB() {
-        log.debug("Init DB");
-        Database db = new Database();
-    }
-
     @Profile("fake")
     private static void addFakeUser() {
         log.debug("Adding fake users");
