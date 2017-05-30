@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
@@ -47,6 +48,7 @@ public class Http {
             } finally {
                 instream.close();
                 EntityUtils.consume(entity);
+                HttpClientUtils.closeQuietly(response);
             }
         }
         return null;
@@ -81,6 +83,7 @@ public class Http {
             } finally {
                 instream.close();
                 EntityUtils.consume(entity);
+                HttpClientUtils.closeQuietly(response);
             }
         }
         return null;

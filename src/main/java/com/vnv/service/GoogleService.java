@@ -179,7 +179,7 @@ public class GoogleService extends SocialService {
     protected JSONObject getTokens(String code, String state, String redirect_uri) {
         List<NameValuePair> params = new ArrayList<>(2);
         params.add(new BasicNameValuePair("code", code));
-        params.add(new BasicNameValuePair("clientId", clientId));
+        params.add(new BasicNameValuePair("client_id", clientId));
         params.add(new BasicNameValuePair("client_secret", client_secret));
         params.add(new BasicNameValuePair("redirect_uri", redirect_uri));
         params.add(new BasicNameValuePair("grant_type", grant_type));
