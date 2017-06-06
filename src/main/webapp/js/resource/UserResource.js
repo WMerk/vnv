@@ -84,7 +84,7 @@ vnvApp.factory('doLoadAllUsers', function ($resource) {
                 method: "GET",
                 isArray: false,
                 headers: {'Content-Type': 'application/json; charset=utf-8'},
-                params: {uid : '@uid'}
+                params: {uid: '@uid'}
             }
         }
     );
@@ -98,7 +98,7 @@ vnvApp.factory('doLoadReceivedFriendRequests', function ($resource) {
                 method: "GET",
                 isArray: false,
                 headers: {'Content-Type': 'application/json; charset=utf-8'},
-                params: {uid : '@uid'}
+                params: {uid: '@uid'}
             }
         }
     );
@@ -112,7 +112,7 @@ vnvApp.factory('doLoadSentFriendRequests', function ($resource) {
                 method: "GET",
                 isArray: false,
                 headers: {'Content-Type': 'application/json; charset=utf-8'},
-                params: {uid : '@uid'}
+                params: {uid: '@uid'}
             }
         }
     );
@@ -126,7 +126,7 @@ vnvApp.factory('doLoadFriends', function ($resource) {
                 method: "GET",
                 isArray: false,
                 headers: {'Content-Type': 'application/json; charset=utf-8'},
-                params: {uid : '@uid'}
+                params: {uid: '@uid'}
             }
         }
     );
@@ -197,3 +197,16 @@ vnvApp.factory('doAcceptRequest', function ($resource) {
     );
 });
 
+vnvApp.factory('doCheckLogin', function ($resource) {
+    return $resource('/users/login/check',
+        {},
+        {
+            query: {
+                method: "GET",
+                isArray: false,
+                headers: {'Content-Type': 'application/json; charset=utf-8'},
+                params: {uid: '@uid'}
+            }
+        }
+    );
+});
