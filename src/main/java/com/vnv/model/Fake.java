@@ -1,19 +1,21 @@
 package com.vnv.model;
 
 import com.github.javafaker.Faker;
-import com.vnv.dao.fake.FakePostDaoImpl;
-import com.vnv.dao.fake.FakeUserDaoImp;
-import com.vnv.dao.fake.FakeUserRelDaoImpl;
+import com.vnv.dao.CategoryDao;
 import com.vnv.dao.PostDao;
 import com.vnv.dao.UserDao;
 import com.vnv.dao.UserRelDao;
-import com.vnv.entity.Category;
+import com.vnv.dao.fake.FakeCategoryDaoImpl;
+import com.vnv.dao.fake.FakePostDaoImpl;
+import com.vnv.dao.fake.FakeUserDaoImp;
+import com.vnv.dao.fake.FakeUserRelDaoImpl;
 import com.vnv.entity.Post;
 import com.vnv.entity.User;
 import org.springframework.context.annotation.Profile;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -26,6 +28,8 @@ public class Fake {
     private static String[] flavours = {"verschenken", "Dienstleistung", "verleihen"};
     private static String[] status = {"Verfügbar", "Reserviert", "Beendet"};
     private static Random random = new Random();
+
+    private static CategoryDao categoryDao = new FakeCategoryDaoImpl();
 
     public static Faker getFAKER() {
         return FAKER;
@@ -50,9 +54,7 @@ public class Fake {
         Post p = new Post();
         p.setUser(user);
         p.setFlavour(flavours[random.nextInt(3)]);
-        Category c = new Category();
-        c.setId(0L);c.setName("TestCategory");
-        p.setCategory(c);
+        p.setCategory(random(categoryDao.getAllCategories()));
         p.setDescription(FAKER.lorem().paragraph());
         p.setPostName(FAKER.lorem().word());
         p.setType(random.nextBoolean() ? "offer" : "request");
@@ -104,6 +106,13 @@ public class Fake {
                 postDao.insertPost(post);
             }
         }
+    }
+
+
+    private static <T> T random(Collection<T> coll) {
+        int num = (int) (Math.random() * coll.size());
+        for(T t: coll) if (--num < 0) return t;
+        throw new AssertionError();
     }
 
 }
