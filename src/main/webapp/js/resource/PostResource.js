@@ -60,3 +60,27 @@ vnvApp.factory('doLoadRequests', function ($resource) {
         }
     );
 });
+
+vnvApp.factory('doLoadFriendsOffers', function ($resource) {
+    return $resource('/posts/friends/offers',
+        {},
+        {
+            query: {
+                method: "GET",
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});
+
+vnvApp.factory('doLoadFriendsRequests', function ($resource) {
+    return $resource('/posts/friends/requests',
+        {},
+        {
+            query: {
+                method: "GET",
+                headers: {'Content-Type': 'application/json; charset=utf-8'}
+            }
+        }
+    );
+});

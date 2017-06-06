@@ -70,6 +70,42 @@ vnvApp.config(['$routeProvider', '$locationProvider', '$authProvider', function 
         });
     }
 
-}])
-;
+}]);
 
+vnvApp.filter('requestOrOfferFilter', function () {
+    return function (items, filter) {
+
+        var filtered = [];
+        angular.forEach(items, function(item) {
+            var valid = true;
+
+            if(filter.category.name !== "Kategorie"){
+                if(filter.category.id !== item.category.id){
+                    valid = false;
+                }
+            }
+            if(filter.status !== "Status"){
+                if(filter.status !== item.status){
+                    valid = false;
+                }
+            }
+            if(filter.inseratart !== "Inseratart"){
+                if(filter.inseratart === "Verschenken" && item.flavour !== "verschenken"){
+                    valid = false;
+                }
+                if(filter.inseratart === "Verleih" && item.flavour !== "verleihen"){
+                    valid = false;
+                }
+                if(filter.inseratart === "Dienstleistung" && item.flavour !== "Dienstleistung"){
+                    valid = false;
+                }
+            }
+
+            if(valid){
+                filtered.push(item);
+            }
+        });
+
+        return filtered;
+    };
+});
