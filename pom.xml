@@ -136,16 +136,12 @@
 
     <distributionManagement>
         <repository>
-            <id>packagecloud-travis</id>
-            <url>
-                packagecloud+https://packagecloud.io/VnV-Team/vnv
-            </url>
+            <id>packagecloud-VnV-Team</id>
+            <url>packagecloud+https://packagecloud.io/VnV-Team/vnv</url>
         </repository>
         <snapshotRepository>
-            <id>packagecloud-travis</id>
-            <url>
-                packagecloud+https://packagecloud.io/VnV-Team/vnv
-            </url>
+            <id>packagecloud-VnV-Team</id>
+            <url>packagecloud+https://packagecloud.io/VnV-Team/vnv</url>
         </snapshotRepository>
     </distributionManagement>
 
