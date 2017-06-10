@@ -55,67 +55,67 @@ public class PostServiceTest {
 
     @Test
     public void createPost() throws Exception {
-//        Post post = Fake.getFakeOffer(userDao.getUserById(uid));
-//
-//        res = ps.insertPost(post, "wrongSessionId");
-//        assertTrue(res.has("error"));
-//        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
-//
-//        res = ps.insertPost(post, sessionId);
-//        assertNotNull(res);
-//        System.out.println(res);
-//        assertFalse(res.has("error"));
-//        pid = res.getLong("id");
+        ps.initCategories();
+        Post post = Fake.getFakeOffer(userDao.getUserById(uid));
 
+        res = ps.insertPost(post, "wrongSessionId");
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = ps.insertPost(post, sessionId);
+        assertNotNull(res);
+        System.out.println(res);
+        assertFalse(res.has("error"));
+        pid = res.getLong("id");
     }
 
     @Test
     public void updatePostTest() throws Exception {
-//        createPost();
-//        Post updated = postDao.getPostById(pid);
-//        updated.setStatus("other");
-//        updated.setDescription("new description");
-//        JSONObject res = ps.updatePost(updated, "wrongSession");
-//        assertTrue(res.has("error"));
-//        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
-//
-//        res = ps.updatePost(updated, sessionId);
-//        assertFalse(res.has("error"));
-//        JSONAssert.assertEquals(updated.toJSON(), res, false);
-//
-//        updated = Fake.getFakeOffer(userDao.getUserById(uid));
-//        updated.setId(pid);
-//        res = ps.updatePost(updated, sessionId);
-//        assertFalse(res.has("error"));
-//        JSONAssert.assertEquals(updated.toJSON(), res, false);
+        createPost();
+        Post updated = postDao.getPostById(pid);
+        updated.setStatus("other");
+        updated.setDescription("new description");
+        JSONObject res = ps.updatePost(updated, "wrongSession");
+        assertTrue(res.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, res.toString());
+
+        res = ps.updatePost(updated, sessionId);
+        assertFalse(res.has("error"));
+        JSONAssert.assertEquals(updated.toJSON(), res, false);
+
+        updated = Fake.getFakeOffer(userDao.getUserById(uid));
+        updated.setId(pid);
+        res = ps.updatePost(updated, sessionId);
+        assertFalse(res.has("error"));
+        JSONAssert.assertEquals(updated.toJSON(), res, false);
 
     }
 
     @Test
     public void deletePostTest() throws Exception {
-//        createPost();
-//        JSONObject user = ps.deletePost(sessionId, uid, pid);
-//        assertFalse(user.has("error"));
-//        assertNull(postDao.getPostById(pid));
-//
-//        user = ps.deletePost("wrongSession", uid, pid);
-//        assertTrue(user.has("error"));
-//        assertEquals(ErrorMessage.NotLoggedIn, user.toString());
+        createPost();
+        JSONObject user = ps.deletePost(sessionId, uid, pid);
+        assertFalse(user.has("error"));
+        assertNull(postDao.getPostById(pid));
+
+        user = ps.deletePost("wrongSession", uid, pid);
+        assertTrue(user.has("error"));
+        assertEquals(ErrorMessage.NotLoggedIn, user.toString());
     }
 
     @Test
     public void categories() throws Exception {
-//        //setup
-//        ps.initCategories();
-//
-//        JSONArray res = ps.getCategories();
-//        assertNotNull(res);
-//        assertFalse(res.length()==0);
-//        for (int i=0; i<this.categories.length; i++) {
-//            JSONObject categories = res.getJSONObject(i);
-//            assertTrue(categories.has("id"));
-//            assertTrue(categories.has("name"));
-//        }
+        //setup
+        ps.initCategories();
+
+        JSONArray res = ps.getCategories();
+        assertNotNull(res);
+        assertFalse(res.length()==0);
+        for (int i=0; i<this.categories.length; i++) {
+            JSONObject categories = res.getJSONObject(i);
+            assertTrue(categories.has("id"));
+            assertTrue(categories.has("name"));
+        }
     }
 
     @After
