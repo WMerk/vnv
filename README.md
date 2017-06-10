@@ -1,4 +1,4 @@
-# vnv
+![vnv][]
 ![build][]
 ## About vnv
 VNV is an accronym for Verleihen, Dienstleistungen, Verschenken (lending,  services, comping).
@@ -10,3 +10,4 @@ Further information are on our [blog](https://vnvproject.wordpress.com/)
 
 <!-- Picture-Links: -->
 [build]:  https://api.travis-ci.org/WMerk/vnv.svg?branch=master "Build passing"
+[vnv]: https://raw.githubusercontent.com/WMerk/vnvDoc/master/logo/logo_wide_big.png "vnv logo"
