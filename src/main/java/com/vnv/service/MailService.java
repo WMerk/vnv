@@ -1,5 +1,6 @@
 package com.vnv.service;
 
+import com.vnv.model.Profiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,8 @@ public class MailService {
         private String gPw;
 
         public void sendEmail(String mail, String subject, String message) throws AddressException, MessagingException {
+            if(!Profiles.checkMailActive())
+                return;
             log.debug("Setup Mail Server Properties");
             mailServerProperties = System.getProperties();
             mailServerProperties.put("mail.smtp.port", "587");

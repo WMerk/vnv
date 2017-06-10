@@ -39,4 +39,9 @@ public class Profiles {
     public static boolean checkProdActive() {
         return checkActiveProfile("prod");
     }
+
+    public static boolean checkMailActive() {
+        return checkActiveProfile("mail");
+    }
+
 }

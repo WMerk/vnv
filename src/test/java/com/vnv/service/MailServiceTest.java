@@ -22,10 +22,10 @@ public class MailServiceTest {
 
     @Test
     public void sendMail() {
-//        try {
-//            mailService.sendEmail("web.vnv@gmail.com", "UnitTest", "This is a unittest sent mail.");
-//        } catch (MessagingException e) {
-//            fail(e.getMessage());
-//        }
+        try {
+            mailService.sendEmail("web.vnv@gmail.com", "UnitTest", "This is a unittest sent mail.");
+        } catch (MessagingException e) {
+            fail(e.getMessage());
+        }
     }
 }
