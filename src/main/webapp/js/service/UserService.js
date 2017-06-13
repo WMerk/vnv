@@ -16,16 +16,16 @@ vnvApp.service('userService',
                     if (currentUser == null) {
                         currentUser = $cookies.getObject('currentUser');
                     }
+                    if (googleLogin) {
+                        return currentUser;
+                    }
                     var params = {};
                     // check if still null
-                    if (!googleLogin && currentUser == null) {
+                    if (currentUser == null) {
                         $location.path('/Login');
                     }
                     else {
                         params['uid'] = currentUser.uid;
-                    }
-                    if(googleLogin){
-                        return currentUser;
                     }
                     var response = doCheckLogin.query(params);
                     response.$promise.then(function (data) {
