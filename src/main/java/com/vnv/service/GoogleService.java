@@ -123,8 +123,11 @@ public class GoogleService extends SocialService {
         User savedUser = userDao.getUserByGoogleId(user.getGoogleId());
         if (savedUser!=null) {
             //login
+            log.debug(savedUser.toString());
             savedUser.setSessionId(session.getId());
             userDao.updateUser(savedUser);
+            log.debug("User logged in");
+            user = userDao.getUserByGoogleId(user.getGoogleId());
         } else {
             //register
             user.setSessionId(session.getId());
