@@ -6,7 +6,7 @@
 
     <groupId>de.dhbw.ka.vnv</groupId>
     <artifactId>vnvproject</artifactId>
-    <version>1.3.1</version>
+    <version>1.4.1</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -14,7 +14,7 @@
         <version>1.4.1.RELEASE</version>
     </parent>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <repositories>
         <repository>
@@ -119,12 +119,37 @@
 
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>io.packagecloud.maven.wagon</groupId>
+                <artifactId>maven-packagecloud-wagon</artifactId>
+                <version>0.0.4</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <runOrder>random</runOrder>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>packagecloud-VnV-Team</id>
+            <url>packagecloud+https://packagecloud.io/VnV-Team/vnv-package</url>
+        </repository>
+        <snapshotRepository>
+            <id>packagecloud-VnV-Team</id>
+            <url>packagecloud+https://packagecloud.io/VnV-Team/vnv-package</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

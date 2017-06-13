@@ -121,7 +121,7 @@ public class FakeUserDaoImp implements UserDao {
 
     @Override
     public User updateUser(User user) {
-        users.put(user.getUid().longValue(), user);
+        users.put(user.getUid(), user);
         return getUserById(user.getUid());
     }
 

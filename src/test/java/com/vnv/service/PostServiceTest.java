@@ -55,6 +55,7 @@ public class PostServiceTest {
 
     @Test
     public void createPost() throws Exception {
+        ps.initCategories();
         Post post = Fake.getFakeOffer(userDao.getUserById(uid));
 
         res = ps.insertPost(post, "wrongSessionId");
@@ -66,7 +67,6 @@ public class PostServiceTest {
         System.out.println(res);
         assertFalse(res.has("error"));
         pid = res.getLong("id");
-
     }
 
     @Test

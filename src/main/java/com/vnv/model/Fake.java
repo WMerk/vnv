@@ -9,6 +9,7 @@ import com.vnv.dao.fake.FakeCategoryDaoImpl;
 import com.vnv.dao.fake.FakePostDaoImpl;
 import com.vnv.dao.fake.FakeUserDaoImp;
 import com.vnv.dao.fake.FakeUserRelDaoImpl;
+import com.vnv.dao.impl.RedisCategoryDaoImpl;
 import com.vnv.entity.Post;
 import com.vnv.entity.User;
 import org.springframework.context.annotation.Profile;
@@ -51,6 +52,8 @@ public class Fake {
 
     private static DateFormat outputDF = new SimpleDateFormat("d.MM.yyyy");
     private static Post getFakePost(User user) {
+        if (Profiles.checkProdActive())
+            categoryDao = new RedisCategoryDaoImpl();
         Post p = new Post();
         p.setUser(user);
         p.setFlavour(flavours[random.nextInt(3)]);
@@ -111,6 +114,7 @@ public class Fake {
 
     private static <T> T random(Collection<T> coll) {
         int num = (int) (Math.random() * coll.size());
+        System.out.println("NEINEINEINEIN"+coll.size());
         for(T t: coll) if (--num < 0) return t;
         throw new AssertionError();
     }
