@@ -7,6 +7,7 @@ vnvApp.service('userService',
             var offerCreated = false;
             var requestCreated = false;
             var accountDeleted = false;
+            var googleLogin = false;
 
             var navigationTemplate = 'html/templates/navigation.html';
 
@@ -17,11 +18,14 @@ vnvApp.service('userService',
                     }
                     var params = {};
                     // check if still null
-                    if (currentUser == null) {
+                    if (!googleLogin && currentUser == null) {
                         $location.path('/Login');
                     }
                     else {
                         params['uid'] = currentUser.uid;
+                    }
+                    if(googleLogin){
+                        return currentUser;
                     }
                     var response = doCheckLogin.query(params);
                     response.$promise.then(function (data) {
@@ -67,6 +71,9 @@ vnvApp.service('userService',
                 },
                 clearData: function () {
                     this.setCurrentUser(null);
+                },
+                setGoogleLogin: function (value) {
+                    googleLogin = value;
                 },
             };
 

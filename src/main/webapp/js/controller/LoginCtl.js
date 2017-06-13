@@ -18,6 +18,8 @@ vnvApp.controller(
                 params['mail'] = $scope.login.mail;
                 params['password'] = $scope.login.password;
 
+                userService.setGoogleLogin(false);
+
                 var response = doLogin.query(params);
                 response.$promise.then(function (data) {
                     if (data.error === undefined) {
@@ -39,6 +41,7 @@ vnvApp.controller(
             };
 
             $scope.authenticate = function (provider) {
+                userService.setGoogleLogin(true);
                 $auth.authenticate(provider).then(function (response) {
                     if (response.error === undefined) {
                         // no error, login successful
