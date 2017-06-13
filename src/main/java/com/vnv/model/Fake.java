@@ -114,7 +114,6 @@ public class Fake {
 
     private static <T> T random(Collection<T> coll) {
         int num = (int) (Math.random() * coll.size());
-        System.out.println("NEINEINEINEIN"+coll.size());
         for(T t: coll) if (--num < 0) return t;
         throw new AssertionError();
     }

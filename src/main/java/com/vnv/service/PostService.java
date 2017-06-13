@@ -172,7 +172,7 @@ public class PostService {
         User user = userDao.getUserById(uid);
         Collection<Post> posts = new ArrayList<>();
         Collection<User> friends = userRelDao.getFriends(user);
-        for (User friend:friends) {
+        if (friends!=null) for (User friend:friends) {
             posts.addAll(postDao.getOffersForUser(friend));
         }
         JSONArray jsonArray = new JSONArray(posts);
