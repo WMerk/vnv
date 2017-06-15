@@ -1,9 +1,9 @@
 package com.vnv;
 
-import com.vnv.Model.Database;
-import com.vnv.Model.Fake;
-import com.vnv.Model.Profiles;
-import com.vnv.Service.PostService;
+import com.vnv.model.Database;
+import com.vnv.model.Fake;
+import com.vnv.model.Profiles;
+import com.vnv.service.PostService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -16,24 +16,18 @@ public class Main {
 
     private static Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static String[] profiles;
+    private static String[] profiles;
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Main.class,args);
         ctx.getBean(PostService.class).initCategories();
         profiles = ctx.getEnvironment().getActiveProfiles();
         if(Profiles.checkProdActive()) {
-            initDB();
+            ctx.getBean(Database.class).init();
         }
         if(Profiles.checkFakeActive()) {
             addFakeUser();
         }
-    }
-
-    @Profile("prod")
-    private static void initDB() {
-        log.debug("Init DB");
-        Database db = new Database();
     }
 
     @Profile("fake")
@@ -43,4 +37,11 @@ public class Main {
         f.makeFakeDbEntries(100);
     }
 
+    public static String[] getProfiles() {
+        return profiles;
+    }
+
+    public static void setProfiles(String[] profiles) {
+        Main.profiles = profiles;
+    }
 }

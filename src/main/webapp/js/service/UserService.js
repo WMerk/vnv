@@ -1,20 +1,41 @@
 vnvApp.service('userService',
     [
-        '$cookies',
-        function ($cookies) {
+        '$cookies', 'doCheckLogin', '$location',
+        function ($cookies, doCheckLogin, $location) {
             var currentUser = null;
             var newUser = false;
             var offerCreated = false;
             var requestCreated = false;
             var accountDeleted = false;
+            var googleLogin = false;
 
             var navigationTemplate = 'html/templates/navigation.html';
 
             return {
                 getCurrentUser: function () {
-                    if(currentUser == null){
+                    if (currentUser == null) {
                         currentUser = $cookies.getObject('currentUser');
                     }
+                    if (googleLogin) {
+                        return currentUser;
+                    }
+                    var params = {};
+                    // check if still null
+                    if (currentUser == null) {
+                        $location.path('/Login');
+                    }
+                    else {
+                        params['uid'] = currentUser.uid;
+                    }
+                    var response = doCheckLogin.query(params);
+                    response.$promise.then(function (data) {
+                        if (data.error !== undefined) {
+                            // error
+                            $location.path('/Login');
+                        }
+                    }).catch(function (response) {
+                        $location.path('/Login');
+                    });
                     return currentUser;
                 },
                 setCurrentUser: function (value) {
@@ -50,6 +71,9 @@ vnvApp.service('userService',
                 },
                 clearData: function () {
                     this.setCurrentUser(null);
+                },
+                setGoogleLogin: function (value) {
+                    googleLogin = value;
                 },
             };
 

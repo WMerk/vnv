@@ -7,10 +7,15 @@ vnvApp.controller(
         'doLoadRequests',
         function ($scope, $location, userService, doLoadRequests) {
 
+            $scope.update = {
+                editPost : false
+            }
+
             $scope.init = function () {
                 $scope.user = userService.getCurrentUser();
                 $scope.templateNavigation = userService.getNavigationTemplate();
                 $scope.loadRequests();
+                $scope.update.editPost = false;
             };
 
             $scope.loadRequests = function () {
@@ -28,5 +33,9 @@ vnvApp.controller(
                 });
             };
 
+            $scope.editSelectedPost = function (post) {
+                $scope.update.editPost = true;
+                $scope.update.post = angular.copy(post);
+            };
 
         }]);

@@ -1,0 +1,149 @@
+<div style="margin-top: 50px">
+    <h2>Entdecke neue Gesuche</h2>
+</div>
+
+<div style="margin-top: 50px">
+    <div style="width: 50%; margin:auto" class="btn-group btn-group-justified" role="group">
+
+        <a ng-click="showTemplateSearchOffer()" type="submit" class="btn btn-default">Angebote</a>
+
+        <a ng-click="showTemplateSearchRequest()" type="submit" class="btn btn-primary">Gesuche</a>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 50px; margin-bottom: 50px">
+
+    <div class="container-fluid" style="padding:0px 50px">
+        <div class="row">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{filters.inseratart}} <span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-click="$selectInseratart('Inseratart')"><a href="#">Inseratart</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li ng-click="$selectInseratart('Verleih')"><a href="#">Verleih</a></li>
+                                    <li ng-click="$selectInseratart('Dienstleitung')"><a href="#">Dienstleistung</a></li>
+                                    <li ng-click="$selectInseratart('Verschenken')"><a href="#">Verschenken</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{filters.status}} <span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li ng-click="selectStatus('Status')"><a href="#">Status</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li ng-click="selectStatus('Verfügbar')"><a href="#">Verfügbar</a></li>
+                                    <li ng-click="selectStatus('Reserviert')"><a href="#">Reserviert</a></li>
+                                    <li ng-click="selectStatus('Beendet')"><a href="#">Beendet</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{filters.category.name}} <span
+                                        class="caret"></span></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="insertOfferCategory">
+                                    <li ng-click="selectCategory('Kategorie')"><a href="#">Kategorie</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li ng-click="selectCategory(category)"
+                                        ng-repeat="category in categories | orderBy : 'id'"><a href="#">{{category.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="navbar-form">
+                            <div class="form-group" style="margin-left: 25px;">
+                                <input ng-model="filtername" type="text" class="form-control"
+                                       style="width: 300px;" placeholder="Angebotsname">
+                            </div>
+                            <button ng-click="resetFilters()" type="submit" class="btn btn-default"
+                                    style="float: right">Filter
+                                zurücksetzen
+                            </button>
+                        </form>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+
+    <div ng-repeat="request in requests | requestOrOfferFilter:filters | filter:{postName: filtername}"
+         class="container-fluid"
+         style="padding:0px 50px; cursor:pointer">
+        <div class="row">
+            <div class="col-lg-12" style="border: 1px solid rgba(0,0,0,.125);">
+
+                <div class="container-fluid">
+                    <div class="row" style="padding: 5px 5px 0 5px">
+                        <div class="col-lg-8">
+                            <h2 style="color: #155a96; margin-left: 15px; text-align:left">{{offer.postName}}</h2>
+                        </div>
+                        <div class="col-lg-4">
+                            <h4 style="margin-top:20px;margin-right: 15px; text-align:right">{{offer.user.name}}</h4>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding: 10px 20px 25px 20px">
+                        <div class="col-lg-3">
+                            <img style="width: 80%" src="../img/item.png" class="img-responsive img-thumbnail"
+                                 alt="Anzeigenbild">
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Status</p>
+                                <p>{{request.status}}</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Gültig von</p>
+                                <p>{{request.creationDate}} Uhr</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Inseratart</p>
+                                <p ng-if="request.flavour === 'verschenken'">Geschenk</p>
+                                <p ng-if="request.flavour === 'verleihen'">Verleih</p>
+                                <p ng-if="request.flavour === 'Dienstleistung'">Dienstleistung</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Gültig bis</p>
+                                <p>{{request.period}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <p class="text-muted">Kategorie</p>
+                                <p>{{request.category.name}}</p>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <p class="text-muted">Beschreibung</p>
+                                <p>{{request.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
