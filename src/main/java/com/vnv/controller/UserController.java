@@ -2,7 +2,6 @@ package com.vnv.controller;
 
 import com.vnv.entity.User;
 import com.vnv.model.ErrorMessage;
-import com.vnv.model.Fake;
 import com.vnv.service.UserService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -143,8 +142,8 @@ public class UserController {
     @Profile("debug")
     @RequestMapping(value = "/fake", method = RequestMethod.POST)
     public String addFakeUsers(@RequestParam int number) {
-        Fake f = new Fake();
-        f.makeFakeDbEntries(number);
+       // Fake f = new Fake();
+       // f.makeFakeDbEntries(number);
         return "ok";
     }
 

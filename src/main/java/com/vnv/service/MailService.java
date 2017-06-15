@@ -1,5 +1,6 @@
 package com.vnv.service;
 
+import com.vnv.model.MailMessage;
 import com.vnv.model.Profiles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,8 @@ public class MailService {
         Properties mailServerProperties;
         Session getMailSession;
         MimeMessage generateMailMessage;
+
+        MailMessage mm;
 
         @Value("${mail.google.mail}")
         private String gmail;

@@ -1,318 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Diagram>
   <ID>JAVA</ID>
-  <OriginalElement>com.vnv.Controller.Controller</OriginalElement>
+  <OriginalElement>com.vnv.controller.Controller</OriginalElement>
   <nodes>
-    <node x="1536.4103515625002" y="119.0">com.vnv.Service.SocialService</node>
-    <node x="1358.1464626736115" y="526.0">com.vnv.Dao.Impl.Neo4jUserRelDaoImpl</node>
-    <node x="554.0" y="679.0">com.vnv.Entity.GoogleCode</node>
-    <node x="943.0" y="679.0">com.vnv.Model.Http</node>
-    <node x="159.0" y="605.0">com.vnv.Controller.MessageController</node>
-    <node x="735.6603515625" y="119.0">com.vnv.Dao.PostDao</node>
-    <node x="1301.6911055307542" y="119.0">com.vnv.Dao.UserDao</node>
-    <node x="1618.1503038194446" y="0.0">com.vnv.Entity.User</node>
-    <node x="614.8686848958334" y="407.0">com.vnv.Service.PostService</node>
-    <node x="0.0" y="679.0">org.springframework.boot.autoconfigure.web.ErrorController</node>
-    <node x="646.0" y="526.0">com.vnv.Controller.PostController</node>
-    <node x="408.0" y="679.0">com.vnv.Model.MailMessage</node>
-    <node x="1913.1603515625002" y="119.0">com.vnv.Entity.Message</node>
-    <node x="1727.4103515625002" y="268.0">com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl</node>
-    <node x="421.61868489583344" y="268.0">com.vnv.Dao.CategoryDao</node>
-    <node x="1789.1603515625002" y="119.0">com.vnv.Entity.UserRelations</node>
-    <node x="1040.5878038194448" y="268.0">com.vnv.Service.UserService</node>
-    <node x="47.125" y="407.0">com.vnv.Dao.FakeImpl.FakeCategoryDaoImpl</node>
-    <node x="216.125" y="407.0">com.vnv.Dao.MessageDao</node>
-    <node x="130.0" y="679.0">com.vnv.Model.ErrorJSON</node>
-    <node x="628.0294704861114" y="0.0">com.vnv.Entity.Category</node>
-    <node x="829.1583333333333" y="268.0">com.vnv.Dao.FakeImpl.FakePostDaoImpl</node>
-    <node x="774.0" y="526.0">com.vnv.Dao.Impl.RedisPostDaoImpl</node>
-    <node x="0.0" y="526.0">com.vnv.Dao.FakeImpl.FakeMessageDaoImpl</node>
-    <node x="921.0416666666667" y="119.0">com.vnv.Entity.Post</node>
-    <node x="260.0" y="679.0">com.vnv.Model.ErrorMessage</node>
-    <node x="1407.9103515625002" y="407.0">com.vnv.Controller.GoogleController</node>
-    <node x="1001.0000000000001" y="526.0">com.vnv.Controller.UserController</node>
-    <node x="302.0" y="526.0">com.vnv.Dao.Impl.RedisMessageDaoImpl</node>
-    <node x="1423.4103515625002" y="119.0">com.vnv.Service.MailService</node>
-    <node x="1415.9103515625002" y="268.0">com.vnv.Service.GoogleService</node>
-    <node x="954.5294704861114" y="407.0">com.vnv.Model.Fake</node>
-    <node x="37.75" y="758.0">com.vnv.Controller.CustomErrorController</node>
-    <node x="827.0" y="679.0">com.vnv.Model.Profiles</node>
-    <node x="1123.2380952380954" y="119.0">com.vnv.Dao.UserRelDao</node>
-    <node x="1586.4103515625002" y="268.0">com.vnv.Dao.FakeImpl.FakeUserDaoImp</node>
-    <node x="922.0" y="526.0">com.vnv.Main</node>
-    <node x="1014.9211371527781" y="119.0">com.vnv.Model.Password</node>
-    <node x="824.2436848958334" y="407.0">com.vnv.Model.Database</node>
-    <node x="697.0" y="679.0">com.vnv.Controller.Controller</node>
-    <node x="1130.7380952380954" y="526.0">com.vnv.Dao.Impl.RedisUserDaoImpl</node>
-    <node x="167.0" y="526.0">com.vnv.Service.MessageService</node>
-    <node x="473.0" y="526.0">com.vnv.Dao.Impl.RedisCategoryDaoImpl</node>
+    <node x="3182.3477500753716" y="2407.8430281278165">com.vnv.dao.fake.FakeUserRelDaoImpl</node>
+    <node x="3783.4014414609032" y="2071.4824732585967">com.vnv.dao.UserDao</node>
+    <node x="1802.9790920471519" y="1235.7129273338842">com.vnv.service.SocialService</node>
+    <node x="5443.059925846165" y="2472.6645765592198">com.vnv.dao.fake.FakeCategoryDaoImpl</node>
+    <node x="6151.511104112491" y="2441.3724349764366">com.vnv.dao.fake.FakeMessageDaoImpl</node>
+    <node x="2658.249715754076" y="2746.01098931913">com.vnv.model.MailMessage</node>
+    <node x="5785.918315297486" y="2441.2395869227635">com.vnv.dao.impl.RedisMessageDaoImpl</node>
+    <node x="4571.235076746804" y="2099.086512848038">com.vnv.dao.PostDao</node>
+    <node x="2220.5525305639417" y="1494.5674636358722">com.vnv.service.GoogleService</node>
+    <node x="4286.265912798076" y="3458.6144300754563">com.vnv.model.Fake</node>
+    <node x="2991.7366182147066" y="2063.3140077935795">com.vnv.dao.UserRelDao</node>
+    <node x="4743.4881893264865" y="2433.610320732612">com.vnv.dao.fake.FakePostDaoImpl</node>
+    <node x="5307.242624869821" y="2753.3988928762487">com.vnv.entity.Category</node>
+    <node x="5970.368534609726" y="2127.3948032295493">com.vnv.dao.MessageDao</node>
+    <node x="3275.8032392697346" y="1384.6480540981358">com.vnv.service.UserService</node>
+    <node x="3973.578820145585" y="2409.3738485510626">com.vnv.dao.fake.FakeUserDaoImp</node>
+    <node x="3306.4272943296137" y="924.4267270183286">com.vnv.controller.UserController</node>
+    <node x="5135.468667269343" y="2470.8718394301677">com.vnv.dao.impl.RedisCategoryDaoImpl</node>
+    <node x="2681.786734673404" y="928.1769703576786">com.vnv.controller.Controller</node>
+    <node x="4491.504016994043" y="1467.454939104589">com.vnv.service.PostService</node>
+    <node x="5279.989813659546" y="2145.976493168403">com.vnv.dao.CategoryDao</node>
+    <node x="1801.4212662689004" y="1564.9343076881005">com.vnv.model.Http</node>
+    <node x="6083.31089290739" y="1074.4213195870104">com.vnv.controller.MessageController</node>
+    <node x="4402.575909678529" y="2432.1537611242743">com.vnv.dao.impl.RedisPostDaoImpl</node>
+    <node x="2632.1388295992024" y="1592.598986530956">com.vnv.service.MailService</node>
+    <node x="6085.794375072807" y="1574.2064606405293">com.vnv.service.MessageService</node>
+    <node x="4522.71321110839" y="2752.773218333052">com.vnv.entity.Post</node>
+    <node x="6005.539158970596" y="2751.0243617852257">com.vnv.entity.Message</node>
+    <node x="2225.4868104029806" y="928.4270519625684">com.vnv.controller.GoogleController</node>
+    <node x="2543.007045109971" y="2285.5351901005088">com.vnv.model.Database</node>
+    <node x="3592.6139525782132" y="2408.044018240233">com.vnv.dao.impl.RedisUserDaoImpl</node>
+    <node x="2945.2712892213603" y="1543.7093205243011">com.vnv.model.Password</node>
+    <node x="3641.802438400512" y="2756.0332347783437">com.vnv.entity.User</node>
+    <node x="3057.999776591604" y="2752.9922446655696">com.vnv.entity.UserRelations</node>
+    <node x="2413.373327744016" y="2749.8019658293174">com.vnv.entity.GoogleCode</node>
+    <node x="2657.666729469323" y="2847.035629369683">com.vnv.model.ErrorMessage</node>
+    <node x="2777.4776503034577" y="2405.646745695303">com.vnv.dao.impl.Neo4jUserRelDaoImpl</node>
+    <node x="4487.229118988955" y="950.505679858456">com.vnv.controller.PostController</node>
+    <node x="1813.9254525938418" y="927.7908985101408">com.vnv.Main</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl" target="com.vnv.Entity.UserRelations">
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.service.SocialService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Entity.Post" target="com.vnv.Entity.Category">
+    <edge source="com.vnv.dao.impl.Neo4jUserRelDaoImpl" target="com.vnv.dao.UserRelDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Entity.User">
+    <edge source="com.vnv.dao.impl.RedisPostDaoImpl" target="com.vnv.dao.PostDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Entity.Category">
+    <edge source="com.vnv.dao.impl.RedisCategoryDaoImpl" target="com.vnv.model.Database">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.Neo4jUserRelDaoImpl" target="com.vnv.Entity.User">
+    <edge source="com.vnv.service.PostService" target="com.vnv.service.UserService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.MessageService" target="com.vnv.Dao.MessageDao">
+    <edge source="com.vnv.dao.fake.FakeUserRelDaoImpl" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Dao.FakeImpl.FakePostDaoImpl">
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakePostDaoImpl" target="com.vnv.Entity.Post">
+    <edge source="com.vnv.dao.fake.FakePostDaoImpl" target="com.vnv.entity.User">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Dao.UserRelDao">
+    <edge source="com.vnv.service.UserService" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl" target="com.vnv.Dao.UserDao">
+    <edge source="com.vnv.dao.impl.RedisPostDaoImpl" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.GoogleService" target="com.vnv.Service.SocialService">
-      <point x="42.799999999999955" y="-14.5" />
-      <point x="1512.2103515625" y="248.0" />
-      <point x="1586.4103515625002" y="248.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakePostDaoImpl" target="com.vnv.Dao.PostDao">
-      <point x="-49.59999999999991" y="-14.5" />
-      <point x="841.5583333333334" y="248.0" />
-      <point x="798.9936848958332" y="248.0" />
-      <point x="25.333333333333258" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Dao.FakeImpl.FakeUserDaoImp">
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.dao.UserRelDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.Neo4jUserRelDaoImpl" target="com.vnv.Dao.UserDao">
+    <edge source="com.vnv.dao.fake.FakeCategoryDaoImpl" target="com.vnv.entity.Category">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.CustomErrorController" target="com.vnv.Model.ErrorJSON">
+    <edge source="com.vnv.dao.fake.FakeUserDaoImp" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakePostDaoImpl" target="com.vnv.Entity.User">
+    <edge source="com.vnv.dao.fake.FakeUserRelDaoImpl" target="com.vnv.entity.UserRelations">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.GoogleService" target="com.vnv.Dao.UserRelDao">
+    <edge source="com.vnv.dao.fake.FakePostDaoImpl" target="com.vnv.entity.Post">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisMessageDaoImpl" target="com.vnv.Model.Database">
+    <edge source="com.vnv.entity.Post" target="com.vnv.entity.Category">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.GoogleService" target="com.vnv.Service.MailService">
+    <edge source="com.vnv.controller.UserController" target="com.vnv.service.UserService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisUserDaoImpl" target="com.vnv.Dao.UserDao">
-      <point x="32.0" y="-14.5" />
-      <point x="1226.7380952380954" y="506.0" />
-      <point x="1276.6336371527782" y="506.0" />
-      <point x="1276.6336371527782" y="248.0" />
-      <point x="1328.8339626736115" y="248.0" />
-      <point x="-10.85714285714289" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Entity.Post">
+    <edge source="com.vnv.service.PostService" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Dao.UserDao">
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.CategoryDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Main" target="com.vnv.Model.Fake">
+    <edge source="com.vnv.model.Fake" target="com.vnv.entity.Post">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisMessageDaoImpl" target="com.vnv.Dao.MessageDao">
-      <point x="-37.75" y="-14.5" />
-      <point x="339.75" y="506.0" />
-      <point x="298.625" y="506.0" />
-      <point x="33.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl" target="com.vnv.Dao.UserRelDao">
-      <point x="-52.5" y="-14.5" />
-      <point x="1744.9103515625002" y="178.0" />
-      <point x="1206.0380952380951" y="178.0" />
-      <point x="36.799999999999955" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Dao.Impl.RedisCategoryDaoImpl" target="com.vnv.Model.Database">
+    <edge source="com.vnv.dao.fake.FakeMessageDaoImpl" target="com.vnv.dao.MessageDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Entity.Category">
+    <edge source="com.vnv.dao.fake.FakeUserDaoImp" target="com.vnv.entity.User">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Model.Fake" target="com.vnv.Dao.FakeImpl.FakeUserRelDaoImpl">
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.fake.FakeUserDaoImp">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakePostDaoImpl" target="com.vnv.Entity.Category">
+    <edge source="com.vnv.service.UserService" target="com.vnv.dao.UserRelDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.GoogleService" target="com.vnv.Dao.UserDao">
+    <edge source="com.vnv.entity.Message" target="com.vnv.entity.User">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisUserDaoImpl" target="com.vnv.Model.Database">
+    <edge source="com.vnv.dao.impl.RedisUserDaoImpl" target="com.vnv.model.Database">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Main" target="com.vnv.Model.Database">
+    <edge source="com.vnv.service.PostService" target="com.vnv.dao.PostDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisPostDaoImpl" target="com.vnv.Dao.PostDao">
-      <point x="-32.0" y="-14.5" />
-      <point x="806.0" y="486.0" />
-      <point x="773.6603515625" y="486.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Dao.CategoryDao">
+    <edge source="com.vnv.dao.fake.FakePostDaoImpl" target="com.vnv.entity.Category">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Service.UserService">
+    <edge source="com.vnv.service.MessageService" target="com.vnv.dao.MessageDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.GoogleController" target="com.vnv.Service.GoogleService">
+    <edge source="com.vnv.dao.impl.Neo4jUserRelDaoImpl" target="com.vnv.dao.UserDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeUserDaoImp" target="com.vnv.Entity.User">
+    <edge source="com.vnv.dao.impl.RedisCategoryDaoImpl" target="com.vnv.dao.CategoryDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.Neo4jUserRelDaoImpl" target="com.vnv.Model.Database">
+    <edge source="com.vnv.dao.fake.FakePostDaoImpl" target="com.vnv.dao.PostDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeCategoryDaoImpl" target="com.vnv.Dao.CategoryDao">
-      <point x="37.25" y="-14.5" />
-      <point x="158.875" y="387.0" />
-      <point x="438.4520182291669" y="387.0" />
-      <point x="-33.666666666666515" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Dao.Impl.Neo4jUserRelDaoImpl" target="com.vnv.Dao.UserRelDao">
-      <point x="-18.375" y="-14.5" />
-      <point x="1413.2714626736115" y="466.0" />
-      <point x="1230.5442801339286" y="466.0" />
-      <point x="1230.5442801339286" y="218.0" />
-      <point x="1169.2380952380954" y="218.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Controller.MessageController" target="com.vnv.Service.MessageService">
+    <edge source="com.vnv.service.PostService" target="com.vnv.entity.Category">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisCategoryDaoImpl" target="com.vnv.Dao.CategoryDao">
-      <point x="-38.25" y="-14.5" />
-      <point x="511.25" y="486.0" />
-      <point x="472.11868489583344" y="486.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeUserDaoImp" target="com.vnv.Dao.UserDao">
-      <point x="-40.33333333333337" y="-14.5" />
-      <point x="1606.5770182291667" y="188.0" />
-      <point x="1361.40539124504" y="188.0" />
-      <point x="21.71428571428578" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Entity.Post" target="com.vnv.Entity.User">
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.model.Http">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.GoogleService" target="com.vnv.Entity.User">
+    <edge source="com.vnv.controller.PostController" target="com.vnv.service.PostService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Entity.UserRelations" target="com.vnv.Entity.User">
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.fake.FakePostDaoImpl">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeMessageDaoImpl" target="com.vnv.Dao.MessageDao">
-      <point x="0.0" y="-14.5" />
-      <point x="73.5" y="496.0" />
-      <point x="232.625" y="496.0" />
-      <point x="-33.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Service.PostService" target="com.vnv.Dao.PostDao">
+    <edge source="com.vnv.controller.GoogleController" target="com.vnv.entity.GoogleCode">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.UserController" target="com.vnv.Service.UserService">
+    <edge source="com.vnv.controller.GoogleController" target="com.vnv.service.GoogleService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.PostController" target="com.vnv.Service.PostService">
+    <edge source="com.vnv.dao.impl.Neo4jUserRelDaoImpl" target="com.vnv.entity.User">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.Impl.RedisPostDaoImpl" target="com.vnv.Model.Database">
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.impl.RedisCategoryDaoImpl">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.CustomErrorController" target="org.springframework.boot.autoconfigure.web.ErrorController">
-      <point x="-38.0" y="-14.5" />
-      <point x="75.75" y="733.0" />
-      <point x="55.0" y="733.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="com.vnv.Service.UserService" target="com.vnv.Dao.UserDao">
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.service.MailService">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Dao.FakeImpl.FakeCategoryDaoImpl" target="com.vnv.Entity.Category">
+    <edge source="com.vnv.service.UserService" target="com.vnv.model.Password">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.UserService" target="com.vnv.Model.Password">
+    <edge source="com.vnv.dao.impl.RedisPostDaoImpl" target="com.vnv.model.Database">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Controller.UserController" target="com.vnv.Model.Fake">
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.fake.FakeUserRelDaoImpl">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Entity.Message" target="com.vnv.Entity.User">
+    <edge source="com.vnv.service.PostService" target="com.vnv.dao.CategoryDao">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
-    <edge source="com.vnv.Service.UserService" target="com.vnv.Dao.UserRelDao">
+    <edge source="com.vnv.entity.UserRelations" target="com.vnv.entity.User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.model.Fake" target="com.vnv.dao.fake.FakeCategoryDaoImpl">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.controller.MessageController" target="com.vnv.service.MessageService">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.impl.RedisMessageDaoImpl" target="com.vnv.model.Database">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.fake.FakeCategoryDaoImpl" target="com.vnv.dao.CategoryDao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.entity.Post" target="com.vnv.entity.User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.model.Fake" target="com.vnv.entity.User">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.fake.FakeUserRelDaoImpl" target="com.vnv.dao.UserRelDao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.impl.RedisUserDaoImpl" target="com.vnv.dao.UserDao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.service.PostService" target="com.vnv.dao.UserRelDao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.service.MailService" target="com.vnv.model.MailMessage">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.impl.Neo4jUserRelDaoImpl" target="com.vnv.model.Database">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.dao.impl.RedisMessageDaoImpl" target="com.vnv.dao.MessageDao">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.vnv.service.GoogleService" target="com.vnv.entity.User">
       <point x="0.0" y="0.0" />
       <point x="0.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9" x="798.3333333333333" y="440.0" />
+  <settings layout="Hierarchic Group" zoom="0.32542001460920383" x="4146.5" y="2283.0" />
   <SelectedNodes />
-  <Categories />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

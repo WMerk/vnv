@@ -1,7 +1,6 @@
 package com.vnv;
 
 import com.vnv.model.Database;
-import com.vnv.model.Fake;
 import com.vnv.model.Profiles;
 import com.vnv.service.PostService;
 import org.slf4j.Logger;
@@ -33,8 +32,8 @@ public class Main {
     @Profile("fake")
     private static void addFakeUser() {
         log.debug("Adding fake users");
-        Fake f = new Fake();
-        f.makeFakeDbEntries(100);
+       // Fake f = new Fake();
+       // f.makeFakeDbEntries(100);
     }
 
     public static String[] getProfiles() {

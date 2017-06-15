@@ -21,6 +21,8 @@ public class GoogleController {
     @Autowired
     GoogleService gService;
 
+    GoogleCode g;
+
 
     @RequestMapping(value="/auth/google", method= RequestMethod.POST)
     public ResponseEntity gconnect(@RequestBody GoogleCode googleCode, HttpSession session) {

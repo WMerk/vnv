@@ -68,6 +68,8 @@ public class GoogleService extends SocialService {
     private String token_endpoint;
     private String tokeninfo_endpoint = "https://www.googleapis.com/oauth2/v3/tokeninfo";
 
+    Http h;
+
     @PostConstruct
     private void retrieveConfig() throws IOException {
         JSONObject config = new JSONObject(Http.get(configuration_endpoint));
