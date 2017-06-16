@@ -125,7 +125,7 @@ public class PostServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        postDao.deletePost(pid);
+        //postDao.deletePost(pid);
         userDao.removeUserById(uid);
         userRelDao.deleteUser(uid);
     }
