@@ -33,8 +33,7 @@ public class FakeCategoryDaoImpl implements CategoryDao {
 
     @Override
     public Category getCategoryByName(String name) {
-        for (int i=1; i<id; i++) {
-            Category c= categories.get(i);
+        for (Category c:categories.values()) {
             if (c!= null && c.getName().equals(name))
                 return c;
         }
