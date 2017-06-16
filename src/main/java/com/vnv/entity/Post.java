@@ -23,6 +23,7 @@ public class Post {
     @Attribute
     @Indexed
     private String postName;
+    @Attribute
     @Indexed
     private Category category;
     @Attribute
