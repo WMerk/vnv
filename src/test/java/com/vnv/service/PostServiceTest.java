@@ -97,7 +97,7 @@ public class PostServiceTest {
 
     }
 
-    @Test
+    //@Test
     public void deletePostTest() throws Exception {
         createPost();
         JSONObject user = ps.deletePost(sessionId, uid, pid);
