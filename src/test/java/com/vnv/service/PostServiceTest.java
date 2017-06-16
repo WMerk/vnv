@@ -1,13 +1,16 @@
 package com.vnv.service;
 
+import com.vnv.Main;
+import com.vnv.dao.CategoryDao;
 import com.vnv.dao.PostDao;
 import com.vnv.dao.UserDao;
 import com.vnv.dao.UserRelDao;
+import com.vnv.entity.Category;
 import com.vnv.entity.Post;
 import com.vnv.entity.User;
-import com.vnv.Main;
 import com.vnv.model.ErrorMessage;
 import com.vnv.model.Fake;
+import com.vnv.model.Profiles;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.After;
@@ -35,6 +38,8 @@ public class PostServiceTest {
     @Autowired
     UserRelDao userRelDao;
     @Autowired
+    CategoryDao categoryDao;
+    @Autowired
     PostService ps;
     @Autowired
     UserService us;
@@ -55,7 +60,8 @@ public class PostServiceTest {
 
     @Test
     public void createPost() throws Exception {
-        ps.initCategories();
+        if (Profiles.checkDebugActive())
+            ps.initCategories();
         Post post = Fake.getFakeOffer(userDao.getUserById(uid));
 
         res = ps.insertPost(post, "wrongSessionId");
@@ -112,9 +118,8 @@ public class PostServiceTest {
         assertNotNull(res);
         assertFalse(res.length()==0);
         for (int i=0; i<this.categories.length; i++) {
-            JSONObject categories = res.getJSONObject(i);
-            assertTrue(categories.has("id"));
-            assertTrue(categories.has("name"));
+            Category c = categoryDao.getCategoryByName(this.categories[i]);
+            assertNotNull(c);
         }
     }
 
